@@ -3,560 +3,431 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Revenda</title>
+<title>Revenda 🤎</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", Arial, sans-serif;
-  background: #f8f3ef;
-  color: #493d38;
-}
-
-header {
-  background: #b99b8c;
-  color: white;
-  padding: 28px 20px 24px;
-  border-radius: 0 0 28px 28px;
-}
-
-header h1 {
-  margin: 0;
-  font-size: 32px;
-}
-
-header p {
-  margin: 5px 0 0;
-  opacity: .85;
-}
-
-.container {
-  padding: 18px;
-  padding-bottom: 100px;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.card {
-  background: white;
-  border-radius: 18px;
-  padding: 17px;
-  box-shadow: 0 3px 12px rgba(80,50,40,.07);
-}
-
-.card small {
-  color: #8f817b;
-}
-
-.card strong {
-  display: block;
-  font-size: 24px;
-  margin-top: 5px;
-}
-
-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: white;
-  display: flex;
-  justify-content: space-around;
-  padding: 10px 5px calc(10px + env(safe-area-inset-bottom));
-  box-shadow: 0 -3px 15px rgba(0,0,0,.08);
-  z-index: 10;
-}
-
-nav button {
-  background: none;
-  border: 0;
-  color: #8c7b73;
-  font-size: 12px;
-}
-
-nav button.active {
-  color: #a47e6d;
-  font-weight: bold;
-}
-
-.page {
-  display: none;
-}
-
-.page.active {
-  display: block;
-}
-
-h2 {
-  margin-top: 5px;
-}
-
-button.primary {
-  width: 100%;
-  background: #a98574;
-  color: white;
-  border: 0;
-  border-radius: 15px;
-  padding: 15px;
-  font-size: 16px;
-  font-weight: 600;
-  margin: 10px 0;
-}
-
-input, select {
-  width: 100%;
-  padding: 13px;
-  border: 1px solid #ded2cb;
-  border-radius: 12px;
-  margin: 5px 0 12px;
-  font-size: 16px;
-  background: white;
-}
-
-label {
-  font-size: 13px;
-  color: #756761;
-}
-
-.product {
-  background: white;
-  border-radius: 18px;
-  padding: 15px;
-  margin: 12px 0;
-  box-shadow: 0 3px 12px rgba(80,50,40,.06);
-}
-
-.product h3 {
-  margin: 0 0 5px;
-}
-
-.product p {
-  margin: 5px 0;
-}
-
-.status {
-  display: inline-block;
-  padding: 6px 10px;
-  border-radius: 20px;
-  background: #eee4de;
-  font-size: 12px;
-  margin-top: 6px;
-}
-
-.profit {
-  color: #628267;
-  font-weight: bold;
-}
-
-.danger {
-  background: #ead0ca;
-  border: 0;
-  padding: 8px 12px;
-  border-radius: 10px;
-  color: #713f36;
-}
-
-.empty {
-  text-align: center;
-  padding: 35px 15px;
-  color: #988a84;
-}
-
-.section-title {
-  margin-top: 25px;
-}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Arial,sans-serif;background:#f8f3ef;color:#493d38}
+header{background:#b99b8c;color:white;padding:28px 20px 24px;border-radius:0 0 28px 28px}
+header h1{margin:0;font-size:32px}
+header p{margin:5px 0 0;opacity:.85}
+.container{padding:18px;padding-bottom:100px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:white;border-radius:18px;padding:17px;box-shadow:0 3px 12px rgba(80,50,40,.07)}
+.card small{color:#8f817b}
+.card strong{display:block;font-size:24px;margin-top:5px}
+nav{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:10px 5px calc(10px + env(safe-area-inset-bottom));box-shadow:0 -3px 15px rgba(0,0,0,.08);z-index:10}
+nav button{background:none;border:0;color:#8c7b73;font-size:12px}
+nav button.active{color:#a47e6d;font-weight:bold}
+.page{display:none}
+.page.active{display:block}
+h2{margin-top:5px}
+button.primary{width:100%;background:#a98574;color:white;border:0;border-radius:15px;padding:15px;font-size:16px;font-weight:600;margin:10px 0}
+input,select{width:100%;padding:13px;border:1px solid #ded2cb;border-radius:12px;margin:5px 0 12px;font-size:16px;background:white}
+label{font-size:13px;color:#756761}
+.product{background:white;border-radius:18px;padding:15px;margin:12px 0;box-shadow:0 3px 12px rgba(80,50,40,.06)}
+.product h3{margin:0 0 5px}
+.product p{margin:5px 0}
+.status{display:inline-block;padding:6px 10px;border-radius:20px;background:#eee4de;font-size:12px;margin-top:6px}
+.profit{color:#628267;font-weight:bold}
+.danger{background:#ead0ca;border:0;padding:9px 13px;border-radius:10px;color:#713f36}
+.edit{background:#eaded6;border:0;padding:9px 13px;border-radius:10px;color:#604c42;margin-right:6px}
+.empty{text-align:center;padding:35px 15px;color:#988a84}
+.section-title{margin-top:25px}
+.cancel{width:100%;background:#eee4de;border:0;border-radius:15px;padding:14px;font-size:16px;color:#604c42;margin-bottom:10px}
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1>Revenda 🤎</h1>
-  <p>Organiza as tuas vendas num só lugar</p>
+<h1>Revenda 🤎</h1>
+<p>Organiza as tuas vendas num só lugar</p>
 </header>
 
 <div class="container">
 
-  <!-- INÍCIO -->
-  <section id="inicio" class="page active">
-    <h2>Resumo</h2>
+<section id="inicio" class="page active">
+<h2>Resumo</h2>
 
-    <div class="cards">
-      <div class="card">
-        <small>Investido</small>
-        <strong id="investido">0,00 €</strong>
-      </div>
+<div class="cards">
+<div class="card"><small>Investido</small><strong id="investido">0,00 €</strong></div>
+<div class="card"><small>Recebido</small><strong id="recebido">0,00 €</strong></div>
+<div class="card"><small>Lucro</small><strong id="lucro">0,00 €</strong></div>
+<div class="card"><small>Por enviar</small><strong id="porEnviar">0</strong></div>
+</div>
 
-      <div class="card">
-        <small>Recebido</small>
-        <strong id="recebido">0,00 €</strong>
-      </div>
+<h2 class="section-title">Últimas vendas</h2>
+<div id="ultimas"></div>
+</section>
 
-      <div class="card">
-        <small>Lucro</small>
-        <strong id="lucro">0,00 €</strong>
-      </div>
+<section id="produtos" class="page">
+<h2>Produtos</h2>
 
-      <div class="card">
-        <small>Por enviar</small>
-        <strong id="porEnviar">0</strong>
-      </div>
-    </div>
+<button class="primary" onclick="mostrarAdicionar()">+ Adicionar produto</button>
 
-    <h2 class="section-title">Últimas vendas</h2>
-    <div id="ultimas"></div>
-  </section>
+<div id="formulario" style="display:none">
 
-  <!-- PRODUTOS -->
-  <section id="produtos" class="page">
-    <h2>Produtos</h2>
+<label>Nome do produto</label>
+<input id="nome" placeholder="Ex.: Conjunto Karaoke K-pop">
 
-    <button class="primary" onclick="mostrarAdicionar()">
-      + Adicionar produto
-    </button>
+<label>Preço de compra (€)</label>
+<input id="compra" type="number" step="0.01">
 
-    <div id="formulario" style="display:none">
+<label>Preço original (€)</label>
+<input id="original" type="number" step="0.01">
 
-      <label>Nome do produto</label>
-      <input id="nome" placeholder="Ex.: Conjunto Karaoke K-pop">
+<label>Preço de venda (€)</label>
+<input id="venda" type="number" step="0.01">
 
-      <label>Preço de compra (€)</label>
-      <input id="compra" type="number" step="0.01" placeholder="0,00">
+<label>Gastos adicionais (€)</label>
+<input id="gastos" type="number" step="0.01">
 
-      <label>Preço original (€)</label>
-      <input id="original" type="number" step="0.01" placeholder="0,00">
+<label>Estado</label>
+<select id="estado">
+<option>Em stock</option>
+<option>Por enviar</option>
+<option>Enviado</option>
+<option>Entregue</option>
+</select>
 
-      <label>Preço de venda (€)</label>
-      <input id="venda" type="number" step="0.01" placeholder="0,00">
+<button class="primary" onclick="guardarProduto()">Guardar produto</button>
+<button class="cancel" onclick="cancelarEdicao()">Cancelar</button>
 
-      <label>Gastos adicionais (€)</label>
-      <input id="gastos" type="number" step="0.01" placeholder="0,00">
+</div>
 
-      <label>Estado</label>
-      <select id="estado">
-        <option>Em stock</option>
-        <option>Por enviar</option>
-        <option>Enviado</option>
-        <option>Entregue</option>
-      </select>
+<div id="listaProdutos"></div>
+</section>
 
-      <button class="primary" onclick="guardarProduto()">
-        Guardar produto
-      </button>
-    </div>
+<section id="enviar" class="page">
+<h2>Tenho de enviar 📦</h2>
+<div id="listaEnviar"></div>
+</section>
 
-    <div id="listaProdutos"></div>
-  </section>
-
-  <!-- ENVIAR -->
-  <section id="enviar" class="page">
-    <h2>Tenho de enviar 📦</h2>
-    <div id="listaEnviar"></div>
-  </section>
-
-  <!-- VENDAS -->
-  <section id="vendas" class="page">
-    <h2>Vendas 💰</h2>
-    <div id="listaVendas"></div>
-  </section>
+<section id="vendas" class="page">
+<h2>Vendas 💰</h2>
+<div id="listaVendas"></div>
+</section>
 
 </div>
 
 <nav>
-  <button class="active" onclick="pagina('inicio',this)">🏠<br>Início</button>
-  <button onclick="pagina('produtos',this)">📦<br>Produtos</button>
-  <button onclick="pagina('enviar',this)">📮<br>Enviar</button>
-  <button onclick="pagina('vendas',this)">💰<br>Vendas</button>
+<button class="active" onclick="pagina('inicio',this)">🏠<br>Início</button>
+<button onclick="pagina('produtos',this)">📦<br>Produtos</button>
+<button onclick="pagina('enviar',this)">📮<br>Enviar</button>
+<button onclick="pagina('vendas',this)">💰<br>Vendas</button>
 </nav>
 
 <script>
 
-let produtos = JSON.parse(localStorage.getItem("revendaProdutos")) || [];
+let produtos=JSON.parse(localStorage.getItem("revendaProdutos"))||[];
+let produtoEmEdicao=null;
 
-function guardarDados() {
-  localStorage.setItem("revendaProdutos", JSON.stringify(produtos));
+function guardarDados(){
+localStorage.setItem("revendaProdutos",JSON.stringify(produtos));
 }
 
-function dinheiro(valor) {
-  return Number(valor || 0).toFixed(2).replace(".", ",") + " €";
+function dinheiro(valor){
+return Number(valor||0).toFixed(2).replace(".",",")+" €";
 }
 
-function pagina(nome, botao) {
+function pagina(nome,botao){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(nome).classList.add("active");
 
-  document.querySelectorAll(".page").forEach(p => {
-    p.classList.remove("active");
-  });
+document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+botao.classList.add("active");
 
-  document.getElementById(nome).classList.add("active");
-
-  document.querySelectorAll("nav button").forEach(b => {
-    b.classList.remove("active");
-  });
-
-  botao.classList.add("active");
-
-  atualizar();
+atualizar();
 }
 
-function mostrarAdicionar() {
-  document.getElementById("formulario").style.display = "block";
-  window.scrollTo({top:0, behavior:"smooth"});
+function mostrarAdicionar(){
+produtoEmEdicao=null;
+
+document.getElementById("formulario").style.display="block";
+
+document.getElementById("nome").value="";
+document.getElementById("compra").value="";
+document.getElementById("original").value="";
+document.getElementById("venda").value="";
+document.getElementById("gastos").value="";
+document.getElementById("estado").value="Em stock";
+
+window.scrollTo({top:0,behavior:"smooth"});
 }
 
-function guardarProduto() {
+function editarProduto(id){
 
-  const nome = document.getElementById("nome").value.trim();
+const p=produtos.find(x=>x.id===id);
 
-  if (!nome) {
-    alert("Escreve o nome do produto.");
-    return;
-  }
+if(!p)return;
 
-  const compra = Number(document.getElementById("compra").value) || 0;
-  const original = Number(document.getElementById("original").value) || 0;
-  const venda = Number(document.getElementById("venda").value) || 0;
-  const gastos = Number(document.getElementById("gastos").value) || 0;
-  const estado = document.getElementById("estado").value;
+produtoEmEdicao=id;
 
-  produtos.unshift({
-    id: Date.now(),
-    nome,
-    compra,
-    original,
-    venda,
-    gastos,
-    estado,
-    data: new Date().toLocaleDateString("pt-PT")
-  });
+document.getElementById("formulario").style.display="block";
 
-  guardarDados();
+document.getElementById("nome").value=p.nome;
+document.getElementById("compra").value=p.compra;
+document.getElementById("original").value=p.original||"";
+document.getElementById("venda").value=p.venda;
+document.getElementById("gastos").value=p.gastos;
+document.getElementById("estado").value=p.estado;
 
-  document.getElementById("nome").value = "";
-  document.getElementById("compra").value = "";
-  document.getElementById("original").value = "";
-  document.getElementById("venda").value = "";
-  document.getElementById("gastos").value = "";
-  document.getElementById("estado").value = "Em stock";
-
-  document.getElementById("formulario").style.display = "none";
-
-  atualizar();
+window.scrollTo({top:0,behavior:"smooth"});
 }
 
-function apagar(id) {
-
-  if (!confirm("Queres apagar este produto?")) return;
-
-  produtos = produtos.filter(p => p.id !== id);
-
-  guardarDados();
-  atualizar();
+function cancelarEdicao(){
+produtoEmEdicao=null;
+document.getElementById("formulario").style.display="none";
 }
 
-function alterarEstado(id, estado) {
+function guardarProduto(){
 
-  const produto = produtos.find(p => p.id === id);
+const nome=document.getElementById("nome").value.trim();
 
-  if (produto) {
-    produto.estado = estado;
-    guardarDados();
-    atualizar();
-  }
+if(!nome){
+alert("Escreve o nome do produto.");
+return;
 }
 
-function lucroProduto(p) {
-  return p.venda - p.compra - p.gastos;
+const compra=Number(document.getElementById("compra").value)||0;
+const original=Number(document.getElementById("original").value)||0;
+const venda=Number(document.getElementById("venda").value)||0;
+const gastos=Number(document.getElementById("gastos").value)||0;
+const estado=document.getElementById("estado").value;
+
+if(produtoEmEdicao!==null){
+
+const p=produtos.find(x=>x.id===produtoEmEdicao);
+
+if(p){
+p.nome=nome;
+p.compra=compra;
+p.original=original;
+p.venda=venda;
+p.gastos=gastos;
+p.estado=estado;
 }
 
-function atualizar() {
+}else{
 
-  let investido = 0;
-  let recebido = 0;
-  let lucro = 0;
+produtos.unshift({
+id:Date.now(),
+nome,
+compra,
+original,
+venda,
+gastos,
+estado,
+data:new Date().toLocaleDateString("pt-PT")
+});
 
-  produtos.forEach(p => {
-
-    investido += p.compra + p.gastos;
-
-    if (p.venda > 0) {
-      recebido += p.venda;
-      lucro += lucroProduto(p);
-    }
-
-  });
-
-  document.getElementById("investido").textContent = dinheiro(investido);
-  document.getElementById("recebido").textContent = dinheiro(recebido);
-  document.getElementById("lucro").textContent = dinheiro(lucro);
-
-  const pendentes = produtos.filter(p => p.estado === "Por enviar");
-
-  document.getElementById("porEnviar").textContent = pendentes.length;
-
-  mostrarProdutos();
-  mostrarEnviar();
-  mostrarVendas();
-  mostrarUltimas();
 }
 
-function mostrarProdutos() {
+guardarDados();
 
-  const div = document.getElementById("listaProdutos");
+produtoEmEdicao=null;
+document.getElementById("formulario").style.display="none";
 
-  if (produtos.length === 0) {
-    div.innerHTML = '<div class="empty">Ainda não tens produtos registados 🤎</div>';
-    return;
-  }
-
-  div.innerHTML = produtos.map(p => `
-
-    <div class="product">
-
-      <h3>${escapeHtml(p.nome)}</h3>
-
-      <p>Compra: <b>${dinheiro(p.compra)}</b></p>
-
-      <p>Venda: <b>${dinheiro(p.venda)}</b></p>
-
-      <p>Gastos: ${dinheiro(p.gastos)}</p>
-
-      <p class="profit">
-        Lucro: ${dinheiro(lucroProduto(p))}
-      </p>
-
-      <span class="status">${p.estado}</span>
-
-      <br><br>
-
-      <select onchange="alterarEstado(${p.id}, this.value)">
-        <option ${p.estado==="Em stock"?"selected":""}>Em stock</option>
-        <option ${p.estado==="Por enviar"?"selected":""}>Por enviar</option>
-        <option ${p.estado==="Enviado"?"selected":""}>Enviado</option>
-        <option ${p.estado==="Entregue"?"selected":""}>Entregue</option>
-      </select>
-
-      <button class="danger" onclick="apagar(${p.id})">
-        Apagar
-      </button>
-
-    </div>
-
-  `).join("");
+atualizar();
 }
 
-function mostrarEnviar() {
+function apagar(id){
 
-  const div = document.getElementById("listaEnviar");
+if(!confirm("Queres apagar este produto?"))return;
 
-  const lista = produtos.filter(p => p.estado === "Por enviar");
+produtos=produtos.filter(p=>p.id!==id);
 
-  if (lista.length === 0) {
-    div.innerHTML = `
-      <div class="empty">
-        🎉 Não tens encomendas por enviar!
-      </div>
-    `;
-    return;
-  }
-
-  div.innerHTML = lista.map(p => `
-
-    <div class="product">
-
-      <h3>${escapeHtml(p.nome)}</h3>
-
-      <p>Valor da venda: <b>${dinheiro(p.venda)}</b></p>
-
-      <button class="primary"
-        onclick="alterarEstado(${p.id}, 'Enviado')">
-        Marcar como enviado
-      </button>
-
-    </div>
-
-  `).join("");
+guardarDados();
+atualizar();
 }
 
-function mostrarVendas() {
+function alterarEstado(id,estado){
 
-  const div = document.getElementById("listaVendas");
+const produto=produtos.find(p=>p.id===id);
 
-  const lista = produtos.filter(p => p.venda > 0);
-
-  if (lista.length === 0) {
-    div.innerHTML = `
-      <div class="empty">
-        Ainda não tens vendas registadas.
-      </div>
-    `;
-    return;
-  }
-
-  div.innerHTML = lista.map(p => `
-
-    <div class="product">
-
-      <h3>${escapeHtml(p.nome)}</h3>
-
-      <p>Compraste por: ${dinheiro(p.compra)}</p>
-
-      <p>Vendeste por: ${dinheiro(p.venda)}</p>
-
-      <p>Gastos: ${dinheiro(p.gastos)}</p>
-
-      <p class="profit">
-        Lucro: ${dinheiro(lucroProduto(p))}
-      </p>
-
-      <span class="status">${p.estado}</span>
-
-    </div>
-
-  `).join("");
+if(produto){
+produto.estado=estado;
+guardarDados();
+atualizar();
+}
 }
 
-function mostrarUltimas() {
-
-  const div = document.getElementById("ultimas");
-
-  const lista = produtos.slice(0, 3);
-
-  if (lista.length === 0) {
-    div.innerHTML = `
-      <div class="empty">
-        Ainda não tens vendas. 🤎
-      </div>
-    `;
-    return;
-  }
-
-  div.innerHTML = lista.map(p => `
-
-    <div class="product">
-      <h3>${escapeHtml(p.nome)}</h3>
-      <p>${dinheiro(p.venda)}</p>
-      <span class="status">${p.estado}</span>
-    </div>
-
-  `).join("");
+function lucroProduto(p){
+return p.venda-p.compra-p.gastos;
 }
 
-function escapeHtml(text) {
+function atualizar(){
 
-  return String(text)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+let investido=0;
+let recebido=0;
+let lucro=0;
+
+produtos.forEach(p=>{
+investido+=p.compra+p.gastos;
+
+if(p.venda>0){
+recebido+=p.venda;
+lucro+=lucroProduto(p);
+}
+});
+
+document.getElementById("investido").textContent=dinheiro(investido);
+document.getElementById("recebido").textContent=dinheiro(recebido);
+document.getElementById("lucro").textContent=dinheiro(lucro);
+
+document.getElementById("porEnviar").textContent=
+produtos.filter(p=>p.estado==="Por enviar").length;
+
+mostrarProdutos();
+mostrarEnviar();
+mostrarVendas();
+mostrarUltimas();
+}
+
+function mostrarProdutos(){
+
+const div=document.getElementById("listaProdutos");
+
+if(produtos.length===0){
+div.innerHTML='<div class="empty">Ainda não tens produtos registados 🤎</div>';
+return;
+}
+
+div.innerHTML=produtos.map(p=>`
+
+<div class="product">
+
+<h3>${escapeHtml(p.nome)}</h3>
+
+<p>Compra: <b>${dinheiro(p.compra)}</b></p>
+
+<p>Original: ${dinheiro(p.original)}</p>
+
+<p>Venda: <b>${dinheiro(p.venda)}</b></p>
+
+<p>Gastos: ${dinheiro(p.gastos)}</p>
+
+<p class="profit">Lucro: ${dinheiro(lucroProduto(p))}</p>
+
+<span class="status">${p.estado}</span>
+
+<br><br>
+
+<select onchange="alterarEstado(${p.id},this.value)">
+<option ${p.estado==="Em stock"?"selected":""}>Em stock</option>
+<option ${p.estado==="Por enviar"?"selected":""}>Por enviar</option>
+<option ${p.estado==="Enviado"?"selected":""}>Enviado</option>
+<option ${p.estado==="Entregue"?"selected":""}>Entregue</option>
+</select>
+
+<button class="edit" onclick="editarProduto(${p.id})">
+✏️ Editar
+</button>
+
+<button class="danger" onclick="apagar(${p.id})">
+Apagar
+</button>
+
+</div>
+
+`).join("");
+}
+
+function mostrarEnviar(){
+
+const div=document.getElementById("listaEnviar");
+
+const lista=produtos.filter(p=>p.estado==="Por enviar");
+
+if(lista.length===0){
+div.innerHTML='<div class="empty">🎉 Não tens encomendas por enviar!</div>';
+return;
+}
+
+div.innerHTML=lista.map(p=>`
+
+<div class="product">
+
+<h3>${escapeHtml(p.nome)}</h3>
+
+<p>Valor da venda: <b>${dinheiro(p.venda)}</b></p>
+
+<button class="primary" onclick="alterarEstado(${p.id},'Enviado')">
+Marcar como enviado
+</button>
+
+</div>
+
+`).join("");
+}
+
+function mostrarVendas(){
+
+const div=document.getElementById("listaVendas");
+
+const lista=produtos.filter(p=>p.venda>0);
+
+if(lista.length===0){
+div.innerHTML='<div class="empty">Ainda não tens vendas registadas.</div>';
+return;
+}
+
+div.innerHTML=lista.map(p=>`
+
+<div class="product">
+
+<h3>${escapeHtml(p.nome)}</h3>
+
+<p>Compraste por: ${dinheiro(p.compra)}</p>
+
+<p>Vendeste por: ${dinheiro(p.venda)}</p>
+
+<p>Gastos: ${dinheiro(p.gastos)}</p>
+
+<p class="profit">Lucro: ${dinheiro(lucroProduto(p))}</p>
+
+<span class="status">${p.estado}</span>
+
+</div>
+
+`).join("");
+}
+
+function mostrarUltimas(){
+
+const div=document.getElementById("ultimas");
+
+const lista=produtos.slice(0,3);
+
+if(lista.length===0){
+div.innerHTML='<div class="empty">Ainda não tens vendas. 🤎</div>';
+return;
+}
+
+div.innerHTML=lista.map(p=>`
+
+<div class="product">
+
+<h3>${escapeHtml(p.nome)}</h3>
+
+<p>${dinheiro(p.venda)}</p>
+
+<span class="status">${p.estado}</span>
+
+</div>
+
+`).join("");
+}
+
+function escapeHtml(text){
+
+return String(text)
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
 }
 
 atualizar();
