@@ -1,2667 +1,3210 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-PT">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#765747">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 
-<title>Minha Revenda</title>
+<title>Revenda</title>
 
 <style>
-
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+:root{
+  --bg:#f7f2ed;
+  --card:#fffdfb;
+  --brown:#765747;
+  --brown2:#a88976;
+  --text:#3e312a;
+  --muted:#927e70;
+  --line:#e9ddd5;
+  --soft:#eee3dc;
+  --green:#52755b;
+  --red:#a35353;
+  --yellow:#b18b4a;
+  --shadow:0 8px 25px rgba(79,56,43,.08);
 }
 
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: #faf7f5;
-    color: #403733;
-    padding-bottom: 85px;
+*{box-sizing:border-box}
+
+html{background:var(--bg)}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  padding-bottom:100px;
 }
 
-header {
-    background: linear-gradient(135deg, #ead8d0, #f7ece7);
-    padding: 28px 18px 22px;
-    border-radius: 0 0 28px 28px;
+button,input,select,textarea{font:inherit}
+
+button{cursor:pointer}
+
+.header{
+  background:linear-gradient(135deg,#715344,#987967);
+  color:white;
+  padding:28px 20px 24px;
+  border-radius:0 0 30px 30px;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 28px;
+.brand{
+  font-family:Georgia,serif;
+  font-size:36px;
+  font-weight:500;
+  letter-spacing:-1.2px;
 }
 
-header p {
-    margin: 6px 0 0;
-    color: #7c6d66;
+.subtitle{
+  opacity:.82;
+  font-size:13px;
+  margin-top:4px;
 }
 
-.container {
-    max-width: 900px;
-    margin: auto;
-    padding: 16px;
+.wrap{
+  max-width:760px;
+  margin:auto;
+  padding:18px;
 }
 
-/* =========================
-   MENU INFERIOR
-========================= */
+.page{display:none}
+.page.active{display:block}
 
-.tabs {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-
-    background: rgba(255, 250, 247, 0.97);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-
-    border-top: 1px solid #eaded9;
-
-    padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
-
-    box-shadow: 0 -3px 15px rgba(0,0,0,0.06);
-
-    overflow-x: auto;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:11px;
 }
 
-.tabs button {
-    flex: 1;
-    min-width: 55px;
-
-    border: 0;
-    background: transparent;
-
-    box-shadow: none;
-
-    color: #81736d;
-
-    padding: 7px 3px;
-
-    border-radius: 12px;
-
-    font-size: 11px;
-    line-height: 1.2;
+.metric{
+  background:var(--card);
+  padding:16px;
+  border-radius:19px;
+  box-shadow:var(--shadow);
 }
 
-.tabs button.active {
-    background: #ead8d0;
-    color: #8d6759;
+.metric small{color:var(--muted)}
+
+.metric b{
+  display:block;
+  font:600 22px Georgia,serif;
+  margin-top:6px;
 }
 
-/* ========================= */
+.section{margin-top:22px}
 
-.section {
-    display: none;
+.title{
+  font:600 22px Georgia,serif;
+  margin:0 0 12px;
 }
 
-.section.active {
-    display: block;
+.card{
+  background:var(--card);
+  padding:17px;
+  border-radius:19px;
+  box-shadow:var(--shadow);
+  margin-bottom:12px;
 }
 
-h2 {
-    margin: 8px 0 15px;
+label{
+  display:block;
+  font-size:13px;
+  font-weight:700;
+  margin:11px 0 5px;
 }
 
-h3 {
-    margin-top: 20px;
+input,select,textarea{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:12px;
+  background:white;
+  color:var(--text);
+  font-size:16px;
 }
 
-.cards {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-bottom: 14px;
+textarea{
+  min-height:90px;
+  resize:vertical;
 }
 
-.card {
-    background: white;
-    border-radius: 18px;
-    padding: 16px;
-    box-shadow: 0 3px 14px rgba(0,0,0,.05);
+.primary,
+.secondary,
+.danger,
+.tiny{
+  border:0;
+  border-radius:11px;
+  padding:11px 13px;
+  font-weight:700;
 }
 
-.card small {
-    color: #8b7b74;
+.primary{
+  background:var(--brown);
+  color:white;
+  width:100%;
+  margin-top:15px;
 }
 
-.card strong {
-    display: block;
-    margin-top: 5px;
-    font-size: 20px;
+.secondary{
+  background:var(--soft);
+  color:var(--brown);
 }
 
-.form {
-    background: white;
-    padding: 17px;
-    border-radius: 20px;
-    margin-bottom: 18px;
-    box-shadow: 0 3px 14px rgba(0,0,0,.05);
+.danger{
+  background:#f4dddd;
+  color:var(--red);
 }
 
-label {
-    display: block;
-    font-size: 13px;
-    color: #776962;
-    margin-top: 5px;
+.tiny{
+  padding:8px 10px;
+  font-size:13px;
+  background:var(--soft);
+  color:var(--brown);
 }
 
-input,
-select {
-    width: 100%;
-    padding: 13px;
-    margin: 6px 0 12px;
-    border: 1px solid #e5dcd7;
-    border-radius: 12px;
-    font-size: 15px;
-    background: white;
+.row{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  flex-wrap:wrap;
 }
 
-button.primary {
-    width: 100%;
-    border: 0;
-    background: #c59b8b;
-    color: white;
-    padding: 14px;
-    border-radius: 13px;
-    font-size: 16px;
-    font-weight: 600;
+.between{justify-content:space-between}
+
+.product-name{
+  font:600 19px Georgia,serif;
+  margin-bottom:8px;
 }
 
-.item {
-    background: white;
-    border-radius: 19px;
-    padding: 16px;
-    margin: 10px 0;
-    box-shadow: 0 3px 14px rgba(0,0,0,.05);
+.muted{
+  color:var(--muted);
+  font-size:13px;
 }
 
-.item h3 {
-    margin: 0 0 8px;
+.money{font-weight:700}
+
+.profit{
+  color:var(--green);
+  font-weight:800;
 }
 
-.row {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-    margin: 6px 0;
+.loss{
+  color:var(--red);
+  font-weight:800;
 }
 
-.badge {
-    display: inline-block;
-    padding: 5px 9px;
-    border-radius: 20px;
-    background: #f1e5e0;
-    color: #755f55;
-    font-size: 12px;
+.badge{
+  display:inline-block;
+  background:var(--soft);
+  color:var(--brown);
+  padding:5px 8px;
+  border-radius:9px;
+  font-size:12px;
 }
 
-.badge.green {
-    background: #dcebdd;
-    color: #416948;
+.badge.green{
+  background:#e1eee3;
+  color:var(--green);
 }
 
-.badge.orange {
-    background: #f5e5ce;
-    color: #8a6334;
+.badge.red{
+  background:#f4dddd;
+  color:var(--red);
 }
 
-.badge.red {
-    background: #f3d8d8;
-    color: #924646;
+.badge.yellow{
+  background:#f2ead6;
+  color:var(--yellow);
 }
 
-.actions {
-    display: flex;
-    gap: 7px;
-    flex-wrap: wrap;
-    margin-top: 13px;
+.rank{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  background:var(--card);
+  padding:13px;
+  border-radius:16px;
+  margin-bottom:8px;
+  box-shadow:var(--shadow);
 }
 
-.actions button {
-    border: 0;
-    padding: 9px 12px;
-    border-radius: 10px;
-    background: #eee5e1;
-    color: #554842;
+.rank-num{
+  width:32px;
+  font-size:22px;
 }
 
-.actions .danger {
-    background: #f3d6d6;
-    color: #943f3f;
+.rank-main{flex:1}
+
+.rank-main b{display:block}
+
+.empty{
+  text-align:center;
+  color:var(--muted);
+  padding:25px 15px;
+  background:var(--card);
+  border-radius:18px;
+  box-shadow:var(--shadow);
 }
 
-.actions .success {
-    background: #dcebdd;
-    color: #416948;
+.notice{
+  background:#f1e8e2;
+  border-radius:15px;
+  padding:12px;
+  font-size:13px;
+  color:var(--brown);
+  margin-bottom:12px;
 }
 
-.empty {
-    text-align: center;
-    padding: 28px 15px;
-    color: #958881;
+.search{
+  margin-bottom:12px;
 }
 
-.big-box {
-    background: #f0dfd8;
-    border-radius: 20px;
-    padding: 18px;
-    margin-bottom: 15px;
+.bottom{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:20;
+  background:rgba(255,253,251,.97);
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-around;
+  padding:8px 5px calc(8px + env(safe-area-inset-bottom));
+  box-shadow:0 -8px 25px rgba(70,50,40,.08);
 }
 
-.big-box small {
-    color: #806b62;
+.nav{
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:700;
+  padding:6px 3px;
+  border-radius:13px;
+  flex:1;
+  max-width:115px;
 }
 
-.big-box strong {
-    display: block;
-    font-size: 26px;
-    margin-top: 4px;
+.nav span{
+  display:block;
+  font-size:20px;
+  line-height:23px;
 }
 
-.month-line {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
+.nav.active{
+  background:var(--soft);
+  color:var(--brown);
 }
 
-.month-line input {
-    width: auto;
-    margin: 0;
+.chart{
+  background:var(--card);
+  border-radius:19px;
+  padding:16px;
+  box-shadow:var(--shadow);
 }
 
-.check-row {
-    display: flex;
-    align-items: center;
-    gap: 9px;
+.bars{
+  display:flex;
+  align-items:end;
+  gap:8px;
+  height:180px;
+  border-bottom:1px solid var(--line);
+  padding:12px 4px 0;
 }
 
-.check-row input {
-    width: auto;
-    margin: 0;
+.barcol{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:end;
+  height:100%;
+  gap:5px;
 }
 
-@media (min-width: 700px) {
-
-    .cards {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
+.bar{
+  width:100%;
+  max-width:30px;
+  border-radius:8px 8px 0 0;
+  background:var(--brown2);
+  min-height:3px;
 }
 
+.barlabel{
+  font-size:10px;
+  color:var(--muted);
+}
+
+.barvalue{
+  font-size:9px;
+  color:var(--brown);
+}
+
+.donut{
+  display:grid;
+  grid-template-columns:130px 1fr;
+  gap:18px;
+  align-items:center;
+}
+
+.donut svg{
+  width:130px;
+  height:130px;
+  transform:rotate(-90deg);
+}
+
+.legend div{
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  margin:7px 0;
+}
+
+hr{
+  border:0;
+  border-top:1px solid var(--line);
+  margin:14px 0;
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  z-index:100;
+  display:none;
+  align-items:flex-end;
+}
+
+.modal.show{display:flex}
+
+.sheet{
+  width:100%;
+  max-width:760px;
+  margin:auto;
+  background:var(--bg);
+  border-radius:25px 25px 0 0;
+  padding:20px;
+  max-height:90vh;
+  overflow:auto;
+}
+
+.summaryBox{
+  background:linear-gradient(135deg,#765747,#987967);
+  color:white;
+  border-radius:20px;
+  padding:18px;
+  margin-bottom:15px;
+}
+
+.summaryBox .big{
+  font:600 30px Georgia,serif;
+  margin-top:5px;
+}
+
+.two{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.three{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+.statMini{
+  background:var(--card);
+  padding:13px;
+  border-radius:15px;
+  box-shadow:var(--shadow);
+}
+
+.statMini small{
+  color:var(--muted);
+  display:block;
+}
+
+.statMini b{
+  display:block;
+  margin-top:5px;
+}
+
+@media(max-width:380px){
+  .brand{font-size:32px}
+  .metric b{font-size:19px}
+  .donut{
+    grid-template-columns:105px 1fr;
+  }
+  .donut svg{
+    width:105px;
+    height:105px;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<header>
-
-    <h1>Minha Revenda 🤎</h1>
-
-    <p>
-        Produtos, vendas, compras, envios, gastos e lucro.
-    </p>
-
+<header class="header">
+  <div class="brand">Revenda</div>
+  <div class="subtitle">organiza • vende • cresce 🤎</div>
 </header>
 
-<div class="container">
+<main class="wrap">
 
-<!-- ================= MENU ================= -->
+<!-- INÍCIO -->
+<section id="home" class="page active">
 
-<div class="tabs">
+  <div class="summaryBox">
+    <small>LUCRO REAL</small>
+    <div class="big" id="mProfit">0,00 €</div>
+    <div id="profitDescription">Depois de produtos e gastos</div>
+  </div>
 
-    <button class="active" onclick="abrir('inicio', this)">
-        🏠<br>Início
-    </button>
+  <div class="grid">
 
-    <button onclick="abrir('produtos', this)">
-        📦<br>Produtos
-    </button>
-
-    <button onclick="abrir('vendas', this)">
-        💰<br>Vendas
-    </button>
-
-    <button onclick="abrir('compras', this)">
-        🛒<br>Compras
-    </button>
-
-    <button onclick="abrir('envios', this)">
-        📮<br>Envios
-    </button>
-
-    <button onclick="abrir('gastos', this)">
-        💸<br>Gastos
-    </button>
-
-</div>
-
-
-<!-- ================= INÍCIO ================= -->
-
-<section id="inicio" class="section active">
-
-    <h2>Resumo 📊</h2>
-
-    <div class="cards">
-
-        <div class="card">
-            <small>Investido em produtos</small>
-            <strong id="resumoInvestido">0,00 €</strong>
-        </div>
-
-        <div class="card">
-            <small>Total recebido</small>
-            <strong id="resumoRecebido">0,00 €</strong>
-        </div>
-
-        <div class="card">
-            <small>Lucro dos produtos</small>
-            <strong id="resumoLucro">0,00 €</strong>
-        </div>
-
-        <div class="card">
-            <small>Lucro real</small>
-            <strong id="resumoLucroReal">0,00 €</strong>
-        </div>
-
+    <div class="metric">
+      <small>💰 Investido</small>
+      <b id="mInvested">0,00 €</b>
     </div>
 
-    <div class="big-box">
-
-        <small>Gastos deste mês</small>
-
-        <strong id="resumoGastos">
-            0,00 €
-        </strong>
-
+    <div class="metric">
+      <small>💵 Recebido</small>
+      <b id="mRevenue">0,00 €</b>
     </div>
 
-    <h3>🏆 Produtos mais vendidos</h3>
+    <div class="metric">
+      <small>💸 Gastos</small>
+      <b id="mExpenses">0,00 €</b>
+    </div>
 
+    <div class="metric">
+      <small>📦 Stock</small>
+      <b id="mStock">0</b>
+    </div>
+
+    <div class="metric">
+      <small>🛍️ Vendidos</small>
+      <b id="mSold">0</b>
+    </div>
+
+    <div class="metric">
+      <small>📮 Por enviar</small>
+      <b id="mToShip">0</b>
+    </div>
+
+  </div>
+
+  <div class="section">
+    <h2 class="title">🏆 Melhores vendas</h2>
     <div id="ranking"></div>
+  </div>
+
+  <div class="section">
+    <h2 class="title">⚡ Atenção</h2>
+    <div id="alerts"></div>
+  </div>
+
+  <div class="section">
+    <h2 class="title">📊 Resumo</h2>
+
+    <div class="chart">
+      <div class="donut">
+        <svg id="donut"></svg>
+        <div class="legend" id="legend"></div>
+      </div>
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- ================= PRODUTOS ================= -->
+<!-- PRODUTOS -->
+<section id="products" class="page">
 
-<section id="produtos" class="section">
+  <h2 class="title">📦 Produtos</h2>
 
-    <h2>📦 Produtos</h2>
+  <input
+    class="search"
+    id="productSearch"
+    placeholder="🔎 Procurar produto..."
+  >
 
-    <div class="form">
+  <form class="card" id="productForm">
 
-        <input type="hidden" id="produtoId">
+    <label>Nome do produto</label>
+    <input id="pName" required placeholder="Ex.: Creme hidratante">
 
-        <label>Nome do produto</label>
+    <label>Categoria</label>
+    <input id="pCategory" placeholder="Ex.: Beleza">
 
-        <input
-            id="produtoNome"
-            placeholder="Ex.: Creme ADEUS"
-        >
+    <label>Onde compraste?</label>
+    <input id="pStore" placeholder="Ex.: Primark">
 
-        <label>Preço de compra</label>
+    <label>Preço de compra por unidade (€)</label>
+    <input id="pCost" type="number" min="0" step=".01" required>
 
-        <input
-            id="produtoCompra"
-            type="number"
-            step="0.01"
-            placeholder="7,99"
-        >
+    <label>Preço original (€)</label>
+    <input id="pOriginal" type="number" min="0" step=".01">
 
-        <label>Preço original</label>
+    <label>Preço de venda pretendido (€)</label>
+    <input id="pTarget" type="number" min="0" step=".01" required>
 
-        <input
-            id="produtoOriginal"
-            type="number"
-            step="0.01"
-            placeholder="19,99"
-        >
+    <label>Preço mínimo de venda (€)</label>
+    <input id="pMin" type="number" min="0" step=".01">
 
-        <label>Preço previsto de venda</label>
+    <label>Quantidade comprada</label>
+    <input id="pQty" type="number" min="1" step="1" value="1" required>
 
-        <input
-            id="produtoVenda"
-            type="number"
-            step="0.01"
-            placeholder="18,00"
-        >
+    <label>Para quem é?</label>
+    <input id="pFor" placeholder="Ex.: Camila / Joana / stock">
 
-        <label>Quantidade</label>
+    <label>Notas</label>
+    <textarea id="pNotes" placeholder="Tamanho, cor, referência..."></textarea>
 
-        <input
-            id="produtoQuantidade"
-            type="number"
-            min="1"
-            value="1"
-        >
+    <button class="primary">＋ Adicionar produto</button>
 
-        <label>Gastos específicos deste produto</label>
+  </form>
 
-        <input
-            id="produtoGastos"
-            type="number"
-            step="0.01"
-            value="0"
-        >
-
-        <label>Estado</label>
-
-        <select id="produtoEstado">
-
-            <option value="Por vender">
-                Por vender
-            </option>
-
-            <option value="Reservado">
-                Reservado
-            </option>
-
-        </select>
-
-        <button
-            class="primary"
-            onclick="guardarProduto()"
-        >
-            Guardar produto
-        </button>
-
-    </div>
-
-    <div id="listaProdutos"></div>
+  <div class="section" id="productList"></div>
 
 </section>
 
 
-<!-- ================= VENDAS ================= -->
+<!-- VENDA -->
+<section id="sale" class="page">
 
-<section id="vendas" class="section">
+  <h2 class="title">💰 Nova venda</h2>
 
-    <h2>💰 Vendas</h2>
+  <form class="card" id="saleForm">
 
-    <div class="big-box">
+    <label>Produto</label>
+    <select id="sProduct" required></select>
 
-        <small>Total recebido</small>
+    <label>Quantidade vendida</label>
+    <input id="sQty" type="number" min="1" value="1" required>
 
-        <strong id="totalVendas">
-            0,00 €
-        </strong>
+    <label>Preço real por unidade (€)</label>
+    <input id="sPrice" type="number" min="0" step=".01" required>
 
-    </div>
+    <label>Cliente</label>
+    <input id="sClient" placeholder="Nome do cliente">
 
-    <div id="listaVendas"></div>
+    <label>Plataforma</label>
+    <select id="sPlatform">
+      <option>Vinted</option>
+      <option>WhatsApp</option>
+      <option>Instagram</option>
+      <option>Facebook</option>
+      <option>OLX</option>
+      <option>Outro</option>
+    </select>
 
-</section>
+    <label>Gastos desta venda (€)</label>
+    <input id="sCosts" type="number" min="0" step=".01" value="0">
 
+    <label>Estado</label>
+    <select id="sStatus">
+      <option>Por enviar</option>
+      <option>Enviado</option>
+      <option>Entregue</option>
+      <option>Cancelado</option>
+    </select>
 
-<!-- ================= COMPRAS ================= -->
+    <label>Código de rastreio</label>
+    <input id="sTracking" placeholder="Opcional">
 
-<section id="compras" class="section">
+    <button class="primary">💰 Registar venda</button>
 
-    <h2>🛒 O que preciso comprar</h2>
+  </form>
 
-    <div class="form">
+  <div class="section">
+    <h2 class="title">📋 Histórico de vendas</h2>
 
-        <label>O que precisas comprar?</label>
+    <input
+      class="search"
+      id="saleSearch"
+      placeholder="🔎 Procurar venda..."
+    >
 
-        <input
-            id="necessidadeNome"
-            placeholder="Ex.: Creme ADEUS"
-        >
-
-        <label>Para quem?</label>
-
-        <input
-            id="necessidadePessoa"
-            placeholder="Ex.: Eu / Maria / Cliente"
-        >
-
-        <label>Quantidade</label>
-
-        <input
-            id="necessidadeQuantidade"
-            type="number"
-            min="1"
-            value="1"
-        >
-
-        <button
-            class="primary"
-            onclick="guardarNecessidade()"
-        >
-            Adicionar à lista
-        </button>
-
-    </div>
-
-    <div id="listaNecessidades"></div>
+    <div id="salesList"></div>
+  </div>
 
 </section>
 
 
-<!-- ================= ENVIOS ================= -->
+<!-- COMPRAS -->
+<section id="shopping" class="page">
 
-<section id="envios" class="section">
+  <h2 class="title">🛒 O que preciso comprar</h2>
 
-    <h2>📮 Envios</h2>
+  <div class="notice">
+    Aqui podes controlar tudo o que precisas comprar, incluindo produtos para ti, para outras pessoas ou para repor stock.
+  </div>
 
-    <div id="listaEnvios"></div>
+  <form class="card" id="needForm">
+
+    <label>O que preciso comprar?</label>
+    <input id="nName" required placeholder="Ex.: 3 cremes">
+
+    <label>Para quem?</label>
+    <input id="nFor" placeholder="Ex.: Joana">
+
+    <label>Quantidade</label>
+    <input id="nQty" type="number" min="1" value="1">
+
+    <label>Preço previsto (€)</label>
+    <input id="nPrice" type="number" min="0" step=".01">
+
+    <label>Prioridade</label>
+    <select id="nPriority">
+      <option>Normal</option>
+      <option>Alta</option>
+      <option>Baixa</option>
+    </select>
+
+    <button class="primary">＋ Adicionar à lista</button>
+
+  </form>
+
+  <div id="manualShoppingList"></div>
+
+  <div class="section">
+    <h2 class="title">📦 Reposição de stock</h2>
+    <div id="stockShoppingList"></div>
+  </div>
+
+  <div class="card">
+
+    <div class="between row">
+      <b>Total de unidades</b>
+      <b id="cartQty">0</b>
+    </div>
+
+    <hr>
+
+    <div class="between row">
+      <b>Total previsto</b>
+      <b id="cartTotal">0,00 €</b>
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- ================= GASTOS ================= -->
+<!-- ENVIOS -->
+<section id="shipments" class="page">
 
-<section id="gastos" class="section">
+  <h2 class="title">📮 Envios</h2>
 
-    <div class="month-line">
+  <div class="grid">
 
-        <h2>💸 Gastos</h2>
-
-        <input
-            id="mesSelecionado"
-            type="month"
-            onchange="renderGastos()"
-        >
-
+    <div class="metric">
+      <small>📦 Por enviar</small>
+      <b id="shipPending">0</b>
     </div>
 
-    <div class="big-box">
-
-        <small>
-            Total de gastos neste mês
-        </small>
-
-        <strong id="totalGastosMes">
-            0,00 €
-        </strong>
-
+    <div class="metric">
+      <small>🚚 Enviados</small>
+      <b id="shipSent">0</b>
     </div>
 
-
-    <div class="form">
-
-        <input
-            type="hidden"
-            id="gastoId"
-        >
-
-        <label>Nome do gasto</label>
-
-        <input
-            id="gastoNome"
-            placeholder="Ex.: ChatGPT"
-        >
-
-        <label>Valor</label>
-
-        <input
-            id="gastoValor"
-            type="number"
-            step="0.01"
-            placeholder="7,99"
-        >
-
-        <label>Tipo de gasto</label>
-
-        <select id="gastoTipo">
-
-            <option value="mensal">
-                🔄 Mensal
-            </option>
-
-            <option value="ocasional">
-                🧾 Ocasional
-            </option>
-
-        </select>
-
-        <label>Data de início</label>
-
-        <input
-            id="gastoData"
-            type="date"
-        >
-
-        <button
-            class="primary"
-            onclick="guardarGasto()"
-        >
-            Guardar gasto
-        </button>
-
+    <div class="metric">
+      <small>✅ Entregues</small>
+      <b id="shipDelivered">0</b>
     </div>
 
+    <div class="metric">
+      <small>⚠️ Atenção</small>
+      <b id="shipAttention">0</b>
+    </div>
 
-    <h3>🔄 Gastos mensais</h3>
+  </div>
 
-    <div id="gastosMensais"></div>
-
-
-    <h3>🧾 Gastos ocasionais</h3>
-
-    <div id="gastosOcasionais"></div>
+  <div class="section">
+    <div id="shipmentList"></div>
+  </div>
 
 </section>
 
-</div>
+
+<!-- GASTOS -->
+<section id="expenses" class="page">
+
+  <h2 class="title">💸 Gastos</h2>
+
+  <div class="notice">
+    Todos os gastos entram no cálculo do teu lucro real.
+  </div>
+
+  <form class="card" id="expenseForm">
+
+    <label>Descrição</label>
+    <input id="eDesc" required placeholder="Ex.: Embalagens">
+
+    <label>Valor (€)</label>
+    <input id="eAmount" type="number" min="0" step=".01" required>
+
+    <label>Categoria</label>
+    <select id="eCat">
+      <option>Embalagem</option>
+      <option>Envio</option>
+      <option>Publicidade</option>
+      <option>Comissões</option>
+      <option>Material</option>
+      <option>Aplicações</option>
+      <option>Deslocação</option>
+      <option>Outro</option>
+    </select>
+
+    <label>Tipo</label>
+    <select id="eType">
+      <option value="ocasional">Gasto ocasional</option>
+      <option value="mensal">Gasto mensal</option>
+    </select>
+
+    <label>Data</label>
+    <input id="eDate" type="date">
+
+    <button class="primary">＋ Adicionar gasto</button>
+
+  </form>
+
+  <div class="section">
+
+    <div class="between row">
+      <h2 class="title">Gastos registados</h2>
+      <b id="expenseTotal">0,00 €</b>
+    </div>
+
+    <div id="expenseList"></div>
+
+  </div>
+
+</section>
+
+
+<!-- GRÁFICOS -->
+<section id="charts" class="page">
+
+  <h2 class="title">📊 Estatísticas</h2>
+
+  <div class="section">
+    <div class="chart">
+      <b>Receita dos últimos 6 meses</b>
+      <div id="revenueChart" class="bars"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="chart">
+      <b>Lucro dos últimos 6 meses</b>
+      <div id="profitChart" class="bars"></div>
+    </div>
+  </div>
+
+  <div class="section">
+
+    <div class="two">
+
+      <div class="statMini">
+        <small>Margem média</small>
+        <b id="avgMargin">0%</b>
+      </div>
+
+      <div class="statMini">
+        <small>Venda média</small>
+        <b id="avgSale">0,00 €</b>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- MAIS -->
+<section id="more" class="page">
+
+  <h2 class="title">⚙️ Mais</h2>
+
+  <div class="card">
+
+    <h3>💾 Dados e segurança</h3>
+
+    <p class="muted">
+      Faz regularmente um backup para nunca perderes os teus produtos, vendas e gastos.
+    </p>
+
+    <button class="primary" id="exportBtn">
+      📤 Exportar todos os dados
+    </button>
+
+    <label
+      class="secondary"
+      style="display:block;text-align:center;margin-top:10px;cursor:pointer"
+    >
+      📥 Importar backup
+      <input
+        id="importFile"
+        type="file"
+        accept=".json,application/json"
+        style="display:none"
+      >
+    </label>
+
+  </div>
+
+
+  <div class="card">
+
+    <h3>🤖 Gastos mensais</h3>
+
+    <div class="between row">
+      <span>ChatGPT</span>
+      <b>7,99 €/mês</b>
+    </div>
+
+    <p class="muted">
+      Este gasto é considerado automaticamente no cálculo mensal.
+    </p>
+
+  </div>
+
+
+  <div class="card">
+
+    <h3>📊 Resultado geral</h3>
+
+    <div class="between row">
+      <span>Total vendido</span>
+      <b id="moreRevenue">0,00 €</b>
+    </div>
+
+    <div class="between row">
+      <span>Custo dos produtos vendidos</span>
+      <b id="moreProductCosts">0,00 €</b>
+    </div>
+
+    <div class="between row">
+      <span>Gastos</span>
+      <b id="moreExpenses">0,00 €</b>
+    </div>
+
+    <hr>
+
+    <div class="between row">
+      <strong>Lucro real</strong>
+      <strong class="profit" id="moreProfit">0,00 €</strong>
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h3>⚠️ Zona perigosa</h3>
+
+    <p class="muted">
+      Isto apaga todos os dados guardados nesta app.
+    </p>
+
+    <button class="danger" id="resetBtn">
+      🗑️ Apagar todos os dados
+    </button>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- MENU INFERIOR -->
+
+<nav class="bottom">
+
+  <button class="nav active" data-page="home">
+    <span>⌂</span>
+    Início
+  </button>
+
+  <button class="nav" data-page="products">
+    <span>📦</span>
+    Produtos
+  </button>
+
+  <button class="nav" data-page="sale">
+    <span>＋</span>
+    Venda
+  </button>
+
+  <button class="nav" data-page="shopping">
+    <span>🛒</span>
+    Compras
+  </button>
+
+  <button class="nav" data-page="shipments">
+    <span>📮</span>
+    Envios
+  </button>
+
+  <button class="nav" data-page="more">
+    <span>☰</span>
+    Mais
+  </button>
+
+</nav>
 
 
 <script>
 
-/* =========================
-   DADOS
-========================= */
+/* =========================================================
+   BASE DE DADOS
+========================================================= */
 
-let produtos =
-    JSON.parse(
-        localStorage.getItem("revenda_produtos")
-    ) || [];
+const KEY = "revenda_complete_v1";
 
-let vendas =
-    JSON.parse(
-        localStorage.getItem("revenda_vendas")
-    ) || [];
-
-let necessidades =
-    JSON.parse(
-        localStorage.getItem("revenda_necessidades")
-    ) || [];
-
-let gastos =
-    JSON.parse(
-        localStorage.getItem("revenda_gastos")
-    ) || [];
+let db =
+  JSON.parse(localStorage.getItem(KEY) || "null")
+  ||
+  {
+    products: [],
+    sales: [],
+    expenses: [],
+    shopping: [],
+    version: 2
+  };
 
 
-/* =========================
-   FUNÇÕES
-========================= */
+/* Compatibilidade com versões anteriores */
 
-function euro(valor) {
+if(!Array.isArray(db.products)) db.products=[];
+if(!Array.isArray(db.sales)) db.sales=[];
+if(!Array.isArray(db.expenses)) db.expenses=[];
 
-    return Number(valor || 0).toLocaleString(
-        "pt-PT",
-        {
-            style: "currency",
-            currency: "EUR"
-        }
+if(!Array.isArray(db.shopping)){
+  if(db.shopping && typeof db.shopping==="object"){
+    db.shopping=Object.entries(db.shopping).map(([productId,qty])=>({
+      id:"legacy_"+productId,
+      productId,
+      name:"",
+      forWho:"",
+      qty,
+      price:0,
+      priority:"Normal",
+      bought:false
+    }));
+  }else{
+    db.shopping=[];
+  }
+}
+
+
+/* =========================================================
+   FUNÇÕES BASE
+========================================================= */
+
+const $ = id => document.getElementById(id);
+
+const money = n =>
+  Number(n || 0).toLocaleString("pt-PT",{
+    style:"currency",
+    currency:"EUR"
+  });
+
+const uid = () =>
+  Date.now()+"_"+Math.random().toString(16).slice(2);
+
+const save = () =>
+  localStorage.setItem(KEY,JSON.stringify(db));
+
+const product = id =>
+  db.products.find(p=>p.id===id);
+
+function today(){
+
+  return new Date().toISOString().slice(0,10);
+
+}
+
+function esc(value){
+
+  return String(value ?? "")
+    .replace(/[&<>"']/g,c=>({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#39;"
+    }[c]));
+
+}
+
+
+/* =========================================================
+   CÁLCULOS
+========================================================= */
+
+function revenue(){
+
+  return db.sales
+    .filter(s=>s.status!=="Cancelado")
+    .reduce((sum,s)=>
+      sum + Number(s.price||0)*Number(s.qty||0)
+    ,0);
+
+}
+
+function productCostsSold(){
+
+  return db.sales
+    .filter(s=>s.status!=="Cancelado")
+    .reduce((sum,s)=>{
+
+      const p=product(s.productId);
+
+      return sum +
+        (p ? Number(p.cost||0)*Number(s.qty||0) : 0);
+
+    },0);
+
+}
+
+function saleCosts(){
+
+  return db.sales
+    .filter(s=>s.status!=="Cancelado")
+    .reduce((sum,s)=>
+      sum + Number(s.costs||0)
+    ,0);
+
+}
+
+function generalExpenses(){
+
+  return db.expenses.reduce((sum,e)=>
+    sum + Number(e.amount||0)
+  ,0);
+
+}
+
+function totalExpenses(){
+
+  return saleCosts()+generalExpenses();
+
+}
+
+function realProfit(){
+
+  return revenue()
+    - productCostsSold()
+    - totalExpenses();
+
+}
+
+function invested(){
+
+  return db.products.reduce((sum,p)=>
+    sum +
+    Number(p.cost||0) *
+    Number(p.totalBought||0)
+  ,0);
+
+}
+
+function stockQty(){
+
+  return db.products.reduce((sum,p)=>
+    sum + Number(p.stock||0)
+  ,0);
+
+}
+
+function soldQty(){
+
+  return db.sales
+    .filter(s=>s.status!=="Cancelado")
+    .reduce((sum,s)=>
+      sum+Number(s.qty||0)
+    ,0);
+
+}
+
+function pendingShipments(){
+
+  return db.sales.filter(s=>
+    s.status==="Por enviar"
+  ).reduce((sum,s)=>sum+Number(s.qty||0),0);
+
+}
+
+
+/* =========================================================
+   MENU
+========================================================= */
+
+function go(page){
+
+  document
+    .querySelectorAll(".page")
+    .forEach(x=>x.classList.remove("active"));
+
+  document
+    .querySelectorAll(".nav")
+    .forEach(x=>x.classList.remove("active"));
+
+  $(page).classList.add("active");
+
+  const nav =
+    document.querySelector(
+      `.nav[data-page="${page}"]`
     );
 
-}
+  if(nav) nav.classList.add("active");
 
+  render();
 
-function hoje() {
-
-    return new Date()
-        .toISOString()
-        .split("T")[0];
-
-}
-
-
-function mesAtual() {
-
-    return new Date()
-        .toISOString()
-        .slice(0,7);
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 
 }
 
-
-function escapar(texto) {
-
-    return String(texto)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-
-}
+document
+  .querySelectorAll(".nav")
+  .forEach(button=>{
+    button.addEventListener(
+      "click",
+      ()=>go(button.dataset.page)
+    );
+  });
 
 
-/* =========================
-   NAVEGAÇÃO
-========================= */
-
-function abrir(id, botao) {
-
-    document
-        .querySelectorAll(".section")
-        .forEach(sec => {
-            sec.classList.remove("active");
-        });
-
-
-    document
-        .getElementById(id)
-        .classList.add("active");
-
-
-    document
-        .querySelectorAll(".tabs button")
-        .forEach(btn => {
-            btn.classList.remove("active");
-        });
-
-
-    botao.classList.add("active");
-
-
-    atualizarTudo();
-
-}
-
-
-/* =========================
+/* =========================================================
    PRODUTOS
-========================= */
+========================================================= */
 
-function guardarProduto() {
+$("productForm").addEventListener("submit",e=>{
 
-    const id =
-        document.getElementById("produtoId").value;
+  e.preventDefault();
 
-    const nome =
-        document.getElementById("produtoNome").value.trim();
+  const qty =
+    Number($("pQty").value);
 
-    const compra =
-        Number(
-            document.getElementById("produtoCompra").value
-        ) || 0;
+  const productData={
 
-    const original =
-        Number(
-            document.getElementById("produtoOriginal").value
-        ) || 0;
+    id:uid(),
 
-    const venda =
-        Number(
-            document.getElementById("produtoVenda").value
-        ) || 0;
+    name:$("pName").value.trim(),
 
-    const quantidade =
-        Number(
-            document.getElementById("produtoQuantidade").value
-        ) || 1;
+    category:$("pCategory").value.trim(),
 
-    const gastosProduto =
-        Number(
-            document.getElementById("produtoGastos").value
-        ) || 0;
+    store:$("pStore").value.trim(),
 
-    const estado =
-        document.getElementById("produtoEstado").value;
+    cost:Number($("pCost").value||0),
 
+    original:Number($("pOriginal").value||0),
 
-    if (!nome) {
+    target:Number($("pTarget").value||0),
 
-        alert("Coloca o nome do produto.");
+    minPrice:Number($("pMin").value||0),
 
-        return;
+    stock:qty,
 
-    }
+    totalBought:qty,
 
+    forWho:$("pFor").value.trim(),
 
-    const produto = {
+    notes:$("pNotes").value.trim(),
 
-        id:
-            id ||
-            Date.now().toString(),
+    createdAt:today()
 
-        nome,
+  };
 
-        compra,
+  db.products.push(productData);
 
-        original,
+  save();
 
-        venda,
+  e.target.reset();
 
-        quantidade,
+  $("pQty").value=1;
 
-        gastos:
-            gastosProduto,
+  render();
 
-        estado
-
-    };
+});
 
 
-    if (id) {
+function editProduct(pid){
 
-        const index =
-            produtos.findIndex(
-                p => p.id === id
-            );
+  const p=product(pid);
 
+  if(!p)return;
 
-        if (index !== -1) {
+  const name=prompt(
+    "Nome do produto:",
+    p.name
+  );
 
-            produtos[index] = {
+  if(name===null)return;
 
-                ...produtos[index],
+  const cost=Number(prompt(
+    "Preço de compra:",
+    p.cost
+  ));
 
-                ...produto
+  if(!Number.isFinite(cost)||cost<0)return;
 
-            };
+  const target=Number(prompt(
+    "Preço de venda pretendido:",
+    p.target
+  ));
 
-        }
+  if(!Number.isFinite(target)||target<0)return;
 
-    } else {
+  const min=Number(prompt(
+    "Preço mínimo:",
+    p.minPrice||0
+  ));
 
-        produtos.push(produto);
+  if(!Number.isFinite(min)||min<0)return;
 
-    }
+  p.name=name.trim()||p.name;
+  p.cost=cost;
+  p.target=target;
+  p.minPrice=min;
 
-
-    guardarDados();
-
-    limparProduto();
+  save();
+  render();
 
 }
 
 
-function editarProduto(id) {
+function addStock(pid){
 
-    const p =
-        produtos.find(
-            produto => produto.id === id
-        );
+  const p=product(pid);
 
+  if(!p)return;
 
-    if (!p) return;
+  const qty=Number(prompt(
+    "Quantas unidades compraste?",
+    "1"
+  ));
 
+  if(!Number.isInteger(qty)||qty<1)return;
 
-    document.getElementById(
-        "produtoId"
-    ).value = p.id;
+  p.stock+=qty;
+  p.totalBought+=qty;
 
-
-    document.getElementById(
-        "produtoNome"
-    ).value = p.nome;
-
-
-    document.getElementById(
-        "produtoCompra"
-    ).value = p.compra;
-
-
-    document.getElementById(
-        "produtoOriginal"
-    ).value = p.original;
-
-
-    document.getElementById(
-        "produtoVenda"
-    ).value = p.venda;
-
-
-    document.getElementById(
-        "produtoQuantidade"
-    ).value = p.quantidade;
-
-
-    document.getElementById(
-        "produtoGastos"
-    ).value = p.gastos || 0;
-
-
-    document.getElementById(
-        "produtoEstado"
-    ).value = p.estado;
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+  save();
+  render();
 
 }
 
 
-function apagarProduto(id) {
+function deleteProduct(pid){
 
-    if (
-        !confirm(
-            "Queres mesmo eliminar este produto?"
-        )
-    ) return;
+  if(!confirm(
+    "Apagar este produto?\n\nAs vendas deste produto também serão apagadas."
+  ))return;
 
+  db.products=
+    db.products.filter(p=>p.id!==pid);
 
-    produtos =
-        produtos.filter(
-            p => p.id !== id
-        );
+  db.sales=
+    db.sales.filter(s=>s.productId!==pid);
 
+  db.shopping=
+    db.shopping.filter(x=>x.productId!==pid);
 
-    guardarDados();
-
-}
-
-
-function limparProduto() {
-
-    document.getElementById(
-        "produtoId"
-    ).value = "";
-
-    document.getElementById(
-        "produtoNome"
-    ).value = "";
-
-    document.getElementById(
-        "produtoCompra"
-    ).value = "";
-
-    document.getElementById(
-        "produtoOriginal"
-    ).value = "";
-
-    document.getElementById(
-        "produtoVenda"
-    ).value = "";
-
-    document.getElementById(
-        "produtoQuantidade"
-    ).value = 1;
-
-    document.getElementById(
-        "produtoGastos"
-    ).value = 0;
-
-    document.getElementById(
-        "produtoEstado"
-    ).value = "Por vender";
+  save();
+  render();
 
 }
 
 
-/* =========================
+/* =========================================================
    VENDAS
-========================= */
+========================================================= */
 
-function registarVenda(id) {
+$("sProduct").addEventListener("change",()=>{
 
-    const produto =
-        produtos.find(
-            p => p.id === id
-        );
+  const p=product($("sProduct").value);
 
+  if(p){
+    $("sPrice").value=p.target;
+  }
 
-    if (!produto) return;
-
-
-    const preco =
-        prompt(
-            "Por quanto vendeste este produto?",
-            produto.venda
-        );
+});
 
 
-    if (preco === null) return;
+$("saleForm").addEventListener("submit",e=>{
+
+  e.preventDefault();
+
+  const p=
+    product($("sProduct").value);
+
+  const qty=
+    Number($("sQty").value);
+
+  if(!p||qty<1)return;
+
+  if(p.stock<qty){
+
+    alert(
+      `Só tens ${p.stock} unidade(s) em stock.`
+    );
+
+    return;
+  }
+
+  const sale={
+
+    id:uid(),
+
+    productId:p.id,
+
+    qty,
+
+    price:Number($("sPrice").value||0),
+
+    client:$("sClient").value.trim(),
+
+    platform:$("sPlatform").value,
+
+    costs:Number($("sCosts").value||0),
+
+    status:$("sStatus").value,
+
+    tracking:$("sTracking").value.trim(),
+
+    date:today()
+
+  };
+
+  p.stock-=qty;
+
+  db.sales.push(sale);
+
+  save();
+
+  e.target.reset();
+
+  $("sQty").value=1;
+
+  render();
+
+  alert("Venda registada 🤎");
+
+});
 
 
-    const valor =
-        Number(preco);
+function editSale(sid){
 
+  const s=db.sales.find(x=>x.id===sid);
 
-    if (
-        isNaN(valor) ||
-        valor < 0
-    ) {
+  if(!s)return;
 
-        alert("Coloca um valor válido.");
+  const price=Number(prompt(
+    "Preço real da venda:",
+    s.price
+  ));
 
-        return;
+  if(!Number.isFinite(price)||price<0)return;
 
-    }
+  const costs=Number(prompt(
+    "Gastos desta venda:",
+    s.costs||0
+  ));
 
+  if(!Number.isFinite(costs)||costs<0)return;
 
-    const cliente =
-        prompt(
-            "Para quem foi a venda? (opcional)",
-            ""
-        ) || "";
+  const client=prompt(
+    "Cliente:",
+    s.client||""
+  );
 
+  if(client===null)return;
 
-    vendas.push({
+  s.price=price;
+  s.costs=costs;
+  s.client=client;
 
-        id:
-            Date.now().toString(),
-
-        produtoId:
-            produto.id,
-
-        produtoNome:
-            produto.nome,
-
-        precoCompra:
-            produto.compra,
-
-        precoVenda:
-            valor,
-
-        gastosProduto:
-            produto.gastos || 0,
-
-        cliente,
-
-        data:
-            hoje(),
-
-        envio:
-            "Por enviar"
-
-    });
-
-
-    if (produto.quantidade > 0) {
-
-        produto.quantidade--;
-
-    }
-
-
-    if (produto.quantidade <= 0) {
-
-        produto.quantidade = 0;
-
-        produto.estado = "Vendido";
-
-    }
-
-
-    guardarDados();
-
-}
-
-
-function editarVenda(id) {
-
-    const venda =
-        vendas.find(
-            v => v.id === id
-        );
-
-
-    if (!venda) return;
-
-
-    const novoValor =
-        prompt(
-            "Preço pelo qual foi vendida:",
-            venda.precoVenda
-        );
-
-
-    if (novoValor === null) return;
-
-
-    const valor =
-        Number(novoValor);
-
-
-    if (isNaN(valor)) {
-
-        alert("Valor inválido.");
-
-        return;
-
-    }
-
-
-    venda.precoVenda =
-        valor;
-
-
-    guardarDados();
+  save();
+  render();
 
 }
 
 
-function apagarVenda(id) {
+function deleteSale(sid){
 
-    if (
-        !confirm(
-            "Queres eliminar esta venda?"
-        )
-    ) return;
+  const s=
+    db.sales.find(x=>x.id===sid);
 
+  if(!s)return;
 
-    vendas =
-        vendas.filter(
-            v => v.id !== id
-        );
+  if(!confirm("Apagar esta venda?"))return;
 
+  const p=product(s.productId);
 
-    guardarDados();
+  if(p){
+    p.stock+=Number(s.qty||0);
+  }
 
-}
+  db.sales=
+    db.sales.filter(x=>x.id!==sid);
 
-
-function renderVendas() {
-
-    const lista =
-        document.getElementById(
-            "listaVendas"
-        );
-
-
-    const total =
-        vendas.reduce(
-            (soma, venda) =>
-                soma +
-                Number(
-                    venda.precoVenda || 0
-                ),
-            0
-        );
-
-
-    document.getElementById(
-        "totalVendas"
-    ).textContent =
-        euro(total);
-
-
-    if (!vendas.length) {
-
-        lista.innerHTML =
-            `<div class="empty">
-                Ainda não tens vendas registadas.
-            </div>`;
-
-        return;
-
-    }
-
-
-    lista.innerHTML =
-        vendas
-        .slice()
-        .reverse()
-        .map(v => {
-
-            const lucro =
-                Number(
-                    v.precoVenda || 0
-                ) -
-
-                Number(
-                    v.precoCompra || 0
-                ) -
-
-                Number(
-                    v.gastosProduto || 0
-                );
-
-
-            return `
-
-            <div class="item">
-
-                <h3>
-                    ${escapar(v.produtoNome)}
-                </h3>
-
-                <div class="row">
-
-                    <span>
-                        Comprado por
-                    </span>
-
-                    <strong>
-                        ${euro(v.precoCompra)}
-                    </strong>
-
-                </div>
-
-                <div class="row">
-
-                    <span>
-                        Vendido por
-                    </span>
-
-                    <strong>
-                        ${euro(v.precoVenda)}
-                    </strong>
-
-                </div>
-
-                <div class="row">
-
-                    <span>
-                        Lucro
-                    </span>
-
-                    <strong>
-                        ${euro(lucro)}
-                    </strong>
-
-                </div>
-
-                <div class="row">
-
-                    <span>
-                        Data
-                    </span>
-
-                    <strong>
-                        ${v.data}
-                    </strong>
-
-                </div>
-
-                ${
-                    v.cliente
-                    ?
-                    `
-                    <div class="row">
-
-                        <span>
-                            Cliente
-                        </span>
-
-                        <strong>
-                            ${escapar(v.cliente)}
-                        </strong>
-
-                    </div>
-                    `
-                    :
-                    ""
-                }
-
-                <div class="actions">
-
-                    <button
-                        onclick="editarVenda('${v.id}')"
-                    >
-                        ✏️ Editar
-                    </button>
-
-                    <button
-                        class="danger"
-                        onclick="apagarVenda('${v.id}')"
-                    >
-                        🗑️ Eliminar
-                    </button>
-
-                </div>
-
-            </div>
-
-            `;
-
-        })
-        .join("");
+  save();
+  render();
 
 }
 
 
-/* =========================
-   LISTA PRODUTOS
-========================= */
+function changeSaleStatus(sid,status){
 
-function renderProdutos() {
+  const s=
+    db.sales.find(x=>x.id===sid);
 
-    const lista =
-        document.getElementById(
-            "listaProdutos"
-        );
+  if(!s)return;
 
+  s.status=status;
 
-    if (!produtos.length) {
-
-        lista.innerHTML =
-            `<div class="empty">
-                Ainda não tens produtos.
-            </div>`;
-
-        return;
-
-    }
-
-
-    lista.innerHTML =
-        produtos.map(p => {
-
-            const vendasProduto =
-                vendas.filter(
-                    v =>
-                        v.produtoId === p.id
-                );
-
-
-            const recebido =
-                vendasProduto.reduce(
-                    (soma, v) =>
-                        soma +
-                        Number(
-                            v.precoVenda || 0
-                        ),
-                    0
-                );
-
-
-            const custo =
-                vendasProduto.reduce(
-                    (soma, v) =>
-                        soma +
-                        Number(
-                            v.precoCompra || 0
-                        ),
-                    0
-                );
-
-
-            const gastos =
-                vendasProduto.reduce(
-                    (soma, v) =>
-                        soma +
-                        Number(
-                            v.gastosProduto || 0
-                        ),
-                    0
-                );
-
-
-            const lucro =
-                recebido -
-                custo -
-                gastos;
-
-
-            let classe = "";
-
-
-            if (
-                p.estado === "Vendido"
-            ) {
-
-                classe = "green";
-
-            } else if (
-                p.estado === "Reservado"
-            ) {
-
-                classe = "orange";
-
-            }
-
-
-            return `
-
-            <div class="item">
-
-                <h3>
-                    ${escapar(p.nome)}
-                </h3>
-
-                <span class="badge ${classe}">
-                    ${escapar(p.estado)}
-                </span>
-
-                <div class="row">
-
-                    <span>
-                        Compra
-                    </span>
-
-                    <strong>
-                        ${euro(p.compra)}
-                    </strong>
-
-                </div>
-
-                <div class="row">
-
-                    <span>
-                        Preço original
-                    </span>
-
-                    <strong>
-                        ${euro(p.original)}
-                    </strong>
-
-                </div>
-
-                <div class="row">
-
-                    <span>
-                        Venda prevista
-                    </span>
-
-                    <strong>
-                        ${euro(p.venda)}
-                    </strong>
-
-                </div>
-
-                <div class="row">
-
-                    <span>
-                        Stock
-                    </span>
-
-                    <strong>
-                        ${p.quantidade}
-                    </strong>
-
-                </div>
-
-                <div class="row">
-
-                    <span>
-                        Lucro realizado
-                    </span>
-
-                    <strong>
-                        ${euro(lucro)}
-                    </strong>
-
-                </div>
-
-                <div class="actions">
-
-                    <button
-                        onclick="editarProduto('${p.id}')"
-                    >
-                        ✏️ Editar
-                    </button>
-
-                    ${
-                        p.quantidade > 0
-                        ?
-                        `
-                        <button
-                            class="success"
-                            onclick="registarVenda('${p.id}')"
-                        >
-                            💰 Registar venda
-                        </button>
-                        `
-                        :
-                        ""
-                    }
-
-                    <button
-                        class="danger"
-                        onclick="apagarProduto('${p.id}')"
-                    >
-                        🗑️ Eliminar
-                    </button>
-
-                </div>
-
-            </div>
-
-            `;
-
-        })
-        .join("");
+  save();
+  render();
 
 }
 
 
-/* =========================
+function quickSale(pid){
+
+  go("sale");
+
+  $("sProduct").value=pid;
+
+  const p=product(pid);
+
+  if(p){
+    $("sPrice").value=p.target;
+  }
+
+}
+
+
+/* =========================================================
    COMPRAS
-========================= */
+========================================================= */
 
-function guardarNecessidade() {
+$("needForm").addEventListener("submit",e=>{
 
-    const nome =
-        document.getElementById(
-            "necessidadeNome"
-        ).value.trim();
+  e.preventDefault();
+
+  db.shopping.push({
+
+    id:uid(),
+
+    productId:null,
+
+    name:$("nName").value.trim(),
+
+    forWho:$("nFor").value.trim(),
+
+    qty:Number($("nQty").value||1),
+
+    price:Number($("nPrice").value||0),
+
+    priority:$("nPriority").value,
+
+    bought:false,
+
+    createdAt:today()
+
+  });
+
+  save();
+
+  e.target.reset();
+
+  $("nQty").value=1;
+
+  render();
+
+});
 
 
-    const pessoa =
-        document.getElementById(
-            "necessidadePessoa"
-        ).value.trim();
+function addToShopping(pid){
 
+  const p=product(pid);
 
-    const quantidade =
-        Number(
-            document.getElementById(
-                "necessidadeQuantidade"
-            ).value
-        ) || 1;
+  if(!p)return;
 
+  const existing=
+    db.shopping.find(
+      x=>x.productId===pid && !x.bought
+    );
 
-    if (!nome) {
+  if(existing){
 
-        alert(
-            "Coloca o produto que precisas comprar."
-        );
+    existing.qty++;
 
-        return;
+  }else{
 
-    }
+    db.shopping.push({
 
+      id:uid(),
 
-    necessidades.push({
+      productId:pid,
 
-        id:
-            Date.now().toString(),
+      name:p.name,
 
-        nome,
+      forWho:p.forWho||"Stock",
 
-        pessoa,
+      qty:1,
 
-        quantidade,
+      price:p.cost,
 
-        comprado:
-            false
+      priority:"Normal",
+
+      bought:false,
+
+      createdAt:today()
 
     });
 
+  }
 
-    guardarDados();
-
-
-    document.getElementById(
-        "necessidadeNome"
-    ).value = "";
-
-
-    document.getElementById(
-        "necessidadePessoa"
-    ).value = "";
-
-
-    document.getElementById(
-        "necessidadeQuantidade"
-    ).value = 1;
+  save();
+  render();
 
 }
 
 
-function alterarNecessidade(id) {
+function changeShoppingQty(id){
 
-    const item =
-        necessidades.find(
-            n => n.id === id
-        );
+  const item=
+    db.shopping.find(x=>x.id===id);
 
+  if(!item)return;
 
-    if (!item) return;
+  const q=Number(prompt(
+    "Quantidade:",
+    item.qty
+  ));
 
+  if(!Number.isInteger(q)||q<1)return;
 
-    item.comprado =
-        !item.comprado;
+  item.qty=q;
 
-
-    guardarDados();
-
-}
-
-
-function editarNecessidade(id) {
-
-    const item =
-        necessidades.find(
-            n => n.id === id
-        );
-
-
-    if (!item) return;
-
-
-    const novoNome =
-        prompt(
-            "Produto:",
-            item.nome
-        );
-
-
-    if (novoNome === null) return;
-
-
-    const novaPessoa =
-        prompt(
-            "Para quem:",
-            item.pessoa
-        );
-
-
-    const novaQuantidade =
-        prompt(
-            "Quantidade:",
-            item.quantidade
-        );
-
-
-    item.nome =
-        novoNome.trim();
-
-
-    item.pessoa =
-        novaPessoa || "";
-
-
-    item.quantidade =
-        Number(novaQuantidade) || 1;
-
-
-    guardarDados();
+  save();
+  render();
 
 }
 
 
-function apagarNecessidade(id) {
+function markBought(id){
 
-    if (
-        !confirm(
-            "Queres eliminar esta necessidade?"
-        )
-    ) return;
+  const item=
+    db.shopping.find(x=>x.id===id);
 
+  if(!item)return;
 
-    necessidades =
-        necessidades.filter(
-            n => n.id !== id
-        );
+  if(item.productId){
 
+    const p=product(item.productId);
 
-    guardarDados();
+    if(p){
 
-}
-
-
-function renderNecessidades() {
-
-    const lista =
-        document.getElementById(
-            "listaNecessidades"
-        );
-
-
-    if (!necessidades.length) {
-
-        lista.innerHTML =
-            `<div class="empty">
-                Ainda não tens nada na lista.
-            </div>`;
-
-        return;
+      p.stock+=item.qty;
+      p.totalBought+=item.qty;
 
     }
 
+  }
 
-    lista.innerHTML =
-        necessidades.map(n => `
+  item.bought=true;
 
-        <div class="item">
+  save();
+  render();
 
-            <div class="check-row">
+}
 
-                <input
-                    type="checkbox"
-                    ${n.comprado ? "checked" : ""}
-                    onchange="alterarNecessidade('${n.id}')"
-                >
 
-                <strong
-                    style="${
-                        n.comprado
-                        ?
-                        "text-decoration:line-through"
-                        :
-                        ""
-                    }"
-                >
-                    ${escapar(n.nome)}
-                </strong>
+function removeShopping(id){
 
-            </div>
+  if(!confirm("Remover da lista?"))return;
 
-            <div class="row">
+  db.shopping=
+    db.shopping.filter(x=>x.id!==id);
 
-                <span>
-                    Quantidade
-                </span>
+  save();
+  render();
 
-                <strong>
-                    ${n.quantidade}
-                </strong>
+}
 
-            </div>
 
-            ${
-                n.pessoa
-                ?
-                `
-                <div class="row">
+/* =========================================================
+   GASTOS
+========================================================= */
 
-                    <span>
-                        Para
-                    </span>
+function ensureChatGPTExpense(){
 
-                    <strong>
-                        ${escapar(n.pessoa)}
-                    </strong>
+  const exists=
+    db.expenses.some(
+      x=>x.recurringId==="chatgpt"
+    );
 
-                </div>
-                `
-                :
-                ""
-            }
+  if(!exists){
 
-            <div class="actions">
+    db.expenses.push({
 
-                <button
-                    onclick="editarNecessidade('${n.id}')"
-                >
-                    ✏️ Editar
-                </button>
+      id:uid(),
 
-                <button
-                    class="danger"
-                    onclick="apagarNecessidade('${n.id}')"
-                >
-                    🗑️ Eliminar
-                </button>
+      desc:"ChatGPT",
 
-            </div>
+      amount:7.99,
+
+      cat:"Aplicações",
+
+      type:"mensal",
+
+      recurringId:"chatgpt",
+
+      date:today()
+
+    });
+
+  }
+
+}
+
+ensureChatGPTExpense();
+
+
+$("expenseForm").addEventListener("submit",e=>{
+
+  e.preventDefault();
+
+  db.expenses.push({
+
+    id:uid(),
+
+    desc:$("eDesc").value.trim(),
+
+    amount:Number($("eAmount").value||0),
+
+    cat:$("eCat").value,
+
+    type:$("eType").value,
+
+    date:$("eDate").value||today(),
+
+    recurringId:null
+
+  });
+
+  save();
+
+  e.target.reset();
+
+  $("eDate").value=today();
+
+  render();
+
+});
+
+
+function editExpense(id){
+
+  const x=
+    db.expenses.find(e=>e.id===id);
+
+  if(!x)return;
+
+  const desc=prompt(
+    "Descrição:",
+    x.desc
+  );
+
+  if(desc===null)return;
+
+  const amount=Number(prompt(
+    "Valor:",
+    x.amount
+  ));
+
+  if(!Number.isFinite(amount)||amount<0)return;
+
+  x.desc=desc;
+  x.amount=amount;
+
+  save();
+  render();
+
+}
+
+
+function deleteExpense(id){
+
+  const x=
+    db.expenses.find(e=>e.id===id);
+
+  if(!x)return;
+
+  if(x.recurringId==="chatgpt"){
+
+    if(!confirm(
+      "Isto remove o gasto automático do ChatGPT. Continuar?"
+    ))return;
+
+  }else{
+
+    if(!confirm("Apagar este gasto?"))return;
+
+  }
+
+  db.expenses=
+    db.expenses.filter(e=>e.id!==id);
+
+  save();
+  render();
+
+}
+
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+function render(){
+
+  ensureChatGPTExpense();
+
+  renderHome();
+  renderProducts();
+  renderSale();
+  renderShopping();
+  renderExpenses();
+  renderShipments();
+  renderCharts();
+  renderMore();
+
+  save();
+
+}
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+function renderHome(){
+
+  $("mInvested").textContent=
+    money(invested());
+
+  $("mRevenue").textContent=
+    money(revenue());
+
+  $("mProfit").textContent=
+    money(realProfit());
+
+  $("mStock").textContent=
+    stockQty();
+
+  $("mExpenses").textContent=
+    money(totalExpenses());
+
+  $("mSold").textContent=
+    soldQty();
+
+  $("mToShip").textContent=
+    pendingShipments();
+
+
+  const ranks=
+    db.products
+      .map(p=>{
+
+        const sales=
+          db.sales.filter(
+            s=>s.productId===p.id &&
+            s.status!=="Cancelado"
+          );
+
+        const qty=
+          sales.reduce(
+            (a,s)=>a+s.qty,
+            0
+          );
+
+        const profit=
+          sales.reduce(
+            (a,s)=>
+              a+
+              s.price*s.qty-
+              p.cost*s.qty-
+              s.costs,
+            0
+          );
+
+        return {p,qty,profit};
+
+      })
+      .filter(x=>x.qty>0)
+      .sort(
+        (a,b)=>
+          b.profit-a.profit
+      );
+
+
+  $("ranking").innerHTML=
+    ranks.length
+      ?
+      ranks.slice(0,5).map((x,i)=>`
+
+        <div class="rank">
+
+          <div class="rank-num">
+            ${["🥇","🥈","🥉"][i]||i+1}
+          </div>
+
+          <div class="rank-main">
+            <b>${esc(x.p.name)}</b>
+            <span class="muted">
+              ${x.qty} unidade(s) vendida(s)
+            </span>
+          </div>
+
+          <b class="${x.profit>=0?"profit":"loss"}">
+            ${money(x.profit)}
+          </b>
 
         </div>
 
-        `).join("");
+      `).join("")
+      :
+      `<div class="empty">
+        Ainda não tens vendas registadas.
+      </div>`;
+
+
+  let alerts="";
+
+  const pending=
+    db.sales.filter(
+      s=>s.status==="Por enviar"
+    ).length;
+
+  if(pending){
+
+    alerts+=`
+      <div class="notice">
+        📮 Tens <b>${pending}</b> venda(s) por enviar.
+      </div>
+    `;
+
+  }
+
+  const shopping=
+    db.shopping.filter(x=>!x.bought).length;
+
+  if(shopping){
+
+    alerts+=`
+      <div class="notice">
+        🛒 Tens <b>${shopping}</b> item(ns) na lista de compras.
+      </div>
+    `;
+
+  }
+
+  if(!alerts){
+
+    alerts=`
+      <div class="notice">
+        ✨ Está tudo controlado!
+      </div>
+    `;
+
+  }
+
+  $("alerts").innerHTML=alerts;
+
+
+  /* DONUT */
+
+  const r=revenue();
+
+  const p=Math.max(
+    realProfit(),
+    0
+  );
+
+  const inv=Math.max(
+    invested(),
+    0
+  );
+
+  const values=[r,p,inv];
+
+  const total=
+    values.reduce(
+      (a,b)=>a+b,
+      0
+    )||1;
+
+  const colors=[
+    "#765747",
+    "#a88976",
+    "#d5c1b3"
+  ];
+
+  let offset=0;
+
+  $("donut").innerHTML=
+    values.map((v,i)=>{
+
+      const len=
+        2*Math.PI*45*
+        (v/total);
+
+      const circle=`
+
+        <circle
+          cx="65"
+          cy="65"
+          r="45"
+          fill="none"
+          stroke="${colors[i]}"
+          stroke-width="18"
+          stroke-dasharray="${len} ${283-len}"
+          stroke-dashoffset="${-offset}"
+        ></circle>
+
+      `;
+
+      offset+=len;
+
+      return circle;
+
+    }).join("");
+
+
+  $("legend").innerHTML=[
+
+    ["Recebido",r],
+    ["Lucro",p],
+    ["Investido",inv]
+
+  ].map(x=>`
+
+    <div>
+      <span>${x[0]}</span>
+      <b>${money(x[1])}</b>
+    </div>
+
+  `).join("");
 
 }
 
 
-/* =========================
-   ENVIOS
-========================= */
+/* =========================================================
+   PRODUTOS
+========================================================= */
 
-function alterarEnvio(id) {
+function renderProducts(){
 
-    const venda =
-        vendas.find(
-            v => v.id === id
-        );
+  const search=
+    ($("productSearch")?.value||"")
+      .toLowerCase();
 
-
-    if (!venda) return;
-
-
-    if (
-        venda.envio === "Por enviar"
-    ) {
-
-        venda.envio = "Enviado";
-
-    } else if (
-        venda.envio === "Enviado"
-    ) {
-
-        venda.envio = "Entregue";
-
-    } else {
-
-        venda.envio = "Por enviar";
-
-    }
+  const products=
+    db.products.filter(p=>
+      p.name.toLowerCase()
+        .includes(search)
+    );
 
 
-    guardarDados();
+  $("productList").innerHTML=
+    products.length
+      ?
+      products.map(p=>{
 
-}
+        const sold=
+          db.sales
+            .filter(
+              s=>s.productId===p.id &&
+              s.status!=="Cancelado"
+            )
+            .reduce(
+              (a,s)=>a+s.qty,
+              0
+            );
 
+        const unitProfit=
+          p.target-p.cost;
 
-function renderEnvios() {
+        return `
 
-    const lista =
-        document.getElementById(
-            "listaEnvios"
-        );
+          <div class="card">
 
+            <div class="between row">
 
-    if (!vendas.length) {
+              <div>
 
-        lista.innerHTML =
-            `<div class="empty">
-                Ainda não tens vendas para enviar.
-            </div>`;
-
-        return;
-
-    }
-
-
-    lista.innerHTML =
-        vendas
-        .slice()
-        .reverse()
-        .map(v => {
-
-            let classe = "";
-
-
-            if (
-                v.envio === "Enviado"
-            ) {
-
-                classe = "orange";
-
-            }
-
-
-            if (
-                v.envio === "Entregue"
-            ) {
-
-                classe = "green";
-
-            }
-
-
-            return `
-
-            <div class="item">
-
-                <h3>
-                    ${escapar(v.produtoNome)}
-                </h3>
-
-                <span class="badge ${classe}">
-                    ${v.envio}
-                </span>
-
-                <div class="row">
-
-                    <span>
-                        Venda
-                    </span>
-
-                    <strong>
-                        ${euro(v.precoVenda)}
-                    </strong>
-
+                <div class="product-name">
+                  ${esc(p.name)}
                 </div>
 
-                <div class="row">
-
-                    <span>
-                        Data
-                    </span>
-
-                    <strong>
-                        ${v.data}
-                    </strong>
-
+                <div class="muted">
+                  ${esc(p.category||"Sem categoria")}
+                  ${p.store?" · "+esc(p.store):""}
                 </div>
 
-                <div class="actions">
+              </div>
 
-                    <button
-                        class="success"
-                        onclick="alterarEnvio('${v.id}')"
-                    >
-                        📦 Alterar estado
-                    </button>
-
-                </div>
+              <span class="badge">
+                ${p.stock} em stock
+              </span>
 
             </div>
 
-            `;
 
-        })
-        .join("");
+            <div class="two" style="margin-top:12px">
+
+              <div class="statMini">
+                <small>Compra</small>
+                <b>${money(p.cost)}</b>
+              </div>
+
+              <div class="statMini">
+                <small>Venda</small>
+                <b>${money(p.target)}</b>
+              </div>
+
+            </div>
+
+
+            <p class="muted">
+              Lucro previsto/unidade:
+              <b class="${unitProfit>=0?"profit":"loss"}">
+                ${money(unitProfit)}
+              </b>
+            </p>
+
+
+            ${p.forWho?`
+              <p class="muted">
+                👤 Para: <b>${esc(p.forWho)}</b>
+              </p>
+            `:""}
+
+
+            ${p.notes?`
+              <p class="muted">
+                📝 ${esc(p.notes)}
+              </p>
+            `:""}
+
+
+            <p class="muted">
+              ${sold} vendido(s)
+            </p>
+
+
+            <div class="row">
+
+              <button
+                class="primary"
+                style="width:auto;margin:0"
+                onclick="quickSale('${p.id}')"
+              >
+                ＋ Venda
+              </button>
+
+              <button
+                class="secondary"
+                onclick="addToShopping('${p.id}')"
+              >
+                🛒 Comprar
+              </button>
+
+              <button
+                class="tiny"
+                onclick="addStock('${p.id}')"
+              >
+                + Stock
+              </button>
+
+              <button
+                class="tiny"
+                onclick="editProduct('${p.id}')"
+              >
+                ✏️
+              </button>
+
+              <button
+                class="danger"
+                onclick="deleteProduct('${p.id}')"
+              >
+                🗑️
+              </button>
+
+            </div>
+
+          </div>
+
+        `;
+
+      }).join("")
+      :
+      `<div class="empty">
+        Não encontrei produtos.
+      </div>`;
 
 }
 
 
-/* =========================
+$("productSearch").addEventListener(
+  "input",
+  renderProducts
+);
+
+
+/* =========================================================
+   VENDA
+========================================================= */
+
+function renderSale(){
+
+  $("sProduct").innerHTML=
+    db.products.length
+      ?
+      db.products.map(p=>`
+
+        <option value="${p.id}">
+          ${esc(p.name)}
+          · ${p.stock} em stock
+        </option>
+
+      `).join("")
+      :
+      `<option value="">
+        Adiciona primeiro um produto
+      </option>`;
+
+
+  let sales=[...db.sales].reverse();
+
+  const search=
+    ($("saleSearch")?.value||"")
+      .toLowerCase();
+
+
+  if(search){
+
+    sales=
+      sales.filter(s=>{
+
+        const p=product(s.productId);
+
+        return (
+          p?.name?.toLowerCase().includes(search) ||
+          s.client?.toLowerCase().includes(search)
+        );
+
+      });
+
+  }
+
+
+  $("salesList").innerHTML=
+    sales.length
+      ?
+      sales.map(s=>{
+
+        const p=
+          product(s.productId);
+
+        const gross=
+          s.price*s.qty;
+
+        const cost=
+          p
+            ? p.cost*s.qty
+            : 0;
+
+        const net=
+          gross-cost-s.costs;
+
+
+        let badgeClass="";
+
+        if(s.status==="Entregue")
+          badgeClass="green";
+
+        if(s.status==="Por enviar")
+          badgeClass="yellow";
+
+        if(s.status==="Cancelado")
+          badgeClass="red";
+
+
+        return `
+
+          <div class="card">
+
+            <div class="between row">
+
+              <div>
+
+                <div class="product-name">
+                  ${esc(
+                    p?.name ||
+                    "Produto apagado"
+                  )}
+                </div>
+
+                <div class="muted">
+                  ${esc(s.date)}
+                  · ${s.qty} unidade(s)
+                </div>
+
+              </div>
+
+              <span class="badge ${badgeClass}">
+                ${esc(s.status)}
+              </span>
+
+            </div>
+
+
+            <p>
+              💵 Recebido:
+              <b>${money(gross)}</b>
+            </p>
+
+            <p class="muted">
+              Cliente:
+              ${esc(s.client||"Não indicado")}
+            </p>
+
+            <p class="muted">
+              Plataforma:
+              ${esc(s.platform||"")}
+            </p>
+
+            ${s.tracking?`
+              <p class="muted">
+                📮 Tracking:
+                <b>${esc(s.tracking)}</b>
+              </p>
+            `:""}
+
+
+            <p class="muted">
+              Gastos:
+              ${money(s.costs)}
+            </p>
+
+            <p class="${net>=0?"profit":"loss"}">
+              Lucro:
+              ${money(net)}
+            </p>
+
+
+            <div class="row">
+
+              <button
+                class="tiny"
+                onclick="changeSaleStatus('${s.id}','Por enviar')"
+              >
+                📦 Por enviar
+              </button>
+
+              <button
+                class="tiny"
+                onclick="changeSaleStatus('${s.id}','Enviado')"
+              >
+                📮 Enviado
+              </button>
+
+              <button
+                class="tiny"
+                onclick="changeSaleStatus('${s.id}','Entregue')"
+              >
+                ✅ Entregue
+              </button>
+
+              <button
+                class="tiny"
+                onclick="editSale('${s.id}')"
+              >
+                ✏️ Editar
+              </button>
+
+              <button
+                class="danger"
+                onclick="deleteSale('${s.id}')"
+              >
+                🗑️ Apagar
+              </button>
+
+            </div>
+
+          </div>
+
+        `;
+
+      }).join("")
+      :
+      `<div class="empty">
+        Ainda não tens vendas.
+      </div>`;
+
+}
+
+
+$("saleSearch").addEventListener(
+  "input",
+  renderSale
+);
+
+
+/* =========================================================
+   COMPRAS
+========================================================= */
+
+function renderShopping(){
+
+  const manual=
+    db.shopping.filter(
+      x=>!x.productId&&!x.bought
+    );
+
+  $("manualShoppingList").innerHTML=
+    manual.length
+      ?
+      manual.map(x=>`
+
+        <div class="card">
+
+          <div class="between row">
+
+            <div>
+
+              <div class="product-name">
+                ${esc(x.name)}
+              </div>
+
+              <div class="muted">
+                👤 ${esc(x.forWho||"Não indicado")}
+              </div>
+
+            </div>
+
+            <span class="badge">
+              ${x.qty} unidade(s)
+            </span>
+
+          </div>
+
+
+          <p>
+            Total previsto:
+            <b>
+              ${money(x.price*x.qty)}
+            </b>
+          </p>
+
+
+          <p class="muted">
+            Prioridade:
+            <b>${esc(x.priority)}</b>
+          </p>
+
+
+          <div class="row">
+
+            <button
+              class="primary"
+              style="width:auto;margin:0"
+              onclick="markBought('${x.id}')"
+            >
+              ✅ Comprei
+            </button>
+
+            <button
+              class="secondary"
+              onclick="changeShoppingQty('${x.id}')"
+            >
+              ✏️ Quantidade
+            </button>
+
+            <button
+              class="danger"
+              onclick="removeShopping('${x.id}')"
+            >
+              🗑️
+            </button>
+
+          </div>
+
+        </div>
+
+      `).join("")
+      :
+      `<div class="empty">
+        Não tens compras pendentes adicionadas manualmente.
+      </div>`;
+
+
+  const stockItems=
+    db.shopping.filter(
+      x=>x.productId&&!x.bought
+    );
+
+
+  $("stockShoppingList").innerHTML=
+    stockItems.length
+      ?
+      stockItems.map(x=>{
+
+        const p=product(x.productId);
+
+        if(!p)return "";
+
+        return `
+
+          <div class="card">
+
+            <div class="between row">
+
+              <div>
+
+                <div class="product-name">
+                  ${esc(p.name)}
+                </div>
+
+                <div class="muted">
+                  Stock atual: ${p.stock}
+                </div>
+
+              </div>
+
+              <span class="badge">
+                ${x.qty} para comprar
+              </span>
+
+            </div>
+
+
+            <p>
+              Total previsto:
+              <b>
+                ${money(p.cost*x.qty)}
+              </b>
+            </p>
+
+
+            <div class="row">
+
+              <button
+                class="primary"
+                style="width:auto;margin:0"
+                onclick="markBought('${x.id}')"
+              >
+                ✅ Comprei
+              </button>
+
+              <button
+                class="secondary"
+                onclick="changeShoppingQty('${x.id}')"
+              >
+                ✏️ Quantidade
+              </button>
+
+              <button
+                class="danger"
+                onclick="removeShopping('${x.id}')"
+              >
+                Remover
+              </button>
+
+            </div>
+
+          </div>
+
+        `;
+
+      }).join("")
+      :
+      `<div class="empty">
+        🛒 Não tens reposições pendentes.
+      </div>`;
+
+
+  const items=
+    db.shopping.filter(
+      x=>!x.bought
+    );
+
+  let qty=0;
+  let total=0;
+
+  items.forEach(x=>{
+
+    qty+=Number(x.qty||0);
+
+    if(x.productId){
+
+      const p=product(x.productId);
+
+      if(p)
+        total+=p.cost*x.qty;
+
+    }else{
+
+      total+=
+        Number(x.price||0)*x.qty;
+
+    }
+
+  });
+
+
+  $("cartQty").textContent=qty;
+  $("cartTotal").textContent=money(total);
+
+}
+
+
+/* =========================================================
+   ENVIOS
+========================================================= */
+
+function renderShipments(){
+
+  const pending=
+    db.sales.filter(
+      s=>s.status==="Por enviar"
+    );
+
+  const sent=
+    db.sales.filter(
+      s=>s.status==="Enviado"
+    );
+
+  const delivered=
+    db.sales.filter(
+      s=>s.status==="Entregue"
+    );
+
+
+  $("shipPending").textContent=
+    pending.length;
+
+  $("shipSent").textContent=
+    sent.length;
+
+  $("shipDelivered").textContent=
+    delivered.length;
+
+  $("shipAttention").textContent=
+    pending.filter(s=>!s.tracking).length;
+
+
+  const list=
+    db.sales
+      .filter(
+        s=>s.status!=="Cancelado"
+      )
+      .reverse();
+
+
+  $("shipmentList").innerHTML=
+    list.length
+      ?
+      list.map(s=>{
+
+        const p=product(s.productId);
+
+        return `
+
+          <div class="card">
+
+            <div class="between row">
+
+              <div>
+
+                <div class="product-name">
+                  ${esc(
+                    p?.name ||
+                    "Produto apagado"
+                  )}
+                </div>
+
+                <div class="muted">
+                  Cliente:
+                  ${esc(s.client||"Não indicado")}
+                </div>
+
+              </div>
+
+              <span class="badge">
+                ${esc(s.status)}
+              </span>
+
+            </div>
+
+
+            <p class="muted">
+              Quantidade:
+              <b>${s.qty}</b>
+            </p>
+
+
+            <p class="muted">
+              Plataforma:
+              <b>${esc(s.platform||"")}</b>
+            </p>
+
+
+            <p class="muted">
+              Código:
+              <b>
+                ${esc(s.tracking||"Ainda não colocado")}
+              </b>
+            </p>
+
+
+            <div class="row">
+
+              <button
+                class="tiny"
+                onclick="changeSaleStatus('${s.id}','Enviado')"
+              >
+                📮 Marcar enviado
+              </button>
+
+              <button
+                class="tiny"
+                onclick="changeSaleStatus('${s.id}','Entregue')"
+              >
+                ✅ Entregue
+              </button>
+
+            </div>
+
+          </div>
+
+        `;
+
+      }).join("")
+      :
+      `<div class="empty">
+        Não tens envios.
+      </div>`;
+
+}
+
+
+/* =========================================================
    GASTOS
-========================= */
+========================================================= */
 
-function guardarGasto() {
+function renderExpenses(){
 
-    const id =
-        document.getElementById(
-            "gastoId"
-        ).value;
-
-
-    const nome =
-        document.getElementById(
-            "gastoNome"
-        ).value.trim();
+  const expenses=
+    [...db.expenses]
+      .reverse();
 
 
-    const valor =
-        Number(
-            document.getElementById(
-                "gastoValor"
-            ).value
-        );
+  $("expenseTotal").textContent=
+    money(generalExpenses());
 
 
-    const tipo =
-        document.getElementById(
-            "gastoTipo"
-        ).value;
+  $("expenseList").innerHTML=
+    expenses.length
+      ?
+      expenses.map(x=>`
+
+        <div class="card">
+
+          <div class="between row">
+
+            <div>
+
+              <b>${esc(x.desc)}</b>
+
+              <div class="muted">
+                ${esc(x.cat)}
+                · ${esc(x.type)}
+                · ${esc(x.date)}
+              </div>
+
+            </div>
+
+            <b class="loss">
+              -${money(x.amount)}
+            </b>
+
+          </div>
 
 
-    const data =
-        document.getElementById(
-            "gastoData"
-        ).value ||
-        hoje();
+          <div class="row" style="margin-top:10px">
+
+            <button
+              class="tiny"
+              onclick="editExpense('${x.id}')"
+            >
+              ✏️ Editar
+            </button>
+
+            <button
+              class="danger"
+              onclick="deleteExpense('${x.id}')"
+            >
+              🗑️ Apagar
+            </button>
+
+          </div>
+
+        </div>
+
+      `).join("")
+      :
+      `<div class="empty">
+        Ainda não tens gastos.
+      </div>`;
+
+}
 
 
-    if (!nome) {
+/* =========================================================
+   GRÁFICOS
+========================================================= */
+
+function monthKey(date){
+
+  const d=new Date(date);
+
+  return `${d.getFullYear()}-${
+    String(d.getMonth()+1).padStart(2,"0")
+  }`;
+
+}
+
+
+function monthName(key){
+
+  const [y,m]=key.split("-");
+
+  return new Date(
+    Number(y),
+    Number(m)-1,
+    1
+  ).toLocaleDateString(
+    "pt-PT",
+    {month:"short"}
+  );
+
+}
+
+
+function makeChart(el,values){
+
+  const max=
+    Math.max(
+      ...values.map(x=>x.v),
+      1
+    );
+
+  el.innerHTML=
+    values.map(x=>`
+
+      <div class="barcol">
+
+        <div class="barvalue">
+          ${money(x.v)}
+        </div>
+
+        <div
+          class="bar"
+          style="height:${Math.max(
+            3,
+            x.v/max*130
+          )}px"
+        ></div>
+
+        <div class="barlabel">
+          ${x.k}
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+function renderCharts(){
+
+  const keys=[];
+  const now=new Date();
+
+  for(let i=5;i>=0;i--){
+
+    const d=
+      new Date(
+        now.getFullYear(),
+        now.getMonth()-i,
+        1
+      );
+
+    keys.push(
+      `${d.getFullYear()}-${
+        String(d.getMonth()+1)
+          .padStart(2,"0")
+      }`
+    );
+
+  }
+
+
+  makeChart(
+    $("revenueChart"),
+
+    keys.map(k=>({
+
+      k:monthName(k),
+
+      v:
+        db.sales
+          .filter(
+            s=>
+              monthKey(s.date)===k &&
+              s.status!=="Cancelado"
+          )
+          .reduce(
+            (a,s)=>
+              a+s.price*s.qty,
+            0
+          )
+
+    }))
+
+  );
+
+
+  makeChart(
+    $("profitChart"),
+
+    keys.map(k=>({
+
+      k:monthName(k),
+
+      v:
+        Math.max(
+          0,
+
+          db.sales
+            .filter(
+              s=>
+                monthKey(s.date)===k &&
+                s.status!=="Cancelado"
+            )
+            .reduce(
+              (a,s)=>{
+
+                const p=
+                  product(s.productId);
+
+                return a+
+                  s.price*s.qty-
+                  (p?p.cost*s.qty:0)-
+                  s.costs;
+
+              },
+              0
+            )
+
+          -
+
+          db.expenses
+            .filter(
+              e=>
+                monthKey(e.date)===k
+            )
+            .reduce(
+              (a,e)=>
+                a+Number(e.amount||0),
+              0
+            )
+
+        )
+
+    }))
+
+  );
+
+
+  const rev=revenue();
+
+  const count=
+    db.sales.filter(
+      s=>s.status!=="Cancelado"
+    ).length;
+
+  $("avgSale").textContent=
+    money(
+      count
+        ? rev/count
+        : 0
+    );
+
+
+  $("avgMargin").textContent=
+    rev
+      ? Math.round(
+          realProfit()/rev*100
+        )+"%"
+      : "0%";
+
+}
+
+
+/* =========================================================
+   MAIS
+========================================================= */
+
+function renderMore(){
+
+  $("moreRevenue").textContent=
+    money(revenue());
+
+  $("moreProductCosts").textContent=
+    money(productCostsSold());
+
+  $("moreExpenses").textContent=
+    money(totalExpenses());
+
+  $("moreProfit").textContent=
+    money(realProfit());
+
+}
+
+
+/* =========================================================
+   EXPORTAR
+========================================================= */
+
+$("exportBtn").onclick=()=>{
+
+  const backup={
+
+    app:"Revenda",
+
+    version:2,
+
+    exportedAt:
+      new Date().toISOString(),
+
+    data:db
+
+  };
+
+
+  const blob=
+    new Blob(
+      [
+        JSON.stringify(
+          backup,
+          null,
+          2
+        )
+      ],
+      {
+        type:"application/json"
+      }
+    );
+
+
+  const url=
+    URL.createObjectURL(blob);
+
+  const a=
+    document.createElement("a");
+
+  a.href=url;
+
+  a.download=
+    "backup-revenda-"+
+    today()+
+    ".json";
+
+  document.body.appendChild(a);
+
+  a.click();
+
+  a.remove();
+
+  setTimeout(
+    ()=>URL.revokeObjectURL(url),
+    1000
+  );
+
+};
+
+
+/* =========================================================
+   IMPORTAR
+========================================================= */
+
+$("importFile").addEventListener(
+  "change",
+  e=>{
+
+    const file=
+      e.target.files[0];
+
+    if(!file)return;
+
+
+    const reader=
+      new FileReader();
+
+
+    reader.onload=()=>{
+
+      try{
+
+        const imported=
+          JSON.parse(
+            reader.result
+          );
+
+
+        let data=
+          imported.data ||
+          imported;
+
+
+        if(
+          !data.products ||
+          !data.sales ||
+          !data.expenses
+        ){
+
+          alert(
+            "Este ficheiro não parece ser um backup válido da app."
+          );
+
+          return;
+
+        }
+
+
+        if(
+          !confirm(
+            "Importar este backup vai substituir os dados atuais. Tens a certeza?"
+          )
+        )return;
+
+
+        db=data;
+
+
+        if(!Array.isArray(db.shopping))
+          db.shopping=[];
+
+
+        ensureChatGPTExpense();
+
+        save();
+
+        render();
+
 
         alert(
-            "Coloca o nome do gasto."
+          "Backup importado com sucesso 🤎"
         );
 
-        return;
 
-    }
-
-
-    if (
-        isNaN(valor) ||
-        valor < 0
-    ) {
+      }catch(error){
 
         alert(
-            "Coloca um valor válido."
+          "Não foi possível ler o backup."
         );
 
-        return;
+      }
 
-    }
-
-
-    const gasto = {
-
-        id:
-            id ||
-            Date.now().toString(),
-
-        nome,
-
-        valor,
-
-        tipo,
-
-        data
+      e.target.value="";
 
     };
 
 
-    if (id) {
+    reader.readAsText(file);
 
-        const index =
-            gastos.findIndex(
-                g => g.id === id
-            );
+  }
+);
 
 
-        if (index !== -1) {
+/* =========================================================
+   APAGAR TUDO
+========================================================= */
 
-            gastos[index] =
-                gasto;
+$("resetBtn").onclick=()=>{
 
-        }
+  if(
+    !confirm(
+      "ATENÇÃO!\n\nIsto vai apagar produtos, vendas, compras e gastos.\n\nRecomendo exportares um backup primeiro.\n\nContinuar?"
+    )
+  )return;
 
-    } else {
 
-        gastos.push(gasto);
+  if(
+    !confirm(
+      "Última confirmação: queres mesmo apagar TUDO?"
+    )
+  )return;
 
-    }
 
+  db={
+    products:[],
+    sales:[],
+    expenses:[],
+    shopping:[],
+    version:2
+  };
 
-    guardarDados();
 
-    limparGasto();
+  ensureChatGPTExpense();
 
-}
+  save();
 
+  render();
 
-function editarGasto(id) {
+};
 
-    const g =
-        gastos.find(
-            gasto => gasto.id === id
-        );
 
+/* =========================================================
+   DATA INICIAL
+========================================================= */
 
-    if (!g) return;
+$("eDate").value=today();
 
 
-    document.getElementById(
-        "gastoId"
-    ).value =
-        g.id;
+/* =========================================================
+   INICIAR
+========================================================= */
 
-
-    document.getElementById(
-        "gastoNome"
-    ).value =
-        g.nome;
-
-
-    document.getElementById(
-        "gastoValor"
-    ).value =
-        g.valor;
-
-
-    document.getElementById(
-        "gastoTipo"
-    ).value =
-        g.tipo;
-
-
-    document.getElementById(
-        "gastoData"
-    ).value =
-        g.data;
-
-}
-
-
-function apagarGasto(id) {
-
-    if (
-        !confirm(
-            "Queres eliminar este gasto?"
-        )
-    ) return;
-
-
-    gastos =
-        gastos.filter(
-            g => g.id !== id
-        );
-
-
-    guardarDados();
-
-}
-
-
-function limparGasto() {
-
-    document.getElementById(
-        "gastoId"
-    ).value = "";
-
-
-    document.getElementById(
-        "gastoNome"
-    ).value = "";
-
-
-    document.getElementById(
-        "gastoValor"
-    ).value = "";
-
-
-    document.getElementById(
-        "gastoTipo"
-    ).value =
-        "mensal";
-
-
-    document.getElementById(
-        "gastoData"
-    ).value =
-        hoje();
-
-}
-
-
-function calcularGastosMes(mes) {
-
-    let total = 0;
-
-
-    gastos.forEach(g => {
-
-        const mesGasto =
-            g.data.slice(0,7);
-
-
-        if (
-            g.tipo === "mensal" &&
-            mesGasto <= mes
-        ) {
-
-            total +=
-                Number(g.valor);
-
-        }
-
-
-        if (
-            g.tipo === "ocasional" &&
-            mesGasto === mes
-        ) {
-
-            total +=
-                Number(g.valor);
-
-        }
-
-    });
-
-
-    return total;
-
-}
-
-
-function renderGastos() {
-
-    const mes =
-        document.getElementById(
-            "mesSelecionado"
-        ).value ||
-        mesAtual();
-
-
-    document.getElementById(
-        "mesSelecionado"
-    ).value =
-        mes;
-
-
-    const mensais =
-        gastos.filter(g =>
-
-            g.tipo === "mensal" &&
-
-            g.data.slice(0,7) <= mes
-
-        );
-
-
-    const ocasionais =
-        gastos.filter(g =>
-
-            g.tipo === "ocasional" &&
-
-            g.data.slice(0,7) === mes
-
-        );
-
-
-    const total =
-        calcularGastosMes(mes);
-
-
-    document.getElementById(
-        "totalGastosMes"
-    ).textContent =
-        euro(total);
-
-
-    const listaMensais =
-        document.getElementById(
-            "gastosMensais"
-        );
-
-
-    const listaOcasionais =
-        document.getElementById(
-            "gastosOcasionais"
-        );
-
-
-    if (!mensais.length) {
-
-        listaMensais.innerHTML =
-            `<div class="empty">
-                Não tens gastos mensais.
-            </div>`;
-
-    } else {
-
-        listaMensais.innerHTML =
-            mensais.map(g => `
-
-            <div class="item">
-
-                <h3>
-                    ${escapar(g.nome)}
-                </h3>
-
-                <span class="badge">
-                    🔄 Mensal
-                </span>
-
-                <div class="row">
-
-                    <span>
-                        Valor por mês
-                    </span>
-
-                    <strong>
-                        ${euro(g.valor)}
-                    </strong>
-
-                </div>
-
-                <div class="row">
-
-                    <span>
-                        Desde
-                    </span>
-
-                    <strong>
-                        ${g.data}
-                    </strong>
-
-                </div>
-
-                <div class="actions">
-
-                    <button
-                        onclick="editarGasto('${g.id}')"
-                    >
-                        ✏️ Editar
-                    </button>
-
-                    <button
-                        class="danger"
-                        onclick="apagarGasto('${g.id}')"
-                    >
-                        🗑️ Eliminar
-                    </button>
-
-                </div>
-
-            </div>
-
-            `).join("");
-
-    }
-
-
-    if (!ocasionais.length) {
-
-        listaOcasionais.innerHTML =
-            `<div class="empty">
-                Não tens gastos ocasionais neste mês.
-            </div>`;
-
-    } else {
-
-        listaOcasionais.innerHTML =
-            ocasionais.map(g => `
-
-            <div class="item">
-
-                <h3>
-                    ${escapar(g.nome)}
-                </h3>
-
-                <span class="badge orange">
-                    🧾 Ocasional
-                </span>
-
-                <div class="row">
-
-                    <span>
-                        Valor
-                    </span>
-
-                    <strong>
-                        ${euro(g.valor)}
-                    </strong>
-
-                </div>
-
-                <div class="row">
-
-                    <span>
-                        Data
-                    </span>
-
-                    <strong>
-                        ${g.data}
-                    </strong>
-
-                </div>
-
-                <div class="actions">
-
-                    <button
-                        onclick="editarGasto('${g.id}')"
-                    >
-                        ✏️ Editar
-                    </button>
-
-                    <button
-                        class="danger"
-                        onclick="apagarGasto('${g.id}')"
-                    >
-                        🗑️ Eliminar
-                    </button>
-
-                </div>
-
-            </div>
-
-            `).join("");
-
-    }
-
-}
-
-
-/* =========================
-   RESUMO
-========================= */
-
-function atualizarResumo() {
-
-    let investido = 0;
-
-    let recebido = 0;
-
-    let lucroProdutos = 0;
-
-
-    produtos.forEach(p => {
-
-        investido +=
-            Number(p.compra || 0) *
-            Number(p.quantidade || 0);
-
-    });
-
-
-    vendas.forEach(v => {
-
-        recebido +=
-            Number(
-                v.precoVenda || 0
-            );
-
-
-        lucroProdutos +=
-
-            Number(
-                v.precoVenda || 0
-            ) -
-
-            Number(
-                v.precoCompra || 0
-            ) -
-
-            Number(
-                v.gastosProduto || 0
-            );
-
-    });
-
-
-    const gastosMes =
-        calcularGastosMes(
-            mesAtual()
-        );
-
-
-    const lucroReal =
-        lucroProdutos -
-        gastosMes;
-
-
-    document.getElementById(
-        "resumoInvestido"
-    ).textContent =
-        euro(investido);
-
-
-    document.getElementById(
-        "resumoRecebido"
-    ).textContent =
-        euro(recebido);
-
-
-    document.getElementById(
-        "resumoLucro"
-    ).textContent =
-        euro(lucroProdutos);
-
-
-    document.getElementById(
-        "resumoGastos"
-    ).textContent =
-        euro(gastosMes);
-
-
-    document.getElementById(
-        "resumoLucroReal"
-    ).textContent =
-        euro(lucroReal);
-
-}
-
-
-/* =========================
-   RANKING
-========================= */
-
-function renderRanking() {
-
-    const ranking =
-        document.getElementById(
-            "ranking"
-        );
-
-
-    const contagem = {};
-
-
-    vendas.forEach(v => {
-
-        if (
-            !contagem[v.produtoNome]
-        ) {
-
-            contagem[v.produtoNome] =
-                0;
-
-        }
-
-
-        contagem[v.produtoNome]++;
-
-    });
-
-
-    const lista =
-        Object.entries(contagem)
-        .sort(
-            (a,b) =>
-                b[1] - a[1]
-        );
-
-
-    if (!lista.length) {
-
-        ranking.innerHTML =
-            `<div class="empty">
-                Ainda não tens vendas.
-            </div>`;
-
-        return;
-
-    }
-
-
-    ranking.innerHTML =
-        lista.map(
-            (item,index) => `
-
-        <div class="item">
-
-            <div class="row">
-
-                <strong>
-                    ${index + 1}.
-                    ${escapar(item[0])}
-                </strong>
-
-                <strong>
-                    ${item[1]}
-                    venda${item[1] === 1 ? "" : "s"}
-                </strong>
-
-            </div>
-
-        </div>
-
-        `
-        ).join("");
-
-}
-
-
-/* =========================
-   GUARDAR
-========================= */
-
-function guardarDados() {
-
-    localStorage.setItem(
-        "revenda_produtos",
-        JSON.stringify(produtos)
-    );
-
-
-    localStorage.setItem(
-        "revenda_vendas",
-        JSON.stringify(vendas)
-    );
-
-
-    localStorage.setItem(
-        "revenda_necessidades",
-        JSON.stringify(necessidades)
-    );
-
-
-    localStorage.setItem(
-        "revenda_gastos",
-        JSON.stringify(gastos)
-    );
-
-
-    atualizarTudo();
-
-}
-
-
-/* =========================
-   ATUALIZAR
-========================= */
-
-function atualizarTudo() {
-
-    renderProdutos();
-
-    renderVendas();
-
-    renderNecessidades();
-
-    renderEnvios();
-
-    renderGastos();
-
-    renderRanking();
-
-    atualizarResumo();
-
-}
-
-
-/* =========================
-   CHATGPT 7,99€/MÊS
-========================= */
-
-function criarChatGPT() {
-
-    const existe =
-        gastos.some(
-            g =>
-                g.nome.toLowerCase()
-                === "chatgpt"
-        );
-
-
-    if (existe) return;
-
-
-    gastos.push({
-
-        id:
-            "gasto-chatgpt",
-
-        nome:
-            "ChatGPT",
-
-        valor:
-            7.99,
-
-        tipo:
-            "mensal",
-
-        data:
-            hoje()
-
-    });
-
-
-    localStorage.setItem(
-        "revenda_gastos",
-        JSON.stringify(gastos)
-    );
-
-}
-
-
-/* =========================
-   INICIALIZAÇÃO
-========================= */
-
-document.getElementById(
-    "mesSelecionado"
-).value =
-    mesAtual();
-
-
-document.getElementById(
-    "gastoData"
-).value =
-    hoje();
-
-
-criarChatGPT();
-
-
-atualizarTudo();
+render();
 
 </script>
 
