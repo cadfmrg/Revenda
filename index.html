@@ -18,6 +18,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     background: #faf7f5;
     color: #403733;
+    padding-bottom: 85px;
 }
 
 header {
@@ -42,27 +43,59 @@ header p {
     padding: 16px;
 }
 
+/* =========================
+   MENU INFERIOR
+========================= */
+
 .tabs {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+
     display: flex;
-    gap: 8px;
+    justify-content: space-around;
+    align-items: center;
+
+    background: rgba(255, 250, 247, 0.97);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border-top: 1px solid #eaded9;
+
+    padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
+
+    box-shadow: 0 -3px 15px rgba(0,0,0,0.06);
+
     overflow-x: auto;
-    padding: 4px 0 14px;
 }
 
 .tabs button {
+    flex: 1;
+    min-width: 55px;
+
     border: 0;
-    background: white;
-    color: #665952;
-    padding: 11px 15px;
-    border-radius: 14px;
-    white-space: nowrap;
-    box-shadow: 0 2px 10px rgba(0,0,0,.05);
+    background: transparent;
+
+    box-shadow: none;
+
+    color: #81736d;
+
+    padding: 7px 3px;
+
+    border-radius: 12px;
+
+    font-size: 11px;
+    line-height: 1.2;
 }
 
 .tabs button.active {
-    background: #c8a092;
-    color: white;
+    background: #ead8d0;
+    color: #8d6759;
 }
+
+/* ========================= */
 
 .section {
     display: none;
@@ -255,12 +288,6 @@ button.primary {
     margin: 0;
 }
 
-.sale-box {
-    border-top: 1px solid #eee4df;
-    margin-top: 12px;
-    padding-top: 12px;
-}
-
 @media (min-width: 700px) {
 
     .cards {
@@ -286,32 +313,32 @@ button.primary {
 
 <div class="container">
 
-<!-- MENU -->
+<!-- ================= MENU ================= -->
 
 <div class="tabs">
 
     <button class="active" onclick="abrir('inicio', this)">
-        Início
+        🏠<br>Início
     </button>
 
     <button onclick="abrir('produtos', this)">
-        Produtos
+        📦<br>Produtos
     </button>
 
     <button onclick="abrir('vendas', this)">
-        Vendas
+        💰<br>Vendas
     </button>
 
     <button onclick="abrir('compras', this)">
-        Compras
+        🛒<br>Compras
     </button>
 
     <button onclick="abrir('envios', this)">
-        Envios
+        📮<br>Envios
     </button>
 
     <button onclick="abrir('gastos', this)">
-        Gastos
+        💸<br>Gastos
     </button>
 
 </div>
@@ -524,7 +551,7 @@ button.primary {
 
 <section id="envios" class="section">
 
-    <h2>📦 Envios</h2>
+    <h2>📮 Envios</h2>
 
     <div id="listaEnvios"></div>
 
@@ -588,11 +615,11 @@ button.primary {
         <select id="gastoTipo">
 
             <option value="mensal">
-                Mensal — repete todos os meses
+                🔄 Mensal
             </option>
 
             <option value="ocasional">
-                Ocasional — apenas uma vez
+                🧾 Ocasional
             </option>
 
         </select>
@@ -630,26 +657,34 @@ button.primary {
 
 <script>
 
-/* =====================================================
+/* =========================
    DADOS
-===================================================== */
+========================= */
 
 let produtos =
-    JSON.parse(localStorage.getItem("revenda_produtos")) || [];
+    JSON.parse(
+        localStorage.getItem("revenda_produtos")
+    ) || [];
 
 let vendas =
-    JSON.parse(localStorage.getItem("revenda_vendas")) || [];
+    JSON.parse(
+        localStorage.getItem("revenda_vendas")
+    ) || [];
 
 let necessidades =
-    JSON.parse(localStorage.getItem("revenda_necessidades")) || [];
+    JSON.parse(
+        localStorage.getItem("revenda_necessidades")
+    ) || [];
 
 let gastos =
-    JSON.parse(localStorage.getItem("revenda_gastos")) || [];
+    JSON.parse(
+        localStorage.getItem("revenda_gastos")
+    ) || [];
 
 
-/* =====================================================
-   FUNÇÕES GERAIS
-===================================================== */
+/* =========================
+   FUNÇÕES
+========================= */
 
 function euro(valor) {
 
@@ -660,6 +695,7 @@ function euro(valor) {
             currency: "EUR"
         }
     );
+
 }
 
 
@@ -676,7 +712,7 @@ function mesAtual() {
 
     return new Date()
         .toISOString()
-        .slice(0, 7);
+        .slice(0,7);
 
 }
 
@@ -693,9 +729,9 @@ function escapar(texto) {
 }
 
 
-/* =====================================================
+/* =========================
    NAVEGAÇÃO
-===================================================== */
+========================= */
 
 function abrir(id, botao) {
 
@@ -705,9 +741,11 @@ function abrir(id, botao) {
             sec.classList.remove("active");
         });
 
+
     document
         .getElementById(id)
         .classList.add("active");
+
 
     document
         .querySelectorAll(".tabs button")
@@ -715,16 +753,18 @@ function abrir(id, botao) {
             btn.classList.remove("active");
         });
 
+
     botao.classList.add("active");
+
 
     atualizarTudo();
 
 }
 
 
-/* =====================================================
+/* =========================
    PRODUTOS
-===================================================== */
+========================= */
 
 function guardarProduto() {
 
@@ -768,12 +808,15 @@ function guardarProduto() {
         alert("Coloca o nome do produto.");
 
         return;
+
     }
 
 
     const produto = {
 
-        id: id || Date.now().toString(),
+        id:
+            id ||
+            Date.now().toString(),
 
         nome,
 
@@ -785,7 +828,8 @@ function guardarProduto() {
 
         quantidade,
 
-        gastos: gastosProduto,
+        gastos:
+            gastosProduto,
 
         estado
 
@@ -795,13 +839,19 @@ function guardarProduto() {
     if (id) {
 
         const index =
-            produtos.findIndex(p => p.id === id);
+            produtos.findIndex(
+                p => p.id === id
+            );
+
 
         if (index !== -1) {
 
             produtos[index] = {
+
                 ...produtos[index],
+
                 ...produto
+
             };
 
         }
@@ -823,34 +873,52 @@ function guardarProduto() {
 function editarProduto(id) {
 
     const p =
-        produtos.find(produto => produto.id === id);
+        produtos.find(
+            produto => produto.id === id
+        );
+
 
     if (!p) return;
 
 
-    document.getElementById("produtoId").value =
-        p.id;
+    document.getElementById(
+        "produtoId"
+    ).value = p.id;
 
-    document.getElementById("produtoNome").value =
-        p.nome;
 
-    document.getElementById("produtoCompra").value =
-        p.compra;
+    document.getElementById(
+        "produtoNome"
+    ).value = p.nome;
 
-    document.getElementById("produtoOriginal").value =
-        p.original;
 
-    document.getElementById("produtoVenda").value =
-        p.venda;
+    document.getElementById(
+        "produtoCompra"
+    ).value = p.compra;
 
-    document.getElementById("produtoQuantidade").value =
-        p.quantidade;
 
-    document.getElementById("produtoGastos").value =
-        p.gastos || 0;
+    document.getElementById(
+        "produtoOriginal"
+    ).value = p.original;
 
-    document.getElementById("produtoEstado").value =
-        p.estado;
+
+    document.getElementById(
+        "produtoVenda"
+    ).value = p.venda;
+
+
+    document.getElementById(
+        "produtoQuantidade"
+    ).value = p.quantidade;
+
+
+    document.getElementById(
+        "produtoGastos"
+    ).value = p.gastos || 0;
+
+
+    document.getElementById(
+        "produtoEstado"
+    ).value = p.estado;
 
 
     window.scrollTo({
@@ -871,7 +939,9 @@ function apagarProduto(id) {
 
 
     produtos =
-        produtos.filter(p => p.id !== id);
+        produtos.filter(
+            p => p.id !== id
+        );
 
 
     guardarDados();
@@ -881,42 +951,61 @@ function apagarProduto(id) {
 
 function limparProduto() {
 
-    document.getElementById("produtoId").value = "";
+    document.getElementById(
+        "produtoId"
+    ).value = "";
 
-    document.getElementById("produtoNome").value = "";
+    document.getElementById(
+        "produtoNome"
+    ).value = "";
 
-    document.getElementById("produtoCompra").value = "";
+    document.getElementById(
+        "produtoCompra"
+    ).value = "";
 
-    document.getElementById("produtoOriginal").value = "";
+    document.getElementById(
+        "produtoOriginal"
+    ).value = "";
 
-    document.getElementById("produtoVenda").value = "";
+    document.getElementById(
+        "produtoVenda"
+    ).value = "";
 
-    document.getElementById("produtoQuantidade").value = 1;
+    document.getElementById(
+        "produtoQuantidade"
+    ).value = 1;
 
-    document.getElementById("produtoGastos").value = 0;
+    document.getElementById(
+        "produtoGastos"
+    ).value = 0;
 
-    document.getElementById("produtoEstado").value =
-        "Por vender";
+    document.getElementById(
+        "produtoEstado"
+    ).value = "Por vender";
 
 }
 
 
-/* =====================================================
-   REGISTAR VENDA
-===================================================== */
+/* =========================
+   VENDAS
+========================= */
 
 function registarVenda(id) {
 
     const produto =
-        produtos.find(p => p.id === id);
+        produtos.find(
+            p => p.id === id
+        );
+
 
     if (!produto) return;
 
 
-    const preco = prompt(
-        "Por quanto vendeste este produto?",
-        produto.venda
-    );
+    const preco =
+        prompt(
+            "Por quanto vendeste este produto?",
+            produto.venda
+        );
 
 
     if (preco === null) return;
@@ -947,23 +1036,31 @@ function registarVenda(id) {
 
     vendas.push({
 
-        id: Date.now().toString(),
+        id:
+            Date.now().toString(),
 
-        produtoId: produto.id,
+        produtoId:
+            produto.id,
 
-        produtoNome: produto.nome,
+        produtoNome:
+            produto.nome,
 
-        precoCompra: produto.compra,
+        precoCompra:
+            produto.compra,
 
-        precoVenda: valor,
+        precoVenda:
+            valor,
 
-        gastosProduto: produto.gastos || 0,
+        gastosProduto:
+            produto.gastos || 0,
 
         cliente,
 
-        data: hoje(),
+        data:
+            hoje(),
 
-        envio: "Por enviar"
+        envio:
+            "Por enviar"
 
     });
 
@@ -989,14 +1086,13 @@ function registarVenda(id) {
 }
 
 
-/* =====================================================
-   VENDAS
-===================================================== */
-
 function editarVenda(id) {
 
     const venda =
-        vendas.find(v => v.id === id);
+        vendas.find(
+            v => v.id === id
+        );
+
 
     if (!venda) return;
 
@@ -1024,7 +1120,8 @@ function editarVenda(id) {
     }
 
 
-    venda.precoVenda = valor;
+    venda.precoVenda =
+        valor;
 
 
     guardarDados();
@@ -1042,7 +1139,9 @@ function apagarVenda(id) {
 
 
     vendas =
-        vendas.filter(v => v.id !== id);
+        vendas.filter(
+            v => v.id !== id
+        );
 
 
     guardarDados();
@@ -1053,18 +1152,25 @@ function apagarVenda(id) {
 function renderVendas() {
 
     const lista =
-        document.getElementById("listaVendas");
+        document.getElementById(
+            "listaVendas"
+        );
 
 
     const total =
         vendas.reduce(
             (soma, venda) =>
-                soma + Number(venda.precoVenda || 0),
+                soma +
+                Number(
+                    venda.precoVenda || 0
+                ),
             0
         );
 
 
-    document.getElementById("totalVendas").textContent =
+    document.getElementById(
+        "totalVendas"
+    ).textContent =
         euro(total);
 
 
@@ -1087,9 +1193,17 @@ function renderVendas() {
         .map(v => {
 
             const lucro =
-                Number(v.precoVenda || 0) -
-                Number(v.precoCompra || 0) -
-                Number(v.gastosProduto || 0);
+                Number(
+                    v.precoVenda || 0
+                ) -
+
+                Number(
+                    v.precoCompra || 0
+                ) -
+
+                Number(
+                    v.gastosProduto || 0
+                );
 
 
             return `
@@ -1195,14 +1309,16 @@ function renderVendas() {
 }
 
 
-/* =====================================================
-   PRODUTOS — LISTAGEM
-===================================================== */
+/* =========================
+   LISTA PRODUTOS
+========================= */
 
 function renderProdutos() {
 
     const lista =
-        document.getElementById("listaProdutos");
+        document.getElementById(
+            "listaProdutos"
+        );
 
 
     if (!produtos.length) {
@@ -1222,14 +1338,18 @@ function renderProdutos() {
 
             const vendasProduto =
                 vendas.filter(
-                    v => v.produtoId === p.id
+                    v =>
+                        v.produtoId === p.id
                 );
 
 
             const recebido =
                 vendasProduto.reduce(
                     (soma, v) =>
-                        soma + Number(v.precoVenda || 0),
+                        soma +
+                        Number(
+                            v.precoVenda || 0
+                        ),
                     0
                 );
 
@@ -1237,7 +1357,21 @@ function renderProdutos() {
             const custo =
                 vendasProduto.reduce(
                     (soma, v) =>
-                        soma + Number(v.precoCompra || 0),
+                        soma +
+                        Number(
+                            v.precoCompra || 0
+                        ),
+                    0
+                );
+
+
+            const gastos =
+                vendasProduto.reduce(
+                    (soma, v) =>
+                        soma +
+                        Number(
+                            v.gastosProduto || 0
+                        ),
                     0
                 );
 
@@ -1245,20 +1379,21 @@ function renderProdutos() {
             const lucro =
                 recebido -
                 custo -
-                vendasProduto.reduce(
-                    (soma, v) =>
-                        soma + Number(v.gastosProduto || 0),
-                    0
-                );
+                gastos;
 
 
             let classe = "";
 
-            if (p.estado === "Vendido") {
+
+            if (
+                p.estado === "Vendido"
+            ) {
 
                 classe = "green";
 
-            } else if (p.estado === "Reservado") {
+            } else if (
+                p.estado === "Reservado"
+            ) {
 
                 classe = "orange";
 
@@ -1277,11 +1412,10 @@ function renderProdutos() {
                     ${escapar(p.estado)}
                 </span>
 
-
                 <div class="row">
 
                     <span>
-                        Preço de compra
+                        Compra
                     </span>
 
                     <strong>
@@ -1289,7 +1423,6 @@ function renderProdutos() {
                     </strong>
 
                 </div>
-
 
                 <div class="row">
 
@@ -1303,7 +1436,6 @@ function renderProdutos() {
 
                 </div>
 
-
                 <div class="row">
 
                     <span>
@@ -1315,7 +1447,6 @@ function renderProdutos() {
                     </strong>
 
                 </div>
-
 
                 <div class="row">
 
@@ -1329,7 +1460,6 @@ function renderProdutos() {
 
                 </div>
 
-
                 <div class="row">
 
                     <span>
@@ -1342,7 +1472,6 @@ function renderProdutos() {
 
                 </div>
 
-
                 <div class="actions">
 
                     <button
@@ -1350,7 +1479,6 @@ function renderProdutos() {
                     >
                         ✏️ Editar
                     </button>
-
 
                     ${
                         p.quantidade > 0
@@ -1366,7 +1494,6 @@ function renderProdutos() {
                         :
                         ""
                     }
-
 
                     <button
                         class="danger"
@@ -1387,31 +1514,29 @@ function renderProdutos() {
 }
 
 
-/* =====================================================
-   COMPRAS / NECESSIDADES
-===================================================== */
+/* =========================
+   COMPRAS
+========================= */
 
 function guardarNecessidade() {
 
     const nome =
-        document
-        .getElementById("necessidadeNome")
-        .value
-        .trim();
+        document.getElementById(
+            "necessidadeNome"
+        ).value.trim();
 
 
     const pessoa =
-        document
-        .getElementById("necessidadePessoa")
-        .value
-        .trim();
+        document.getElementById(
+            "necessidadePessoa"
+        ).value.trim();
 
 
     const quantidade =
         Number(
-            document
-            .getElementById("necessidadeQuantidade")
-            .value
+            document.getElementById(
+                "necessidadeQuantidade"
+            ).value
         ) || 1;
 
 
@@ -1428,7 +1553,8 @@ function guardarNecessidade() {
 
     necessidades.push({
 
-        id: Date.now().toString(),
+        id:
+            Date.now().toString(),
 
         nome,
 
@@ -1436,7 +1562,8 @@ function guardarNecessidade() {
 
         quantidade,
 
-        comprado: false
+        comprado:
+            false
 
     });
 
@@ -1444,11 +1571,19 @@ function guardarNecessidade() {
     guardarDados();
 
 
-    document.getElementById("necessidadeNome").value = "";
+    document.getElementById(
+        "necessidadeNome"
+    ).value = "";
 
-    document.getElementById("necessidadePessoa").value = "";
 
-    document.getElementById("necessidadeQuantidade").value = 1;
+    document.getElementById(
+        "necessidadePessoa"
+    ).value = "";
+
+
+    document.getElementById(
+        "necessidadeQuantidade"
+    ).value = 1;
 
 }
 
@@ -1459,6 +1594,7 @@ function alterarNecessidade(id) {
         necessidades.find(
             n => n.id === id
         );
+
 
     if (!item) return;
 
@@ -1478,6 +1614,7 @@ function editarNecessidade(id) {
         necessidades.find(
             n => n.id === id
         );
+
 
     if (!item) return;
 
@@ -1509,8 +1646,10 @@ function editarNecessidade(id) {
     item.nome =
         novoNome.trim();
 
+
     item.pessoa =
         novaPessoa || "";
+
 
     item.quantidade =
         Number(novaQuantidade) || 1;
@@ -1577,15 +1716,16 @@ function renderNecessidades() {
                 <strong
                     style="${
                         n.comprado
-                        ? "text-decoration:line-through"
-                        : ""
+                        ?
+                        "text-decoration:line-through"
+                        :
+                        ""
                     }"
                 >
                     ${escapar(n.nome)}
                 </strong>
 
             </div>
-
 
             <div class="row">
 
@@ -1598,7 +1738,6 @@ function renderNecessidades() {
                 </strong>
 
             </div>
-
 
             ${
                 n.pessoa
@@ -1619,7 +1758,6 @@ function renderNecessidades() {
                 :
                 ""
             }
-
 
             <div class="actions">
 
@@ -1645,23 +1783,30 @@ function renderNecessidades() {
 }
 
 
-/* =====================================================
+/* =========================
    ENVIOS
-===================================================== */
+========================= */
 
 function alterarEnvio(id) {
 
     const venda =
-        vendas.find(v => v.id === id);
+        vendas.find(
+            v => v.id === id
+        );
+
 
     if (!venda) return;
 
 
-    if (venda.envio === "Por enviar") {
+    if (
+        venda.envio === "Por enviar"
+    ) {
 
         venda.envio = "Enviado";
 
-    } else if (venda.envio === "Enviado") {
+    } else if (
+        venda.envio === "Enviado"
+    ) {
 
         venda.envio = "Entregue";
 
@@ -1680,7 +1825,9 @@ function alterarEnvio(id) {
 function renderEnvios() {
 
     const lista =
-        document.getElementById("listaEnvios");
+        document.getElementById(
+            "listaEnvios"
+        );
 
 
     if (!vendas.length) {
@@ -1703,13 +1850,19 @@ function renderEnvios() {
 
             let classe = "";
 
-            if (v.envio === "Enviado") {
+
+            if (
+                v.envio === "Enviado"
+            ) {
 
                 classe = "orange";
 
             }
 
-            if (v.envio === "Entregue") {
+
+            if (
+                v.envio === "Entregue"
+            ) {
 
                 classe = "green";
 
@@ -1728,7 +1881,6 @@ function renderEnvios() {
                     ${v.envio}
                 </span>
 
-
                 <div class="row">
 
                     <span>
@@ -1741,7 +1893,6 @@ function renderEnvios() {
 
                 </div>
 
-
                 <div class="row">
 
                     <span>
@@ -1753,7 +1904,6 @@ function renderEnvios() {
                     </strong>
 
                 </div>
-
 
                 <div class="actions">
 
@@ -1776,41 +1926,50 @@ function renderEnvios() {
 }
 
 
-/* =====================================================
+/* =========================
    GASTOS
-===================================================== */
+========================= */
 
 function guardarGasto() {
 
     const id =
-        document.getElementById("gastoId").value;
+        document.getElementById(
+            "gastoId"
+        ).value;
 
 
     const nome =
-        document
-        .getElementById("gastoNome")
-        .value
-        .trim();
+        document.getElementById(
+            "gastoNome"
+        ).value.trim();
 
 
     const valor =
         Number(
-            document.getElementById("gastoValor").value
+            document.getElementById(
+                "gastoValor"
+            ).value
         );
 
 
     const tipo =
-        document.getElementById("gastoTipo").value;
+        document.getElementById(
+            "gastoTipo"
+        ).value;
 
 
     const data =
-        document.getElementById("gastoData").value ||
+        document.getElementById(
+            "gastoData"
+        ).value ||
         hoje();
 
 
     if (!nome) {
 
-        alert("Coloca o nome do gasto.");
+        alert(
+            "Coloca o nome do gasto."
+        );
 
         return;
 
@@ -1822,7 +1981,9 @@ function guardarGasto() {
         valor < 0
     ) {
 
-        alert("Coloca um valor válido.");
+        alert(
+            "Coloca um valor válido."
+        );
 
         return;
 
@@ -1831,7 +1992,9 @@ function guardarGasto() {
 
     const gasto = {
 
-        id: id || Date.now().toString(),
+        id:
+            id ||
+            Date.now().toString(),
 
         nome,
 
@@ -1868,7 +2031,6 @@ function guardarGasto() {
 
     guardarDados();
 
-
     limparGasto();
 
 }
@@ -1885,19 +2047,33 @@ function editarGasto(id) {
     if (!g) return;
 
 
-    document.getElementById("gastoId").value =
+    document.getElementById(
+        "gastoId"
+    ).value =
         g.id;
 
-    document.getElementById("gastoNome").value =
+
+    document.getElementById(
+        "gastoNome"
+    ).value =
         g.nome;
 
-    document.getElementById("gastoValor").value =
+
+    document.getElementById(
+        "gastoValor"
+    ).value =
         g.valor;
 
-    document.getElementById("gastoTipo").value =
+
+    document.getElementById(
+        "gastoTipo"
+    ).value =
         g.tipo;
 
-    document.getElementById("gastoData").value =
+
+    document.getElementById(
+        "gastoData"
+    ).value =
         g.data;
 
 }
@@ -1925,16 +2101,30 @@ function apagarGasto(id) {
 
 function limparGasto() {
 
-    document.getElementById("gastoId").value = "";
+    document.getElementById(
+        "gastoId"
+    ).value = "";
 
-    document.getElementById("gastoNome").value = "";
 
-    document.getElementById("gastoValor").value = "";
+    document.getElementById(
+        "gastoNome"
+    ).value = "";
 
-    document.getElementById("gastoTipo").value =
+
+    document.getElementById(
+        "gastoValor"
+    ).value = "";
+
+
+    document.getElementById(
+        "gastoTipo"
+    ).value =
         "mensal";
 
-    document.getElementById("gastoData").value =
+
+    document.getElementById(
+        "gastoData"
+    ).value =
         hoje();
 
 }
@@ -1948,7 +2138,7 @@ function calcularGastosMes(mes) {
     gastos.forEach(g => {
 
         const mesGasto =
-            g.data.slice(0, 7);
+            g.data.slice(0,7);
 
 
         if (
@@ -1985,12 +2175,14 @@ function renderGastos() {
     const mes =
         document.getElementById(
             "mesSelecionado"
-        ).value || mesAtual();
+        ).value ||
+        mesAtual();
 
 
     document.getElementById(
         "mesSelecionado"
-    ).value = mes;
+    ).value =
+        mes;
 
 
     const mensais =
@@ -2057,7 +2249,6 @@ function renderGastos() {
                     🔄 Mensal
                 </span>
 
-
                 <div class="row">
 
                     <span>
@@ -2070,7 +2261,6 @@ function renderGastos() {
 
                 </div>
 
-
                 <div class="row">
 
                     <span>
@@ -2082,7 +2272,6 @@ function renderGastos() {
                     </strong>
 
                 </div>
-
 
                 <div class="actions">
 
@@ -2130,7 +2319,6 @@ function renderGastos() {
                     🧾 Ocasional
                 </span>
 
-
                 <div class="row">
 
                     <span>
@@ -2143,7 +2331,6 @@ function renderGastos() {
 
                 </div>
 
-
                 <div class="row">
 
                     <span>
@@ -2155,7 +2342,6 @@ function renderGastos() {
                     </strong>
 
                 </div>
-
 
                 <div class="actions">
 
@@ -2183,9 +2369,9 @@ function renderGastos() {
 }
 
 
-/* =====================================================
+/* =========================
    RESUMO
-===================================================== */
+========================= */
 
 function atualizarResumo() {
 
@@ -2208,16 +2394,24 @@ function atualizarResumo() {
     vendas.forEach(v => {
 
         recebido +=
-            Number(v.precoVenda || 0);
+            Number(
+                v.precoVenda || 0
+            );
 
 
         lucroProdutos +=
 
-            Number(v.precoVenda || 0) -
+            Number(
+                v.precoVenda || 0
+            ) -
 
-            Number(v.precoCompra || 0) -
+            Number(
+                v.precoCompra || 0
+            ) -
 
-            Number(v.gastosProduto || 0);
+            Number(
+                v.gastosProduto || 0
+            );
 
     });
 
@@ -2265,9 +2459,9 @@ function atualizarResumo() {
 }
 
 
-/* =====================================================
+/* =========================
    RANKING
-===================================================== */
+========================= */
 
 function renderRanking() {
 
@@ -2282,11 +2476,15 @@ function renderRanking() {
 
     vendas.forEach(v => {
 
-        if (!contagem[v.produtoNome]) {
+        if (
+            !contagem[v.produtoNome]
+        ) {
 
-            contagem[v.produtoNome] = 0;
+            contagem[v.produtoNome] =
+                0;
 
         }
+
 
         contagem[v.produtoNome]++;
 
@@ -2296,7 +2494,8 @@ function renderRanking() {
     const lista =
         Object.entries(contagem)
         .sort(
-            (a,b) => b[1] - a[1]
+            (a,b) =>
+                b[1] - a[1]
         );
 
 
@@ -2313,32 +2512,36 @@ function renderRanking() {
 
 
     ranking.innerHTML =
-        lista.map((item,index) => `
+        lista.map(
+            (item,index) => `
 
         <div class="item">
 
             <div class="row">
 
                 <strong>
-                    ${index + 1}. ${escapar(item[0])}
+                    ${index + 1}.
+                    ${escapar(item[0])}
                 </strong>
 
                 <strong>
-                    ${item[1]} venda${item[1] === 1 ? "" : "s"}
+                    ${item[1]}
+                    venda${item[1] === 1 ? "" : "s"}
                 </strong>
 
             </div>
 
         </div>
 
-        `).join("");
+        `
+        ).join("");
 
 }
 
 
-/* =====================================================
-   GUARDAR DADOS
-===================================================== */
+/* =========================
+   GUARDAR
+========================= */
 
 function guardarDados() {
 
@@ -2371,9 +2574,9 @@ function guardarDados() {
 }
 
 
-/* =====================================================
-   ATUALIZAR TUDO
-===================================================== */
+/* =========================
+   ATUALIZAR
+========================= */
 
 function atualizarTudo() {
 
@@ -2394,17 +2597,17 @@ function atualizarTudo() {
 }
 
 
-/* =====================================================
-   CHATGPT — 7,99 €/MÊS
-===================================================== */
+/* =========================
+   CHATGPT 7,99€/MÊS
+========================= */
 
 function criarChatGPT() {
 
     const existe =
         gastos.some(
             g =>
-                g.nome.toLowerCase() ===
-                "chatgpt"
+                g.nome.toLowerCase()
+                === "chatgpt"
         );
 
 
@@ -2413,15 +2616,20 @@ function criarChatGPT() {
 
     gastos.push({
 
-        id: "gasto-chatgpt",
+        id:
+            "gasto-chatgpt",
 
-        nome: "ChatGPT",
+        nome:
+            "ChatGPT",
 
-        valor: 7.99,
+        valor:
+            7.99,
 
-        tipo: "mensal",
+        tipo:
+            "mensal",
 
-        data: hoje()
+        data:
+            hoje()
 
     });
 
@@ -2434,9 +2642,9 @@ function criarChatGPT() {
 }
 
 
-/* =====================================================
+/* =========================
    INICIALIZAÇÃO
-===================================================== */
+========================= */
 
 document.getElementById(
     "mesSelecionado"
