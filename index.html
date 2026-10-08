@@ -9,187 +9,252 @@
 *{box-sizing:border-box}
 
 body{
-margin:0;
-font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Arial,sans-serif;
-background:#f8f3ef;
-color:#493d38
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:#f8f4f0;
+  color:#3d3029;
 }
 
 header{
-background:#b99b8c;
-color:white;
-padding:28px 20px 24px;
-border-radius:0 0 28px 28px
+  background:#6f5142;
+  color:white;
+  padding:22px 18px;
+  text-align:center;
 }
 
 header h1{
-margin:0;
-font-size:32px
-}
-
-header p{
-margin:5px 0 0;
-opacity:.85
+  margin:0;
+  font-size:27px;
 }
 
 .container{
-padding:18px;
-padding-bottom:100px
+  max-width:700px;
+  margin:auto;
+  padding:18px;
 }
 
+.tabs{
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  margin-bottom:18px;
+}
+
+.tabs button{
+  border:0;
+  background:#e8ddd5;
+  color:#5b4438;
+  padding:11px 14px;
+  border-radius:12px;
+  white-space:nowrap;
+  font-weight:600;
+}
+
+.tabs button.active{
+  background:#6f5142;
+  color:white;
+}
+
+.page{display:none}
+.page.active{display:block}
+
 .cards{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
 
 .card{
-background:white;
-border-radius:18px;
-padding:17px;
-box-shadow:0 3px 12px rgba(80,50,40,.07)
+  background:white;
+  border-radius:16px;
+  padding:16px;
+  box-shadow:0 2px 8px #0000000d;
 }
 
 .card small{
-color:#8f817b
+  color:#8b7a70;
 }
 
 .card strong{
-display:block;
-font-size:24px;
-margin-top:5px
+  display:block;
+  font-size:22px;
+  margin-top:5px;
 }
 
-nav{
-position:fixed;
-bottom:0;
-left:0;
-right:0;
-background:white;
-display:flex;
-justify-content:space-around;
-padding:10px 5px calc(10px + env(safe-area-inset-bottom));
-box-shadow:0 -3px 15px rgba(0,0,0,.08);
-z-index:10
-}
-
-nav button{
-background:none;
-border:0;
-color:#8c7b73;
-font-size:12px
-}
-
-nav button.active{
-color:#a47e6d;
-font-weight:bold
-}
-
-.page{
-display:none
-}
-
-.page.active{
-display:block
-}
-
-h2{
-margin-top:5px
-}
-
-button.primary{
-width:100%;
-background:#a98574;
-color:white;
-border:0;
-border-radius:15px;
-padding:15px;
-font-size:16px;
-font-weight:600;
-margin:10px 0
-}
-
-input,select{
-width:100%;
-padding:13px;
-border:1px solid #ded2cb;
-border-radius:12px;
-margin:5px 0 12px;
-font-size:16px;
-background:white
-}
-
-label{
-font-size:13px;
-color:#756761
-}
-
-.product{
-background:white;
-border-radius:18px;
-padding:15px;
-margin:12px 0;
-box-shadow:0 3px 12px rgba(80,50,40,.06)
-}
-
-.product h3{
-margin:0 0 5px
-}
-
-.product p{
-margin:5px 0
-}
-
-.status{
-display:inline-block;
-padding:6px 10px;
-border-radius:20px;
-background:#eee4de;
-font-size:12px;
-margin-top:6px
-}
-
-.profit{
-color:#628267;
-font-weight:bold
-}
-
-.danger{
-background:#ead0ca;
-border:0;
-padding:9px 13px;
-border-radius:10px;
-color:#713f36
-}
-
-.edit{
-background:#eaded6;
-border:0;
-padding:9px 13px;
-border-radius:10px;
-color:#604c42;
-margin-right:6px
-}
-
-.empty{
-text-align:center;
-padding:35px 15px;
-color:#988a84
+.section{
+  margin-top:18px;
 }
 
 .section-title{
-margin-top:25px
+  font-size:20px;
+  font-weight:700;
+  margin-bottom:10px;
 }
 
-.cancel{
-width:100%;
-background:#eee4de;
-border:0;
-border-radius:15px;
-padding:14px;
-font-size:16px;
-color:#604c42;
-margin-bottom:10px
+form{
+  background:white;
+  padding:17px;
+  border-radius:16px;
+  box-shadow:0 2px 8px #0000000d;
+}
+
+label{
+  display:block;
+  font-size:14px;
+  font-weight:600;
+  margin-top:10px;
+  margin-bottom:5px;
+}
+
+input,select{
+  width:100%;
+  padding:13px;
+  border:1px solid #ddd0c8;
+  border-radius:10px;
+  font-size:16px;
+  background:#fff;
+}
+
+button{
+  cursor:pointer;
+}
+
+.primary{
+  width:100%;
+  margin-top:15px;
+  padding:13px;
+  border:0;
+  border-radius:11px;
+  background:#6f5142;
+  color:white;
+  font-size:16px;
+  font-weight:700;
+}
+
+.product{
+  background:white;
+  padding:16px;
+  border-radius:16px;
+  margin-bottom:11px;
+  box-shadow:0 2px 8px #0000000d;
+}
+
+.product h3{
+  margin:0 0 7px;
+}
+
+.product p{
+  margin:5px 0;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:12px;
+}
+
+.actions button{
+  border:0;
+  border-radius:9px;
+  padding:9px 11px;
+  background:#eadfd7;
+  color:#4f3b31;
+  font-weight:600;
+}
+
+.actions .sell{
+  background:#6f5142;
+  color:white;
+}
+
+.profit{
+  color:#4d7a55;
+  font-weight:700;
+}
+
+.loss{
+  color:#a34d4d;
+  font-weight:700;
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 8px;
+  border-radius:8px;
+  background:#eee5df;
+  font-size:12px;
+  margin-top:5px;
+}
+
+.rank{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:white;
+  padding:13px;
+  border-radius:13px;
+  margin-bottom:7px;
+}
+
+.rank-number{
+  font-size:23px;
+  width:34px;
+}
+
+.rank-info{
+  flex:1;
+}
+
+.rank-info strong{
+  display:block;
+}
+
+.empty{
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  text-align:center;
+  color:#8b7a70;
+}
+
+.total-cart{
+  background:#6f5142;
+  color:white;
+  padding:17px;
+  border-radius:16px;
+  margin-bottom:12px;
+}
+
+.total-cart strong{
+  font-size:24px;
+}
+
+.cart-item{
+  background:white;
+  padding:16px;
+  border-radius:15px;
+  margin-bottom:10px;
+}
+
+.cart-row{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+.cart-row input{
+  width:90px;
+}
+
+hr{
+  border:0;
+  border-top:1px solid #eee2db;
+  margin:15px 0;
+}
+
+@media(max-width:400px){
+  .cards{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
@@ -197,766 +262,1190 @@ margin-bottom:10px
 <body>
 
 <header>
-<h1>Revenda 🤎</h1>
-<p>Organiza as tuas vendas num só lugar</p>
+  <h1>Revenda 🤎</h1>
 </header>
 
 <div class="container">
 
+<div class="tabs">
+  <button class="tab active" data-page="inicio">🏠 Início</button>
+  <button class="tab" data-page="produtos">📦 Produtos</button>
+  <button class="tab" data-page="vendas">💰 Vendas</button>
+  <button class="tab" data-page="enviar">📮 Enviar</button>
+  <button class="tab" data-page="compras">🛒 Compras</button>
+</div>
+
+
+<!-- INÍCIO -->
 <section id="inicio" class="page active">
 
-<h2>Resumo</h2>
+  <div class="cards">
+    <div class="card">
+      <small>💰 Investido</small>
+      <strong id="investido">0,00 €</strong>
+    </div>
 
-<div class="cards">
+    <div class="card">
+      <small>💵 Recebido</small>
+      <strong id="recebido">0,00 €</strong>
+    </div>
 
-<div class="card">
-<small>Investido</small>
-<strong id="investido">0,00 €</strong>
-</div>
+    <div class="card">
+      <small>📈 Lucro</small>
+      <strong id="lucro">0,00 €</strong>
+    </div>
 
-<div class="card">
-<small>Recebido</small>
-<strong id="recebido">0,00 €</strong>
-</div>
+    <div class="card">
+      <small>📦 Stock</small>
+      <strong id="stock">0</strong>
+    </div>
+  </div>
 
-<div class="card">
-<small>Lucro</small>
-<strong id="lucro">0,00 €</strong>
-</div>
-
-<div class="card">
-<small>Por enviar</small>
-<strong id="porEnviar">0</strong>
-</div>
-
-</div>
-
-<h2 class="section-title">Últimas vendas</h2>
-
-<div id="ultimas"></div>
+  <div class="section">
+    <div class="section-title">🏆 Ranking das vendas</div>
+    <div id="ranking"></div>
+  </div>
 
 </section>
 
 
+<!-- PRODUTOS -->
 <section id="produtos" class="page">
 
-<h2>Produtos</h2>
+  <div class="section-title">➕ Novo produto</div>
 
-<button class="primary" onclick="mostrarAdicionar()">
-+ Adicionar produto
-</button>
+  <form id="produtoForm">
 
-<div id="formulario" style="display:none">
+    <label>Nome do produto</label>
+    <input id="nome" required placeholder="Ex.: Conjunto Karaoke K-pop">
 
-<label>Nome do produto</label>
+    <label>Preço de compra (€)</label>
+    <input id="compra" type="number" step="0.01" min="0" required placeholder="8.95">
 
-<input
-id="nome"
-placeholder="Ex.: Conjunto Karaoke K-pop"
->
+    <label>Preço de venda pretendido (€)</label>
+    <input id="precoVenda" type="number" step="0.01" min="0" required placeholder="19">
 
+    <label>Quantidade inicial</label>
+    <input id="quantidade" type="number" min="1" value="1" required>
 
-<label>Preço de compra (€)</label>
+    <button class="primary" type="submit">Adicionar produto</button>
+  </form>
 
-<input
-id="compra"
-type="number"
-step="0.01"
-placeholder="Ex.: 8,95"
->
-
-
-<label>Preço original (€) — opcional</label>
-
-<input
-id="original"
-type="number"
-step="0.01"
-placeholder="Opcional"
->
-
-
-<label>Preço de venda (€)</label>
-
-<input
-id="venda"
-type="number"
-step="0.01"
-placeholder="Ex.: 19"
->
-
-
-<label>Gastos adicionais (€) — opcional</label>
-
-<input
-id="gastos"
-type="number"
-step="0.01"
-placeholder="Opcional"
->
-
-
-<label>Estado</label>
-
-<select id="estado">
-
-<option>Em stock</option>
-<option>Por enviar</option>
-<option>Enviado</option>
-<option>Entregue</option>
-
-</select>
-
-
-<button class="primary" onclick="guardarProduto()">
-Guardar produto
-</button>
-
-<button class="cancel" onclick="cancelarEdicao()">
-Cancelar
-</button>
-
-</div>
-
-<div id="listaProdutos"></div>
+  <div class="section">
+    <div class="section-title">📦 Os meus produtos</div>
+    <div id="listaProdutos"></div>
+  </div>
 
 </section>
 
 
-<section id="enviar" class="page">
-
-<h2>Tenho de enviar 📦</h2>
-
-<div id="listaEnviar"></div>
-
-</section>
-
-
+<!-- VENDAS -->
 <section id="vendas" class="page">
 
-<h2>Vendas 💰</h2>
+  <div class="section-title">💰 Registar venda</div>
 
-<div id="listaVendas"></div>
+  <form id="vendaForm">
+
+    <label>Produto</label>
+    <select id="produtoVenda" required></select>
+
+    <label>Preço a que vendeste (€)</label>
+    <input id="precoReal" type="number" step="0.01" min="0" required>
+
+    <label>Gastos adicionais (€)</label>
+    <input id="gastosVenda" type="number" step="0.01" min="0" value="0" placeholder="Opcional">
+
+    <button class="primary" type="submit">💰 Registar venda</button>
+  </form>
+
+  <div class="section">
+    <div class="section-title">📋 Histórico de vendas</div>
+    <div id="listaVendas"></div>
+  </div>
+
+</section>
+
+
+<!-- ENVIAR -->
+<section id="enviar" class="page">
+
+  <div class="section-title">📮 Encomendas</div>
+
+  <div id="listaEnviar"></div>
+
+</section>
+
+
+<!-- COMPRAS -->
+<section id="compras" class="page">
+
+  <div class="section-title">🛒 Carrinho de compras</div>
+
+  <div class="total-cart">
+    <div>Produtos a comprar</div>
+    <strong id="totalUnidades">0 unidades</strong>
+    <hr>
+    <div>Total previsto</div>
+    <strong id="totalCompras">0,00 €</strong>
+  </div>
+
+  <div class="section-title">Adicionar ao carrinho</div>
+
+  <form id="compraForm">
+
+    <label>Produto</label>
+    <select id="produtoCompra" required></select>
+
+    <label>Quantidade a comprar</label>
+    <input id="quantidadeCompra" type="number" min="1" value="1" required>
+
+    <button class="primary" type="submit">🛒 Adicionar ao carrinho</button>
+
+  </form>
+
+  <div class="section">
+    <div class="section-title">📋 O que preciso de comprar</div>
+    <div id="listaCarrinho"></div>
+  </div>
 
 </section>
 
 </div>
-
-
-<nav>
-
-<button
-class="active"
-onclick="pagina('inicio',this)"
->
-🏠<br>Início
-</button>
-
-<button
-onclick="pagina('produtos',this)"
->
-📦<br>Produtos
-</button>
-
-<button
-onclick="pagina('enviar',this)"
->
-📮<br>Enviar
-</button>
-
-<button
-onclick="pagina('vendas',this)"
->
-💰<br>Vendas
-</button>
-
-</nav>
 
 
 <script>
 
-let produtos =
-JSON.parse(localStorage.getItem("revendaProdutos")) || [];
+const STORAGE = "revendaNovaApp";
+const OLD_STORAGE = "revendaProdutos";
 
-let produtoEmEdicao = null;
+let dados = JSON.parse(localStorage.getItem(STORAGE)) || {
+  produtos: [],
+  vendas: [],
+  carrinho: []
+};
 
 
-function guardarDados(){
+/* =========================
+   MIGRAÇÃO DA VERSÃO ANTIGA
+========================= */
 
-localStorage.setItem(
-"revendaProdutos",
-JSON.stringify(produtos)
-);
+if(
+  dados.produtos.length === 0 &&
+  dados.vendas.length === 0 &&
+  localStorage.getItem(OLD_STORAGE)
+){
+
+  try{
+
+    const antigos = JSON.parse(localStorage.getItem(OLD_STORAGE));
+
+    antigos.forEach(p => {
+
+      const produto = {
+        id: Date.now() + Math.random(),
+        nome: p.nome || "Produto",
+        compra: Number(p.compra) || 0,
+        precoVenda: Number(p.venda) || 0,
+        stock: p.estado === "Em stock" ? 1 : 0,
+        totalComprado: 1
+      };
+
+      dados.produtos.push(produto);
+
+      if(
+        p.venda > 0 &&
+        ["Por enviar","Enviado","Entregue"].includes(p.estado)
+      ){
+
+        dados.vendas.push({
+          id: Date.now() + Math.random(),
+          produtoId: produto.id,
+          preco: Number(p.venda) || 0,
+          gastos: Number(p.gastos) || 0,
+          estado: p.estado,
+          data: p.data || new Date().toISOString()
+        });
+
+      }
+
+    });
+
+    guardar();
+
+  }catch(e){}
 
 }
 
+
+/* =========================
+   FUNÇÕES
+========================= */
+
+function guardar(){
+  localStorage.setItem(STORAGE, JSON.stringify(dados));
+}
 
 function dinheiro(valor){
+  return Number(valor || 0).toLocaleString("pt-PT",{
+    style:"currency",
+    currency:"EUR"
+  });
+}
 
-return Number(valor || 0)
-.toFixed(2)
-.replace(".",",") + " €";
+function produtoPorId(id){
+  return dados.produtos.find(p => String(p.id) === String(id));
+}
 
+function nomeProduto(id){
+  const p = produtoPorId(id);
+  return p ? p.nome : "Produto apagado";
 }
 
 
-function pagina(nome,botao){
+/* =========================
+   NAVEGAÇÃO
+========================= */
 
-document
-.querySelectorAll(".page")
-.forEach(p => p.classList.remove("active"));
+document.querySelectorAll(".tab").forEach(btn => {
 
-document
-.getElementById(nome)
-.classList.add("active");
+  btn.addEventListener("click",()=>{
 
-document
-.querySelectorAll("nav button")
-.forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".tab")
+      .forEach(b=>b.classList.remove("active"));
 
-botao.classList.add("active");
+    document.querySelectorAll(".page")
+      .forEach(p=>p.classList.remove("active"));
 
-atualizar();
+    btn.classList.add("active");
 
-}
+    document.getElementById(btn.dataset.page)
+      .classList.add("active");
 
+    render();
 
-function mostrarAdicionar(){
+  });
 
-produtoEmEdicao = null;
-
-document
-.getElementById("formulario")
-.style.display = "block";
-
-document.getElementById("nome").value = "";
-document.getElementById("compra").value = "";
-document.getElementById("original").value = "";
-document.getElementById("venda").value = "";
-document.getElementById("gastos").value = "";
-document.getElementById("estado").value = "Em stock";
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
 });
 
+
+/* =========================
+   NOVO PRODUTO
+========================= */
+
+document.getElementById("produtoForm")
+.addEventListener("submit",e=>{
+
+  e.preventDefault();
+
+  const nome = document.getElementById("nome").value.trim();
+  const compra = Number(document.getElementById("compra").value);
+  const precoVenda = Number(document.getElementById("precoVenda").value);
+  const quantidade = Number(document.getElementById("quantidade").value);
+
+  if(!nome || compra < 0 || precoVenda < 0 || quantidade < 1){
+    return;
+  }
+
+  dados.produtos.push({
+    id:Date.now() + Math.random(),
+    nome,
+    compra,
+    precoVenda,
+    stock:quantidade,
+    totalComprado:quantidade
+  });
+
+  guardar();
+
+  e.target.reset();
+  document.getElementById("quantidade").value = 1;
+
+  render();
+
+});
+
+
+/* =========================
+   ADICIONAR STOCK
+========================= */
+
+function adicionarStock(id){
+
+  const p = produtoPorId(id);
+
+  if(!p)return;
+
+  const quantidade = Number(
+    prompt(`Quantas unidades de "${p.nome}" compraste?`,`1`)
+  );
+
+  if(!quantidade || quantidade < 1)return;
+
+  p.stock += quantidade;
+  p.totalComprado += quantidade;
+
+  guardar();
+  render();
+
 }
 
+
+/* =========================
+   EDITAR PRODUTO
+========================= */
 
 function editarProduto(id){
 
-const p = produtos.find(x => x.id === id);
+  const p = produtoPorId(id);
 
-if(!p) return;
+  if(!p)return;
 
-produtoEmEdicao = id;
+  const nome = prompt("Nome do produto:",p.nome);
 
-document
-.getElementById("formulario")
-.style.display = "block";
+  if(nome === null)return;
 
-document.getElementById("nome").value =
-p.nome || "";
+  const compra = Number(
+    prompt("Preço de compra (€):",p.compra)
+  );
 
-document.getElementById("compra").value =
-p.compra || "";
+  const venda = Number(
+    prompt("Preço de venda pretendido (€):",p.precoVenda)
+  );
 
-document.getElementById("original").value =
-p.original || "";
+  if(!nome || compra < 0 || venda < 0)return;
 
-document.getElementById("venda").value =
-p.venda || "";
+  p.nome = nome;
+  p.compra = compra;
+  p.precoVenda = venda;
 
-document.getElementById("gastos").value =
-p.gastos || "";
-
-document.getElementById("estado").value =
-p.estado || "Em stock";
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
+  guardar();
+  render();
 
 }
 
 
-function cancelarEdicao(){
+/* =========================
+   APAGAR PRODUTO
+========================= */
 
-produtoEmEdicao = null;
+function apagarProduto(id){
 
-document
-.getElementById("formulario")
-.style.display = "none";
+  const p = produtoPorId(id);
 
-}
+  if(!p)return;
 
+  if(!confirm(`Apagar "${p.nome}"?`))return;
 
-function guardarProduto(){
+  dados.produtos =
+    dados.produtos.filter(x=>x.id!==id);
 
-const nome =
-document.getElementById("nome")
-.value
-.trim();
+  dados.vendas =
+    dados.vendas.filter(x=>x.produtoId!==id);
 
-if(!nome){
+  dados.carrinho =
+    dados.carrinho.filter(x=>x.produtoId!==id);
 
-alert("Escreve o nome do produto.");
-
-return;
-
-}
-
-
-const compra =
-Number(document.getElementById("compra").value) || 0;
-
-const original =
-Number(document.getElementById("original").value) || 0;
-
-const venda =
-Number(document.getElementById("venda").value) || 0;
-
-const gastos =
-Number(document.getElementById("gastos").value) || 0;
-
-const estado =
-document.getElementById("estado").value;
-
-
-if(produtoEmEdicao !== null){
-
-const p =
-produtos.find(x => x.id === produtoEmEdicao);
-
-if(p){
-
-p.nome = nome;
-p.compra = compra;
-p.original = original;
-p.venda = venda;
-p.gastos = gastos;
-p.estado = estado;
-
-}
-
-}else{
-
-produtos.unshift({
-
-id: Date.now(),
-
-nome: nome,
-
-compra: compra,
-
-original: original,
-
-venda: venda,
-
-gastos: gastos,
-
-estado: estado,
-
-data: new Date()
-.toLocaleDateString("pt-PT")
-
-});
+  guardar();
+  render();
 
 }
 
 
-guardarDados();
+/* =========================
+   PREÇO AUTOMÁTICO DA VENDA
+========================= */
 
-produtoEmEdicao = null;
+document.getElementById("produtoVenda")
+.addEventListener("change",()=>{
 
-document
-.getElementById("formulario")
-.style.display = "none";
+  const p = produtoPorId(
+    document.getElementById("produtoVenda").value
+  );
 
-atualizar();
-
-}
-
-
-function apagar(id){
-
-if(!confirm("Queres apagar este produto?"))
-return;
-
-produtos =
-produtos.filter(p => p.id !== id);
-
-guardarDados();
-
-atualizar();
-
-}
-
-
-function alterarEstado(id,estado){
-
-const produto =
-produtos.find(p => p.id === id);
-
-if(produto){
-
-produto.estado = estado;
-
-guardarDados();
-
-atualizar();
-
-}
-
-}
-
-
-function lucroProduto(p){
-
-return p.venda - p.compra - p.gastos;
-
-}
-
-
-function atualizar(){
-
-let investido = 0;
-let recebido = 0;
-let lucro = 0;
-
-
-produtos.forEach(p => {
-
-investido += p.compra + p.gastos;
-
-if(p.venda > 0){
-
-recebido += p.venda;
-
-lucro += lucroProduto(p);
-
-}
+  if(p){
+    document.getElementById("precoReal").value =
+      p.precoVenda;
+  }
 
 });
 
 
-document.getElementById("investido")
-.textContent = dinheiro(investido);
+/* =========================
+   REGISTAR VENDA
+========================= */
 
-document.getElementById("recebido")
-.textContent = dinheiro(recebido);
+document.getElementById("vendaForm")
+.addEventListener("submit",e=>{
 
-document.getElementById("lucro")
-.textContent = dinheiro(lucro);
+  e.preventDefault();
 
-document.getElementById("porEnviar")
-.textContent =
-produtos.filter(
-p => p.estado === "Por enviar"
-).length;
+  const produtoId =
+    document.getElementById("produtoVenda").value;
 
+  const p = produtoPorId(produtoId);
 
-mostrarProdutos();
+  if(!p)return;
 
-mostrarEnviar();
+  if(p.stock <= 0){
 
-mostrarVendas();
+    alert("Este produto não tem stock disponível.");
 
-mostrarUltimas();
+    return;
+  }
 
-}
+  const preco =
+    Number(document.getElementById("precoReal").value);
 
+  const gastos =
+    Number(document.getElementById("gastosVenda").value) || 0;
 
-function mostrarProdutos(){
+  if(preco < 0 || gastos < 0)return;
 
-const div =
-document.getElementById("listaProdutos");
+  dados.vendas.push({
 
+    id:Date.now() + Math.random(),
 
-if(produtos.length === 0){
+    produtoId:p.id,
 
-div.innerHTML =
-'<div class="empty">Ainda não tens produtos registados 🤎</div>';
+    preco,
 
-return;
+    gastos,
 
-}
+    estado:"Por enviar",
 
+    data:new Date().toISOString()
 
-div.innerHTML =
-produtos.map(p => `
+  });
 
-<div class="product">
+  p.stock--;
 
-<h3>
-${escapeHtml(p.nome)}
-</h3>
+  guardar();
 
+  e.target.reset();
 
-<p>
-Compra:
-<b>${dinheiro(p.compra)}</b>
-</p>
+  render();
 
+  alert("Venda registada! 🤎");
 
-${p.original > 0
-? `<p>Original: ${dinheiro(p.original)}</p>`
-: ""}
+});
 
 
-<p>
-Venda:
-<b>${dinheiro(p.venda)}</b>
-</p>
+/* =========================
+   ALTERAR ESTADO DA VENDA
+========================= */
 
+function alterarEstadoVenda(id,estado){
 
-${p.gastos > 0
-? `<p>Gastos: ${dinheiro(p.gastos)}</p>`
-: ""}
+  const venda =
+    dados.vendas.find(v=>v.id===id);
 
+  if(!venda)return;
 
-<p class="profit">
-Lucro: ${dinheiro(lucroProduto(p))}
-</p>
+  venda.estado = estado;
 
-
-<span class="status">
-${p.estado}
-</span>
-
-
-<br><br>
-
-
-<select
-onchange="alterarEstado(${p.id},this.value)"
->
-
-<option
-${p.estado==="Em stock"?"selected":""}
->
-Em stock
-</option>
-
-<option
-${p.estado==="Por enviar"?"selected":""}
->
-Por enviar
-</option>
-
-<option
-${p.estado==="Enviado"?"selected":""}
->
-Enviado
-</option>
-
-<option
-${p.estado==="Entregue"?"selected":""}
->
-Entregue
-</option>
-
-</select>
-
-
-<button
-class="edit"
-onclick="editarProduto(${p.id})"
->
-✏️ Editar
-</button>
-
-
-<button
-class="danger"
-onclick="apagar(${p.id})"
->
-Apagar
-</button>
-
-
-</div>
-
-`).join("");
+  guardar();
+  render();
 
 }
 
 
-function mostrarEnviar(){
+/* =========================
+   APAGAR VENDA
+========================= */
 
-const div =
-document.getElementById("listaEnviar");
+function apagarVenda(id){
 
-const lista =
-produtos.filter(
-p => p.estado === "Por enviar"
-);
+  const venda =
+    dados.vendas.find(v=>v.id===id);
 
+  if(!venda)return;
 
-if(lista.length === 0){
+  if(!confirm("Apagar esta venda?"))return;
 
-div.innerHTML =
-'<div class="empty">🎉 Não tens encomendas por enviar!</div>';
+  const p = produtoPorId(venda.produtoId);
 
-return;
+  if(p){
+    p.stock++;
+  }
 
-}
+  dados.vendas =
+    dados.vendas.filter(v=>v.id!==id);
 
-
-div.innerHTML =
-lista.map(p => `
-
-<div class="product">
-
-<h3>
-${escapeHtml(p.nome)}
-</h3>
-
-<p>
-Valor da venda:
-<b>${dinheiro(p.venda)}</b>
-</p>
-
-
-<button
-class="primary"
-onclick="alterarEstado(${p.id},'Enviado')"
->
-Marcar como enviado
-</button>
-
-</div>
-
-`).join("");
+  guardar();
+  render();
 
 }
 
 
-function mostrarVendas(){
+/* =========================
+   CARRINHO
+========================= */
 
-const div =
-document.getElementById("listaVendas");
+document.getElementById("compraForm")
+.addEventListener("submit",e=>{
 
-const lista =
-produtos.filter(p => p.venda > 0);
+  e.preventDefault();
 
+  const produtoId =
+    document.getElementById("produtoCompra").value;
 
-if(lista.length === 0){
+  const quantidade =
+    Number(document.getElementById("quantidadeCompra").value);
 
-div.innerHTML =
-'<div class="empty">Ainda não tens vendas registadas.</div>';
+  if(!produtoId || quantidade < 1)return;
 
-return;
+  const existente =
+    dados.carrinho.find(
+      x=>String(x.produtoId)===String(produtoId)
+    );
 
-}
+  if(existente){
 
+    existente.quantidade += quantidade;
 
-div.innerHTML =
-lista.map(p => `
+  }else{
 
-<div class="product">
+    dados.carrinho.push({
+      id:Date.now()+Math.random(),
+      produtoId,
+      quantidade
+    });
 
-<h3>
-${escapeHtml(p.nome)}
-</h3>
+  }
 
+  guardar();
 
-<p>
-Compraste por:
-${dinheiro(p.compra)}
-</p>
+  e.target.reset();
 
+  document.getElementById("quantidadeCompra").value=1;
 
-<p>
-Vendeste por:
-${dinheiro(p.venda)}
-</p>
+  render();
 
-
-${p.gastos > 0
-? `<p>Gastos: ${dinheiro(p.gastos)}</p>`
-: ""}
-
-
-<p class="profit">
-Lucro: ${dinheiro(lucroProduto(p))}
-</p>
+});
 
 
-<span class="status">
-${p.estado}
-</span>
+/* =========================
+   COMPRAR CARRINHO
+========================= */
 
-</div>
+function comprarItem(id){
 
-`).join("");
+  const item =
+    dados.carrinho.find(x=>x.id===id);
 
-}
+  if(!item)return;
 
+  const p =
+    produtoPorId(item.produtoId);
 
-function mostrarUltimas(){
+  if(!p)return;
 
-const div =
-document.getElementById("ultimas");
+  p.stock += item.quantidade;
+  p.totalComprado += item.quantidade;
 
-const lista =
-produtos.slice(0,3);
+  dados.carrinho =
+    dados.carrinho.filter(x=>x.id!==id);
 
+  guardar();
+  render();
 
-if(lista.length === 0){
-
-div.innerHTML =
-'<div class="empty">Ainda não tens vendas. 🤎</div>';
-
-return;
+  alert(`${item.quantidade} unidade(s) adicionada(s) ao stock! 🤎`);
 
 }
 
 
-div.innerHTML =
-lista.map(p => `
+/* =========================
+   ALTERAR QUANTIDADE CARRINHO
+========================= */
 
-<div class="product">
+function alterarCarrinho(id){
 
-<h3>
-${escapeHtml(p.nome)}
-</h3>
+  const item =
+    dados.carrinho.find(x=>x.id===id);
 
-<p>
-${dinheiro(p.venda)}
-</p>
+  if(!item)return;
 
-<span class="status">
-${p.estado}
-</span>
+  const nova =
+    Number(prompt("Quantidade:",item.quantidade));
 
-</div>
+  if(!nova || nova < 1)return;
 
-`).join("");
+  item.quantidade=nova;
 
-}
-
-
-function escapeHtml(text){
-
-return String(text)
-
-.replaceAll("&","&amp;")
-
-.replaceAll("<","&lt;")
-
-.replaceAll(">","&gt;")
-
-.replaceAll('"',"&quot;")
-
-.replaceAll("'","&#039;");
+  guardar();
+  render();
 
 }
 
 
-atualizar();
+/* =========================
+   REMOVER DO CARRINHO
+========================= */
+
+function removerCarrinho(id){
+
+  dados.carrinho =
+    dados.carrinho.filter(x=>x.id!==id);
+
+  guardar();
+  render();
+
+}
+
+
+/* =========================
+   RENDER
+========================= */
+
+function render(){
+
+  renderInicio();
+  renderProdutos();
+  renderVendas();
+  renderEnviar();
+  renderCarrinho();
+  preencherSelects();
+
+}
+
+
+/* =========================
+   INÍCIO
+========================= */
+
+function renderInicio(){
+
+  const investido =
+    dados.produtos.reduce(
+      (total,p)=>
+        total + (Number(p.compra)||0) *
+        (Number(p.totalComprado)||0),0
+    );
+
+  const recebido =
+    dados.vendas.reduce(
+      (total,v)=>total+(Number(v.preco)||0),0
+    );
+
+  const lucro =
+    dados.vendas.reduce((total,v)=>{
+
+      const p=produtoPorId(v.produtoId);
+
+      if(!p)return total;
+
+      return total +
+        Number(v.preco) -
+        Number(p.compra) -
+        Number(v.gastos||0);
+
+    },0);
+
+  const stock =
+    dados.produtos.reduce(
+      (total,p)=>total+Number(p.stock||0),0
+    );
+
+  document.getElementById("investido").textContent =
+    dinheiro(investido);
+
+  document.getElementById("recebido").textContent =
+    dinheiro(recebido);
+
+  document.getElementById("lucro").textContent =
+    dinheiro(lucro);
+
+  document.getElementById("stock").textContent =
+    stock;
+
+  const ranking = dados.produtos
+    .map(p=>{
+
+      const vendas =
+        dados.vendas.filter(
+          v=>String(v.produtoId)===String(p.id)
+        );
+
+      const lucroProduto =
+        vendas.reduce(
+          (total,v)=>
+            total +
+            Number(v.preco) -
+            Number(p.compra) -
+            Number(v.gastos||0),0
+        );
+
+      return {
+        ...p,
+        quantidade:vendas.length,
+        lucro:lucroProduto
+      };
+
+    })
+    .filter(p=>p.quantidade>0)
+    .sort((a,b)=>
+      b.quantidade-a.quantidade ||
+      b.lucro-a.lucro
+    );
+
+  const el=document.getElementById("ranking");
+
+  if(!ranking.length){
+
+    el.innerHTML=
+      `<div class="empty">
+        Ainda não tens vendas registadas.
+      </div>`;
+
+    return;
+  }
+
+  el.innerHTML=ranking.map((p,i)=>{
+
+    const medalhas=["🥇","🥈","🥉"];
+
+    return `
+      <div class="rank">
+        <div class="rank-number">
+          ${medalhas[i] || (i+1)+".")}
+        </div>
+
+        <div class="rank-info">
+          <strong>${p.nome}</strong>
+          ${p.quantidade}
+          ${p.quantidade===1?"vendido":"vendidos"}
+        </div>
+
+        <strong>${dinheiro(p.lucro)}</strong>
+      </div>
+    `;
+
+  }).join("");
+
+}
+
+
+/* =========================
+   PRODUTOS
+========================= */
+
+function renderProdutos(){
+
+  const el =
+    document.getElementById("listaProdutos");
+
+  if(!dados.produtos.length){
+
+    el.innerHTML=
+      `<div class="empty">
+        Ainda não tens produtos.
+      </div>`;
+
+    return;
+  }
+
+  el.innerHTML=dados.produtos.map(p=>{
+
+    return `
+      <div class="product">
+
+        <h3>${p.nome}</h3>
+
+        <p>💰 Compra:
+          <strong>${dinheiro(p.compra)}</strong>
+        </p>
+
+        <p>🏷️ Venda pretendida:
+          <strong>${dinheiro(p.precoVenda)}</strong>
+        </p>
+
+        <p>📦 Stock:
+          <strong>${p.stock}</strong>
+        </p>
+
+        <span class="badge">
+          ${dados.vendas.filter(v=>v.produtoId===p.id).length}
+          vendidos
+        </span>
+
+        <div class="actions">
+
+          <button class="sell"
+            onclick="abrirVenda(${JSON.stringify(p.id)})">
+            💰 Registar venda
+          </button>
+
+          <button onclick="adicionarStock(${JSON.stringify(p.id)})">
+            ➕ Comprar mais
+          </button>
+
+          <button onclick="editarProduto(${JSON.stringify(p.id)})">
+            ✏️ Editar
+          </button>
+
+          <button onclick="apagarProduto(${JSON.stringify(p.id)})">
+            🗑️ Apagar
+          </button>
+
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+
+}
+
+
+/* =========================
+   ABRIR VENDA
+========================= */
+
+function abrirVenda(id){
+
+  document.querySelectorAll(".tab")
+    .forEach(b=>b.classList.remove("active"));
+
+  document.querySelectorAll(".page")
+    .forEach(p=>p.classList.remove("active"));
+
+  document
+    .querySelector('[data-page="vendas"]')
+    .classList.add("active");
+
+  document
+    .getElementById("vendas")
+    .classList.add("active");
+
+  preencherSelects();
+
+  document.getElementById("produtoVenda").value=id;
+
+  const p=produtoPorId(id);
+
+  if(p){
+    document.getElementById("precoReal").value=
+      p.precoVenda;
+  }
+
+  window.scrollTo(0,0);
+
+}
+
+
+/* =========================
+   VENDAS
+========================= */
+
+function renderVendas(){
+
+  const el =
+    document.getElementById("listaVendas");
+
+  if(!dados.vendas.length){
+
+    el.innerHTML=
+      `<div class="empty">
+        Ainda não tens vendas.
+      </div>`;
+
+    return;
+  }
+
+  const vendas =
+    [...dados.vendas].reverse();
+
+  el.innerHTML=vendas.map(v=>{
+
+    const p=produtoPorId(v.produtoId);
+
+    const lucro =
+      p ?
+      Number(v.preco) -
+      Number(p.compra) -
+      Number(v.gastos||0)
+      :0;
+
+    return `
+      <div class="product">
+
+        <h3>${p ? p.nome : "Produto apagado"}</h3>
+
+        <p>🏷️ Pretendido:
+          ${p ? dinheiro(p.precoVenda) : "-"}
+        </p>
+
+        <p>💵 Vendido por:
+          <strong>${dinheiro(v.preco)}</strong>
+        </p>
+
+        ${
+          v.gastos > 0
+          ? `<p>📦 Gastos: ${dinheiro(v.gastos)}</p>`
+          : ""
+        }
+
+        <p class="${lucro>=0?"profit":"loss"}">
+          Lucro: ${dinheiro(lucro)}
+        </p>
+
+        <span class="badge">${v.estado}</span>
+
+        <div class="actions">
+
+          ${
+            v.estado==="Por enviar"
+            ? `<button onclick="alterarEstadoVenda(${JSON.stringify(v.id)},"Enviado")">
+                📮 Marcar enviado
+              </button>`
+            : ""
+          }
+
+          ${
+            v.estado==="Enviado"
+            ? `<button onclick="alterarEstadoVenda(${JSON.stringify(v.id)},"Entregue")">
+                ✅ Marcar entregue
+              </button>`
+            : ""
+          }
+
+          <button onclick="apagarVenda(${JSON.stringify(v.id)})">
+            🗑️ Apagar
+          </button>
+
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+
+}
+
+
+/* =========================
+   ENVIAR
+========================= */
+
+function renderEnviar(){
+
+  const el =
+    document.getElementById("listaEnviar");
+
+  const vendas =
+    dados.vendas.filter(
+      v=>v.estado==="Por enviar" ||
+         v.estado==="Enviado"
+    );
+
+  if(!vendas.length){
+
+    el.innerHTML=
+      `<div class="empty">
+        🎉 Não tens encomendas pendentes!
+      </div>`;
+
+    return;
+  }
+
+  el.innerHTML=vendas.map(v=>{
+
+    const p=produtoPorId(v.produtoId);
+
+    return `
+      <div class="product">
+
+        <h3>📦 ${p ? p.nome : "Produto"}</h3>
+
+        <p>Venda:
+          <strong>${dinheiro(v.preco)}</strong>
+        </p>
+
+        <span class="badge">${v.estado}</span>
+
+        <div class="actions">
+
+          ${
+            v.estado==="Por enviar"
+            ? `<button class="sell"
+                onclick="alterarEstadoVenda(${JSON.stringify(v.id)},"Enviado")">
+                📮 Marcar como enviado
+              </button>`
+            : `<button
+                onclick="alterarEstadoVenda(${JSON.stringify(v.id)},"Entregue")">
+                ✅ Marcar como entregue
+              </button>`
+          }
+
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+
+}
+
+
+/* =========================
+   CARRINHO
+========================= */
+
+function renderCarrinho(){
+
+  const totalUnidades =
+    dados.carrinho.reduce(
+      (total,i)=>total+Number(i.quantidade),0
+    );
+
+  const total =
+    dados.carrinho.reduce((total,i)=>{
+
+      const p=produtoPorId(i.produtoId);
+
+      return total +
+        (p ? p.compra * i.quantidade : 0);
+
+    },0);
+
+  document.getElementById("totalUnidades")
+    .textContent =
+      `${totalUnidades} ${totalUnidades===1?"unidade":"unidades"}`;
+
+  document.getElementById("totalCompras")
+    .textContent=dinheiro(total);
+
+  const el =
+    document.getElementById("listaCarrinho");
+
+  if(!dados.carrinho.length){
+
+    el.innerHTML=
+      `<div class="empty">
+        🛒 O teu carrinho está vazio.
+        <br><br>
+        Adiciona aqui os produtos que precisas de repor.
+      </div>`;
+
+    return;
+  }
+
+  el.innerHTML=dados.carrinho.map(i=>{
+
+    const p=produtoPorId(i.produtoId);
+
+    if(!p)return "";
+
+    const totalItem =
+      p.compra*i.quantidade;
+
+    return `
+      <div class="cart-item">
+
+        <h3>${p.nome}</h3>
+
+        <p>
+          Preço por unidade:
+          <strong>${dinheiro(p.compra)}</strong>
+        </p>
+
+        <div class="cart-row">
+
+          <span>Quantidade:</span>
+
+          <strong>${i.quantidade}</strong>
+
+        </div>
+
+        <p>
+          Total:
+          <strong>${dinheiro(totalItem)}</strong>
+        </p>
+
+        <div class="actions">
+
+          <button class="sell"
+            onclick="comprarItem(${JSON.stringify(i.id)})">
+            ✅ Comprado
+          </button>
+
+          <button
+            onclick="alterarCarrinho(${JSON.stringify(i.id)})">
+            ✏️ Alterar
+          </button>
+
+          <button
+            onclick="removerCarrinho(${JSON.stringify(i.id)})">
+            🗑️ Remover
+          </button>
+
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+
+}
+
+
+/* =========================
+   SELECTS
+========================= */
+
+function preencherSelects(){
+
+  const venda =
+    document.getElementById("produtoVenda");
+
+  const compra =
+    document.getElementById("produtoCompra");
+
+  const valorVenda =
+    venda.value;
+
+  const valorCompra =
+    compra.value;
+
+  venda.innerHTML =
+    dados.produtos
+      .filter(p=>p.stock>0)
+      .map(p=>
+        `<option value="${p.id}">
+          ${p.nome} — ${p.stock} em stock
+        </option>`
+      ).join("");
+
+  compra.innerHTML =
+    dados.produtos
+      .map(p=>
+        `<option value="${p.id}">
+          ${p.nome} — ${dinheiro(p.compra)}/un.
+        </option>`
+      ).join("");
+
+  if(
+    [...venda.options]
+      .some(o=>o.value===String(valorVenda))
+  ){
+    venda.value=valorVenda;
+  }
+
+  if(
+    [...compra.options]
+      .some(o=>o.value===String(valorCompra))
+  ){
+    compra.value=valorCompra;
+  }
+
+}
+
+
+/* =========================
+   INICIAR
+========================= */
+
+render();
 
 </script>
 
