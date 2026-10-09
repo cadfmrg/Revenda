@@ -520,7 +520,6 @@ hr{
 
 </section>
 
-
 <!-- PRODUTOS -->
 <section id="products" class="page">
 
@@ -571,7 +570,6 @@ hr{
   <div class="section" id="productList"></div>
 
 </section>
-
 
 <!-- VENDA -->
 <section id="sale" class="page">
@@ -634,7 +632,6 @@ hr{
 
 </section>
 
-
 <!-- COMPRAS -->
 <section id="shopping" class="page">
 
@@ -694,7 +691,6 @@ hr{
 
 </section>
 
-
 <!-- ENVIOS -->
 <section id="shipments" class="page">
 
@@ -729,7 +725,6 @@ hr{
   </div>
 
 </section>
-
 
 <!-- GASTOS -->
 <section id="expenses" class="page">
@@ -786,7 +781,6 @@ hr{
 
 </section>
 
-
 <!-- GRÁFICOS -->
 <section id="charts" class="page">
 
@@ -826,7 +820,6 @@ hr{
 
 </section>
 
-
 <!-- MAIS -->
 <section id="more" class="page">
 
@@ -859,7 +852,6 @@ hr{
 
   </div>
 
-
   <div class="card">
 
     <h3>🤖 Gastos mensais</h3>
@@ -874,7 +866,6 @@ hr{
     </p>
 
   </div>
-
 
   <div class="card">
 
@@ -904,7 +895,6 @@ hr{
 
   </div>
 
-
   <div class="card">
 
     <h3>⚠️ Zona perigosa</h3>
@@ -922,7 +912,6 @@ hr{
 </section>
 
 </main>
-
 
 <!-- MENU INFERIOR -->
 
@@ -960,7 +949,6 @@ hr{
 
 </nav>
 
-
 <script>
 
 /* =========================================================
@@ -979,7 +967,6 @@ let db =
     shopping: [],
     version: 2
   };
-
 
 /* Compatibilidade com versões anteriores */
 
@@ -1003,7 +990,6 @@ if(!Array.isArray(db.shopping)){
     db.shopping=[];
   }
 }
-
 
 /* =========================================================
    FUNÇÕES BASE
@@ -1044,7 +1030,6 @@ function esc(value){
     }[c]));
 
 }
-
 
 /* =========================================================
    CÁLCULOS
@@ -1143,7 +1128,6 @@ function pendingShipments(){
 
 }
 
-
 /* =========================================================
    MENU
 ========================================================= */
@@ -1184,7 +1168,6 @@ document
       ()=>go(button.dataset.page)
     );
   });
-
 
 /* =========================================================
    PRODUTOS
@@ -1239,7 +1222,6 @@ $("productForm").addEventListener("submit",e=>{
 
 });
 
-
 function editProduct(pid){
 
   const p=product(pid);
@@ -1284,7 +1266,6 @@ function editProduct(pid){
 
 }
 
-
 function addStock(pid){
 
   const p=product(pid);
@@ -1306,7 +1287,6 @@ function addStock(pid){
 
 }
 
-
 function deleteProduct(pid){
 
   if(!confirm(
@@ -1327,7 +1307,6 @@ function deleteProduct(pid){
 
 }
 
-
 /* =========================================================
    VENDAS
 ========================================================= */
@@ -1341,7 +1320,6 @@ $("sProduct").addEventListener("change",()=>{
   }
 
 });
-
 
 $("saleForm").addEventListener("submit",e=>{
 
@@ -1404,7 +1382,6 @@ $("saleForm").addEventListener("submit",e=>{
 
 });
 
-
 function editSale(sid){
 
   const s=db.sales.find(x=>x.id===sid);
@@ -1441,7 +1418,6 @@ function editSale(sid){
 
 }
 
-
 function deleteSale(sid){
 
   const s=
@@ -1465,7 +1441,6 @@ function deleteSale(sid){
 
 }
 
-
 function changeSaleStatus(sid,status){
 
   const s=
@@ -1480,7 +1455,6 @@ function changeSaleStatus(sid,status){
 
 }
 
-
 function quickSale(pid){
 
   go("sale");
@@ -1494,7 +1468,6 @@ function quickSale(pid){
   }
 
 }
-
 
 /* =========================================================
    COMPRAS
@@ -1535,7 +1508,6 @@ $("needForm").addEventListener("submit",e=>{
   render();
 
 });
-
 
 function addToShopping(pid){
 
@@ -1583,7 +1555,6 @@ function addToShopping(pid){
 
 }
 
-
 function changeShoppingQty(id){
 
   const item=
@@ -1604,7 +1575,6 @@ function changeShoppingQty(id){
   render();
 
 }
-
 
 function markBought(id){
 
@@ -1633,7 +1603,6 @@ function markBought(id){
 
 }
 
-
 function removeShopping(id){
 
   if(!confirm("Remover da lista?"))return;
@@ -1645,7 +1614,6 @@ function removeShopping(id){
   render();
 
 }
-
 
 /* =========================================================
    GASTOS
@@ -1684,7 +1652,6 @@ function ensureChatGPTExpense(){
 
 ensureChatGPTExpense();
 
-
 $("expenseForm").addEventListener("submit",e=>{
 
   e.preventDefault();
@@ -1717,7 +1684,6 @@ $("expenseForm").addEventListener("submit",e=>{
 
 });
 
-
 function editExpense(id){
 
   const x=
@@ -1747,7 +1713,6 @@ function editExpense(id){
 
 }
 
-
 function deleteExpense(id){
 
   const x=
@@ -1775,7 +1740,6 @@ function deleteExpense(id){
 
 }
 
-
 /* =========================================================
    RENDER
 ========================================================= */
@@ -1796,7 +1760,6 @@ function render(){
   save();
 
 }
-
 
 /* =========================================================
    HOME
@@ -1824,7 +1787,6 @@ function renderHome(){
 
   $("mToShip").textContent=
     pendingShipments();
-
 
   const ranks=
     db.products
@@ -1861,7 +1823,6 @@ function renderHome(){
           b.profit-a.profit
       );
 
-
   $("ranking").innerHTML=
     ranks.length
       ?
@@ -1891,7 +1852,6 @@ function renderHome(){
       `<div class="empty">
         Ainda não tens vendas registadas.
       </div>`;
-
 
   let alerts="";
 
@@ -1934,7 +1894,6 @@ function renderHome(){
   }
 
   $("alerts").innerHTML=alerts;
-
 
   /* DONUT */
 
@@ -1994,7 +1953,6 @@ function renderHome(){
 
     }).join("");
 
-
   $("legend").innerHTML=[
 
     ["Recebido",r],
@@ -2012,7 +1970,6 @@ function renderHome(){
 
 }
 
-
 /* =========================================================
    PRODUTOS
 ========================================================= */
@@ -2028,7 +1985,6 @@ function renderProducts(){
       p.name.toLowerCase()
         .includes(search)
     );
-
 
   $("productList").innerHTML=
     products.length
@@ -2074,7 +2030,6 @@ function renderProducts(){
 
             </div>
 
-
             <div class="two" style="margin-top:12px">
 
               <div class="statMini">
@@ -2089,7 +2044,6 @@ function renderProducts(){
 
             </div>
 
-
             <p class="muted">
               Lucro previsto/unidade:
               <b class="${unitProfit>=0?"profit":"loss"}">
@@ -2097,13 +2051,11 @@ function renderProducts(){
               </b>
             </p>
 
-
             ${p.forWho?`
               <p class="muted">
                 👤 Para: <b>${esc(p.forWho)}</b>
               </p>
             `:""}
-
 
             ${p.notes?`
               <p class="muted">
@@ -2111,11 +2063,9 @@ function renderProducts(){
               </p>
             `:""}
 
-
             <p class="muted">
               ${sold} vendido(s)
             </p>
-
 
             <div class="row">
 
@@ -2169,12 +2119,10 @@ function renderProducts(){
 
 }
 
-
 $("productSearch").addEventListener(
   "input",
   renderProducts
 );
-
 
 /* =========================================================
    VENDA
@@ -2198,13 +2146,11 @@ function renderSale(){
         Adiciona primeiro um produto
       </option>`;
 
-
   let sales=[...db.sales].reverse();
 
   const search=
     ($("saleSearch")?.value||"")
       .toLowerCase();
-
 
   if(search){
 
@@ -2221,7 +2167,6 @@ function renderSale(){
       });
 
   }
-
 
   $("salesList").innerHTML=
     sales.length
@@ -2242,7 +2187,6 @@ function renderSale(){
         const net=
           gross-cost-s.costs;
 
-
         let badgeClass="";
 
         if(s.status==="Entregue")
@@ -2253,7 +2197,6 @@ function renderSale(){
 
         if(s.status==="Cancelado")
           badgeClass="red";
-
 
         return `
 
@@ -2283,7 +2226,6 @@ function renderSale(){
 
             </div>
 
-
             <p>
               💵 Recebido:
               <b>${money(gross)}</b>
@@ -2306,7 +2248,6 @@ function renderSale(){
               </p>
             `:""}
 
-
             <p class="muted">
               Gastos:
               ${money(s.costs)}
@@ -2316,7 +2257,6 @@ function renderSale(){
               Lucro:
               ${money(net)}
             </p>
-
 
             <div class="row">
 
@@ -2369,12 +2309,10 @@ function renderSale(){
 
 }
 
-
 $("saleSearch").addEventListener(
   "input",
   renderSale
 );
-
 
 /* =========================================================
    COMPRAS
@@ -2414,7 +2352,6 @@ function renderShopping(){
 
           </div>
 
-
           <p>
             Total previsto:
             <b>
@@ -2422,12 +2359,10 @@ function renderShopping(){
             </b>
           </p>
 
-
           <p class="muted">
             Prioridade:
             <b>${esc(x.priority)}</b>
           </p>
-
 
           <div class="row">
 
@@ -2463,12 +2398,10 @@ function renderShopping(){
         Não tens compras pendentes adicionadas manualmente.
       </div>`;
 
-
   const stockItems=
     db.shopping.filter(
       x=>x.productId&&!x.bought
     );
-
 
   $("stockShoppingList").innerHTML=
     stockItems.length
@@ -2503,14 +2436,12 @@ function renderShopping(){
 
             </div>
 
-
             <p>
               Total previsto:
               <b>
                 ${money(p.cost*x.qty)}
               </b>
             </p>
-
 
             <div class="row">
 
@@ -2548,7 +2479,6 @@ function renderShopping(){
         🛒 Não tens reposições pendentes.
       </div>`;
 
-
   const items=
     db.shopping.filter(
       x=>!x.bought
@@ -2577,12 +2507,10 @@ function renderShopping(){
 
   });
 
-
   $("cartQty").textContent=qty;
   $("cartTotal").textContent=money(total);
 
 }
-
 
 /* =========================================================
    ENVIOS
@@ -2605,7 +2533,6 @@ function renderShipments(){
       s=>s.status==="Entregue"
     );
 
-
   $("shipPending").textContent=
     pending.length;
 
@@ -2618,14 +2545,12 @@ function renderShipments(){
   $("shipAttention").textContent=
     pending.filter(s=>!s.tracking).length;
 
-
   const list=
     db.sales
       .filter(
         s=>s.status!=="Cancelado"
       )
       .reverse();
-
 
   $("shipmentList").innerHTML=
     list.length
@@ -2662,18 +2587,15 @@ function renderShipments(){
 
             </div>
 
-
             <p class="muted">
               Quantidade:
               <b>${s.qty}</b>
             </p>
 
-
             <p class="muted">
               Plataforma:
               <b>${esc(s.platform||"")}</b>
             </p>
-
 
             <p class="muted">
               Código:
@@ -2681,7 +2603,6 @@ function renderShipments(){
                 ${esc(s.tracking||"Ainda não colocado")}
               </b>
             </p>
-
 
             <div class="row">
 
@@ -2713,7 +2634,6 @@ function renderShipments(){
 
 }
 
-
 /* =========================================================
    GASTOS
 ========================================================= */
@@ -2724,10 +2644,8 @@ function renderExpenses(){
     [...db.expenses]
       .reverse();
 
-
   $("expenseTotal").textContent=
     money(generalExpenses());
-
 
   $("expenseList").innerHTML=
     expenses.length
@@ -2755,7 +2673,6 @@ function renderExpenses(){
             </b>
 
           </div>
-
 
           <div class="row" style="margin-top:10px">
 
@@ -2785,7 +2702,6 @@ function renderExpenses(){
 
 }
 
-
 /* =========================================================
    GRÁFICOS
 ========================================================= */
@@ -2799,7 +2715,6 @@ function monthKey(date){
   }`;
 
 }
-
 
 function monthName(key){
 
@@ -2815,7 +2730,6 @@ function monthName(key){
   );
 
 }
-
 
 function makeChart(el,values){
 
@@ -2852,7 +2766,6 @@ function makeChart(el,values){
 
 }
 
-
 function renderCharts(){
 
   const keys=[];
@@ -2875,7 +2788,6 @@ function renderCharts(){
     );
 
   }
-
 
   makeChart(
     $("revenueChart"),
@@ -2900,7 +2812,6 @@ function renderCharts(){
     }))
 
   );
-
 
   makeChart(
     $("profitChart"),
@@ -2953,7 +2864,6 @@ function renderCharts(){
 
   );
 
-
   const rev=revenue();
 
   const count=
@@ -2968,7 +2878,6 @@ function renderCharts(){
         : 0
     );
 
-
   $("avgMargin").textContent=
     rev
       ? Math.round(
@@ -2977,7 +2886,6 @@ function renderCharts(){
       : "0%";
 
 }
-
 
 /* =========================================================
    MAIS
@@ -2999,7 +2907,6 @@ function renderMore(){
 
 }
 
-
 /* =========================================================
    EXPORTAR
 ========================================================= */
@@ -3019,7 +2926,6 @@ $("exportBtn").onclick=()=>{
 
   };
 
-
   const blob=
     new Blob(
       [
@@ -3033,7 +2939,6 @@ $("exportBtn").onclick=()=>{
         type:"application/json"
       }
     );
-
 
   const url=
     URL.createObjectURL(blob);
@@ -3061,7 +2966,6 @@ $("exportBtn").onclick=()=>{
 
 };
 
-
 /* =========================================================
    IMPORTAR
 ========================================================= */
@@ -3075,10 +2979,8 @@ $("importFile").addEventListener(
 
     if(!file)return;
 
-
     const reader=
       new FileReader();
-
 
     reader.onload=()=>{
 
@@ -3089,11 +2991,9 @@ $("importFile").addEventListener(
             reader.result
           );
 
-
         let data=
           imported.data ||
           imported;
-
 
         if(
           !data.products ||
@@ -3109,20 +3009,16 @@ $("importFile").addEventListener(
 
         }
 
-
         if(
           !confirm(
             "Importar este backup vai substituir os dados atuais. Tens a certeza?"
           )
         )return;
 
-
         db=data;
-
 
         if(!Array.isArray(db.shopping))
           db.shopping=[];
-
 
         ensureChatGPTExpense();
 
@@ -3130,11 +3026,9 @@ $("importFile").addEventListener(
 
         render();
 
-
         alert(
           "Backup importado com sucesso 🤎"
         );
-
 
       }catch(error){
 
@@ -3148,12 +3042,10 @@ $("importFile").addEventListener(
 
     };
 
-
     reader.readAsText(file);
 
   }
 );
-
 
 /* =========================================================
    APAGAR TUDO
@@ -3167,13 +3059,11 @@ $("resetBtn").onclick=()=>{
     )
   )return;
 
-
   if(
     !confirm(
       "Última confirmação: queres mesmo apagar TUDO?"
     )
   )return;
-
 
   db={
     products:[],
@@ -3183,7 +3073,6 @@ $("resetBtn").onclick=()=>{
     version:2
   };
 
-
   ensureChatGPTExpense();
 
   save();
@@ -3192,13 +3081,11 @@ $("resetBtn").onclick=()=>{
 
 };
 
-
 /* =========================================================
    DATA INICIAL
 ========================================================= */
 
 $("eDate").value=today();
-
 
 /* =========================================================
    INICIAR
@@ -3210,3 +3097,4 @@ render();
 
 </body>
 </html>
+ 
